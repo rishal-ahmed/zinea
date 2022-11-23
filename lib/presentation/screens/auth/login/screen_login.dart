@@ -20,7 +20,6 @@ class ScreenLogin extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // dHeight5,
             const TextFeildWidget(
               labelText: 'Email or Mobile',
               inputBorder: OutlineInputBorder(),
@@ -37,7 +36,10 @@ class ScreenLogin extends StatelessWidget {
               borderColor: primaryColor,
               textColor: primaryColor,
               borderRadius: BorderRadius.circular(5),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, routeMain, ModalRoute.withName(routeRoot));
+              },
             ),
             dHeight1n5,
             Align(

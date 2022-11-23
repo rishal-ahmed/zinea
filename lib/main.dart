@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
@@ -16,26 +17,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(
-      builder: (context, orientation, screenType) {
-        return MaterialApp(
-          title: 'Zinea',
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-            scaffoldBackgroundColor: kBlack,
-            appBarTheme: const AppBarTheme(color: kBlack),
-            primaryColor: Colors.yellow,
-            colorScheme: const ColorScheme.dark(),
-            fontFamily: GoogleFonts.roboto().fontFamily,
-            textTheme: TextTheme(
-              bodyText1: TextUtils.bodytext1,
-              bodyText2: TextUtils.bodytext2,
+    return ProviderScope(
+      child: ResponsiveSizer(
+        builder: (context, orientation, screenType) {
+          return MaterialApp(
+            title: 'Zinea',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              scaffoldBackgroundColor: kBlack,
+              appBarTheme: const AppBarTheme(color: kBlack),
+              primaryColor: Colors.yellow,
+              colorScheme: const ColorScheme.dark(),
+              fontFamily: GoogleFonts.roboto().fontFamily,
+              textTheme: TextTheme(
+                bodyText1: TextUtils.bodytext1,
+                bodyText2: TextUtils.bodytext2,
+              ),
             ),
-          ),
-          onGenerateRoute: RouteGenerator.generateRoute,
-          initialRoute: routeRoot,
-        );
-      },
+            onGenerateRoute: RouteGenerator.generateRoute,
+            initialRoute: routeRoot,
+          );
+        },
+      ),
     );
   }
 }
