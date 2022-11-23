@@ -24,30 +24,34 @@ class MainBottomNavigationBar extends StatelessWidget {
           selectedItemColor: primaryColor,
           unselectedItemColor: kGrey,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.black,
-          // selectedIconTheme: const IconThemeData(color: primaryColor),
-          // unselectedIconTheme: const IconThemeData(color: Colors.grey),
-          selectedFontSize: 15.sp,
+          backgroundColor: secondaryColor,
+          selectedFontSize: 14.sp,
           unselectedFontSize: 14.sp,
+          iconSize: 20.sp,
           items: const [
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_outlined),
+              activeIcon: Icon(Icons.home),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              icon: Icon(Icons.search_outlined),
+              activeIcon: Icon(Icons.search),
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.playlist_add_check),
+              icon: Icon(Icons.playlist_add_check_outlined),
+              activeIcon: Icon(Icons.playlist_add_check),
               label: 'Watchlist',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.favorite_outline),
+              activeIcon: Icon(Icons.favorite),
               label: 'Favourites',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.person_outline),
+              activeIcon: Icon(Icons.person),
               label: 'Profile',
             )
           ],

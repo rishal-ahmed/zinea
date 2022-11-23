@@ -5,7 +5,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/routes/route_generator.dart';
 import 'package:zinea/core/routes/routes.dart';
-import 'package:zinea/domain/utils/text_utils.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,14 +24,12 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               scaffoldBackgroundColor: kBlack,
-              appBarTheme: const AppBarTheme(color: kBlack),
+
+              appBarTheme: const AppBarTheme(color: kTransparentColor),
               primaryColor: Colors.yellow,
               colorScheme: const ColorScheme.dark(),
-              fontFamily: GoogleFonts.roboto().fontFamily,
-              textTheme: TextTheme(
-                bodyText1: TextUtils.bodytext1,
-                bodyText2: TextUtils.bodytext2,
-              ),
+              // fontFamily: GoogleFonts.roboto().fontFamily,
+              fontFamily: GoogleFonts.montserrat().fontFamily,
             ),
             onGenerateRoute: RouteGenerator.generateRoute,
             initialRoute: routeRoot,
