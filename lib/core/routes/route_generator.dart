@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zinea/core/routes/routes.dart';
+import 'package:zinea/presentation/screens/auth/page/screen_login.dart';
+import 'package:zinea/presentation/screens/auth/page/screen_register.dart';
 import 'package:zinea/presentation/screens/introduction/screen_introduction.dart';
 import 'package:zinea/presentation/screens/splash/screen_splash.dart';
 
@@ -15,6 +17,12 @@ class RouteGenerator {
       //=-=-=-=-=-=-=-=-=-=- Introduction -=-=-=-=-=-=-=-=-=-=
       case routeIntroduction:
         return MaterialPageRoute(builder: (_) => const ScreenIntroduction());
+
+      //=-=-=-=-=-=-=-=-=-=- Authentication -=-=-=-=-=-=-=-=-=-=
+      case routeLogin:
+        return MaterialPageRoute(builder: (_) => const ScreenLogin());
+      case routeRegister:
+        return MaterialPageRoute(builder: (_) => const ScreenRegister());
 
       default:
         return _errorRoute();

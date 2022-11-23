@@ -3,6 +3,7 @@ import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
 
 class ScreenIntroduction extends StatelessWidget {
@@ -11,7 +12,6 @@ class ScreenIntroduction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBlack,
       body: Column(
         children: [
           AppBar(),
@@ -47,12 +47,14 @@ class ScreenIntroduction extends StatelessWidget {
                 ),
                 dHeight1,
                 CustomMaterialBtton(
-                  onPressed: () {},
                   buttonText: 'SIGN IN',
                   color: kTransparentColor,
                   borderColor: primaryColor,
                   textColor: primaryColor,
                   borderRadius: BorderRadius.circular(5),
+                  onPressed: () {
+                    Navigator.pushNamed(context, routeLogin);
+                  },
                 ),
               ],
             ),

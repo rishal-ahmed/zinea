@@ -11,7 +11,7 @@ class CustomMaterialBtton extends StatelessWidget {
     this.textStyle,
     this.child,
     this.icon,
-    this.height = 45,
+    this.height = 50,
     this.fontSize,
     this.textColor,
     this.color,
