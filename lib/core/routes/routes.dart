@@ -21,3 +21,15 @@ const String routeMain = '/main';
 
 //=-=-=-=-=- Home -=-=-=-=-=
 const String routeHome = '/home';
+
+//=-=-=-=-=- Home -=-=-=-=-=
+const String routeSearch = '/search';
+
+//=-=-=-=-=- Watchlist -=-=-=-=-=
+const String routeWatchlist = '/watchlist';
+
+//=-=-=-=-=- Favourites -=-=-=-=-=
+const String routeFavourites = '/favourites';
+
+//=-=-=-=-=- Profile -=-=-=-=-=
+const String routeProfile = '/profile';

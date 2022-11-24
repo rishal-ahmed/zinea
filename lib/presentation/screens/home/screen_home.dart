@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/presentation/screens/home/widgets/home_banner_widget.dart';
 import 'package:zinea/presentation/screens/home/widgets/home_title_horizontal_list_widget.dart';
+import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
 
 class ScreenHome extends StatelessWidget {
   const ScreenHome({super.key});
@@ -9,7 +10,7 @@ class ScreenHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const AppbarWidget(home: true),
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
         child: Column(

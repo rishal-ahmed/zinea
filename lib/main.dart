@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -24,8 +25,11 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               scaffoldBackgroundColor: kBlack,
-
-              appBarTheme: const AppBarTheme(color: kTransparentColor),
+              appBarTheme: const AppBarTheme(
+                color: kTransparentColor,
+                systemOverlayStyle:
+                    SystemUiOverlayStyle(statusBarColor: kTransparentColor),
+              ),
               primaryColor: Colors.yellow,
               colorScheme: const ColorScheme.dark(),
               // fontFamily: GoogleFonts.roboto().fontFamily,
