@@ -14,7 +14,7 @@ class SearchResultWidget extends StatelessWidget {
       children: [
         dHeight05,
         Text('Movies & TV', style: TextUtils.headlineMedium),
-        dHeight2,
+        dHeight1,
         Expanded(
           child: Consumer(
             builder: (context, ref, _) {
@@ -36,9 +36,9 @@ class SearchResultWidget extends StatelessWidget {
                 },
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 3,
-                  mainAxisSpacing: 2.5.w,
-                  crossAxisSpacing: 2.5.w,
-                  childAspectRatio: 1 / 1.5,
+                  mainAxisSpacing: 2.w,
+                  crossAxisSpacing: 2.w,
+                  childAspectRatio: 1 / 1.2,
                 ),
                 itemCount: 10,
               );

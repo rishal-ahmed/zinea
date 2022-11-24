@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/domain/utils/debouncer/debouncer.dart';
-import 'package:zinea/presentation/screens/search/widgets/search_result.dart';
+import 'package:zinea/presentation/screens/search/widgets/search_idle.dart';
 
 class ScreenSearch extends StatelessWidget {
   const ScreenSearch({Key? key}) : super(key: key);
@@ -40,8 +40,8 @@ class ScreenSearch extends StatelessWidget {
               Expanded(
                 child: Consumer(
                   builder: (context, ref, _) {
-                    // return const SearchIdleWidget();
-                    return const SearchResultWidget();
+                    return const SearchIdleWidget();
+                    // return const SearchResultWidget();
 
                     // if (!state.isSearching) {
                     //   return const SearchIdleWidget();

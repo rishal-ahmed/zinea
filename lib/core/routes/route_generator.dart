@@ -7,6 +7,7 @@ import 'package:zinea/presentation/screens/introduction/screen_introduction.dart
 import 'package:zinea/presentation/screens/main/screen_main.dart';
 import 'package:zinea/presentation/screens/search/screen_search.dart';
 import 'package:zinea/presentation/screens/splash/screen_splash.dart';
+import 'package:zinea/presentation/screens/watchlist/screen_watchlist.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -38,6 +39,10 @@ class RouteGenerator {
       //=-=-=-=-=-=-=-=-=-=- Search -=-=-=-=-=-=-=-=-=-=
       case routeSearch:
         return MaterialPageRoute(builder: (_) => const ScreenSearch());
+
+      //=-=-=-=-=-=-=-=-=-=- Watchlist -=-=-=-=-=-=-=-=-=-=
+      case routeWatchlist:
+        return MaterialPageRoute(builder: (_) => const ScreenWatchlist());
 
       default:
         return _errorRoute();

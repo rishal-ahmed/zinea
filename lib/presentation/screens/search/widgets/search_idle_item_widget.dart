@@ -36,10 +36,19 @@ class SearchIdleItemWidget extends StatelessWidget {
             style: TextUtils.bodytext1.copyWith(fontWeight: FontWeight.bold),
           ),
         ),
-        Icon(
-          Icons.play_circle_outlined,
-          size: 24.sp,
-          color: kWhite,
+        CircleAvatar(
+          radius: 16.sp,
+          child: CircleAvatar(
+            radius: 15.5.sp,
+            backgroundColor: kBlack,
+            child: FittedBox(
+              child: Icon(
+                Icons.play_arrow,
+                size: 18.sp,
+                color: kWhite,
+              ),
+            ),
+          ),
         )
       ],
     );

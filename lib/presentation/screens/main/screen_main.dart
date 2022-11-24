@@ -5,11 +5,12 @@ import 'package:zinea/domain/provider/main/main_provider.dart';
 import 'package:zinea/presentation/screens/home/screen_home.dart';
 import 'package:zinea/presentation/screens/main/widgets/bottom_navigation_widget.dart';
 import 'package:zinea/presentation/screens/search/screen_search.dart';
+import 'package:zinea/presentation/screens/watchlist/screen_watchlist.dart';
 
 const List _pages = [
   ScreenHome(),
   ScreenSearch(),
-  ScreenHome(),
+  ScreenWatchlist(),
   ScreenHome(),
   ScreenHome(),
 ];

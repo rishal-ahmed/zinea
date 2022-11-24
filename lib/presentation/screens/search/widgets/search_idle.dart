@@ -13,7 +13,7 @@ class SearchIdleWidget extends StatelessWidget {
       children: [
         dHeight05,
         Text('Top Searches', style: TextUtils.headlineMedium),
-        dHeight2,
+        dHeight1,
         Expanded(
           child: Consumer(
             builder: (context, ref, _) {

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/routes/route_generator.dart';
@@ -32,8 +31,7 @@ class MyApp extends StatelessWidget {
               ),
               primaryColor: Colors.yellow,
               colorScheme: const ColorScheme.dark(),
-              // fontFamily: GoogleFonts.roboto().fontFamily,
-              fontFamily: GoogleFonts.montserrat().fontFamily,
+              // fontFamily: GoogleFonts.aBeeZee().fontFamily,
             ),
             onGenerateRoute: RouteGenerator.generateRoute,
             initialRoute: routeRoot,
