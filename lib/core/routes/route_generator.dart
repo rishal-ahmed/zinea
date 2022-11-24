@@ -5,6 +5,7 @@ import 'package:zinea/presentation/screens/auth/register/screen_register.dart';
 import 'package:zinea/presentation/screens/home/screen_home.dart';
 import 'package:zinea/presentation/screens/introduction/screen_introduction.dart';
 import 'package:zinea/presentation/screens/main/screen_main.dart';
+import 'package:zinea/presentation/screens/search/screen_search.dart';
 import 'package:zinea/presentation/screens/splash/screen_splash.dart';
 
 class RouteGenerator {
@@ -33,6 +34,10 @@ class RouteGenerator {
       //=-=-=-=-=-=-=-=-=-=- Home -=-=-=-=-=-=-=-=-=-=
       case routeHome:
         return MaterialPageRoute(builder: (_) => const ScreenHome());
+
+      //=-=-=-=-=-=-=-=-=-=- Search -=-=-=-=-=-=-=-=-=-=
+      case routeSearch:
+        return MaterialPageRoute(builder: (_) => const ScreenSearch());
 
       default:
         return _errorRoute();

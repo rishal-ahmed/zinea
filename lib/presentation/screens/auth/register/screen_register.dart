@@ -4,7 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/core/routes/routes.dart';
-import 'package:zinea/domain/utils/text_utils.dart';
+import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
 import 'package:zinea/presentation/widgets/text_fields/text_field_widget.dart';
 

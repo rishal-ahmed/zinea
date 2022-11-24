@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
-import 'package:zinea/domain/utils/text_utils.dart';
+import 'package:zinea/domain/utils/text/text_utils.dart';
 
 class HomeBannerWidget extends StatelessWidget {
   const HomeBannerWidget({

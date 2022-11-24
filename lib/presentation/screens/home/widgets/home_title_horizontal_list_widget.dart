@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/sizes.dart';
-import 'package:zinea/domain/utils/text_utils.dart';
+import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/screens/home/widgets/home_card_widget.dart';
 
 class HomeTitleHorizontalListWidget extends StatelessWidget {
@@ -23,7 +23,7 @@ class HomeTitleHorizontalListWidget extends StatelessWidget {
             title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: TextUtils.headlineSmall,
+            style: TextUtils.headlineMedium,
           ),
           dHeight1,
           LimitedBox(

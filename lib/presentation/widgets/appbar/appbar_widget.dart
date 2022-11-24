@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/images.dart';
 import 'package:zinea/core/constants/sizes.dart';
-import 'package:zinea/domain/utils/text_utils.dart';
+import 'package:zinea/domain/utils/text/text_utils.dart';
 
 class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   const AppbarWidget({
