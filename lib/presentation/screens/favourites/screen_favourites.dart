@@ -4,13 +4,13 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
 import 'package:zinea/presentation/widgets/card/poster_card.dart';
 
-class ScreenWatchlist extends StatelessWidget {
-  const ScreenWatchlist({super.key});
+class ScreenFavourites extends StatelessWidget {
+  const ScreenFavourites({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppbarWidget(title: 'Watchlist'),
+      appBar: const AppbarWidget(title: 'Favourites'),
       extendBodyBehindAppBar: true,
       body: Consumer(
         builder: (context, ref, _) {
@@ -28,7 +28,7 @@ class ScreenWatchlist extends StatelessWidget {
               //     state.searchResultList[index].posterImageUrl;
               return const PosterCard(
                 imageUrl:
-                    'https://www.themoviedb.org/t/p/w1280/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg',
+                    'https://www.themoviedb.org/t/p/w1280/bI7lGR5HuYlENlp11brKUAaPHuO.jpg',
               );
             },
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

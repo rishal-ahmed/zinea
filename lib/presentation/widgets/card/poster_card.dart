@@ -12,10 +12,8 @@ class PosterCard extends StatelessWidget {
         ? Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
-              image: const DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                      'https://www.themoviedb.org/t/p/w1280/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg')),
+              image: DecorationImage(
+                  fit: BoxFit.cover, image: NetworkImage(imageUrl!)),
             ),
           )
         : const Padding(
