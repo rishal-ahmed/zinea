@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/domain/utils/debouncer/debouncer.dart';
-import 'package:zinea/presentation/screens/search/widgets/search_idle_widget.dart';
+import 'package:zinea/presentation/screens/search/widgets/search_result.dart';
 
 class ScreenSearch extends StatelessWidget {
   const ScreenSearch({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class ScreenSearch extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,11 +36,12 @@ class ScreenSearch extends StatelessWidget {
                   debouncer.run(() {});
                 },
               ),
-              kHeight10,
+              dHeight1n5,
               Expanded(
                 child: Consumer(
                   builder: (context, ref, _) {
-                    return const SearchIdleWidget();
+                    // return const SearchIdleWidget();
+                    return const SearchResultWidget();
 
                     // if (!state.isSearching) {
                     //   return const SearchIdleWidget();
