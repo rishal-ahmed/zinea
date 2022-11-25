@@ -7,7 +7,6 @@ class AppTheme {
   static ThemeData theme(BuildContext context) {
     return ThemeData(
       brightness: Brightness.dark,
-      colorScheme: const ColorScheme.dark(),
       scaffoldBackgroundColor: kBlack,
       appBarTheme: const AppBarTheme(
           color: kTransparentColor,

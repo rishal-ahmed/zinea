@@ -4,6 +4,8 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 //========== Constant White Spaces ==========
 const SizedBox kNone = SizedBox();
+const SizedBox kWFill = SizedBox(width: double.infinity);
+const SizedBox kHFill = SizedBox(height: double.infinity);
 
 const SizedBox kWidth1 = SizedBox(width: 1);
 const SizedBox kWidth2 = SizedBox(width: 2);

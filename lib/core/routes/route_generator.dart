@@ -6,6 +6,7 @@ import 'package:zinea/presentation/screens/favourites/screen_favourites.dart';
 import 'package:zinea/presentation/screens/home/screen_home.dart';
 import 'package:zinea/presentation/screens/introduction/screen_introduction.dart';
 import 'package:zinea/presentation/screens/main/screen_main.dart';
+import 'package:zinea/presentation/screens/profile/screen_profile.dart';
 import 'package:zinea/presentation/screens/search/screen_search.dart';
 import 'package:zinea/presentation/screens/splash/screen_splash.dart';
 import 'package:zinea/presentation/screens/watchlist/screen_watchlist.dart';
@@ -48,6 +49,10 @@ class RouteGenerator {
       //=-=-=-=-=-=-=-=-=-=- Favourites -=-=-=-=-=-=-=-=-=-=
       case routeFavourites:
         return MaterialPageRoute(builder: (_) => const ScreenFavourites());
+
+      //=-=-=-=-=-=-=-=-=-=- Profile -=-=-=-=-=-=-=-=-=-=
+      case routeProfile:
+        return MaterialPageRoute(builder: (_) => const ScreenProfile());
 
       default:
         return _errorRoute();
