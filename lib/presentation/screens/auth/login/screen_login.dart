@@ -5,6 +5,7 @@ import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
+import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
 import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
 import 'package:zinea/presentation/widgets/text_fields/text_field_widget.dart';
 
@@ -14,7 +15,7 @@ class ScreenLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const AppbarWidget(title: 'Sign in'),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
         child: Column(

@@ -14,23 +14,10 @@ const Color kColorBorder2 = Color(0XFFD8D8D8);
 const Color kColorShimmerHighlight = Color(0xFFF5F5F5);
 const Color kColorShimmerBase = Color(0xFFE0E0E0);
 
-//==================== Authentication Color ====================
-const Color kColorFieldBg = Color(0xFFEBEBEB);
-
 //==================== Custom Color ====================
-const Color kColorTile = Color(0XFF636363);
-
-const Color textColor = Color(0xFF1F2C34);
-const Color authTextColor = Color(0xFF969797);
-const Color forgetTextColor = Color(0xFFEE132D);
-const Color buttonTextColor = Color(0xFFFFFFFF);
-const Color appbarTextColor = Color(0xFFF5F5F5);
-const Color searchBgColor = Color(0xFFC4C4C4);
-const Color searchTextColor = Color(0xFFB6B6B6);
-const Color searchBorderColor = Color(0xFFDADADA);
-const Color productListbgColor = Color(0xFFE5E5E5);
-const Color gridTextColor = Color(0xFF333333);
-const Color alertColors = Color(0xFFFF0404);
+const Color kColorMaterialDark = Color(0xff121212);
+const Color kColorMaterialLight = Color(0XFF636363);
+const Color kColorFieldBg = Color(0xff121212);
 
 //=================== Constant Colors ====================
 const Color kTransparentColor = Colors.transparent;

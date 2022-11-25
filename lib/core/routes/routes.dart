@@ -33,3 +33,7 @@ const String routeFavourites = '/favourites';
 
 //=-=-=-=-=- Profile -=-=-=-=-=
 const String routeProfile = '/profile';
+const String routeProfileManage = '/manage_profile';
+
+//=-=-=-=-=- Password -=-=-=-=-=
+const String routePassword = '/password';
