@@ -13,7 +13,7 @@ class SearchResultWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         dHeight05,
-        Text('Movies & TV', style: TextUtils.headlineMedium),
+        Text('Movies & TV', style: TextUtils.theme(context).titleLarge),
         dHeight1,
         Expanded(
           child: Consumer(

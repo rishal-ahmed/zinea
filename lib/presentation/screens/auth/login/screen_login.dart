@@ -46,7 +46,9 @@ class ScreenLogin extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Text(
                 'Forgot password?',
-                style: TextUtils.bodytext1.copyWith(color: primaryTextColor),
+                style: TextUtils.theme(context)
+                    .bodyMedium
+                    ?.copyWith(color: primaryTextColor),
               ),
             ),
             dHeight4,
@@ -56,14 +58,14 @@ class ScreenLogin extends StatelessWidget {
                 child: Text.rich(
                   TextSpan(
                     text: "Don't have an account?  ",
-                    style: TextUtils.bodytext1,
+                    style: TextUtils.theme(context).bodyMedium?.copyWith(),
                     children: [
                       TextSpan(
                         text: 'Sign up',
-                        style: TextUtils.bodytext1.copyWith(
-                          fontWeight: FontWeight.w600,
-                          color: primaryTextColor,
-                        ),
+                        style: TextUtils.theme(context).labelLarge?.copyWith(
+                              color: primaryTextColor,
+                              fontWeight: FontWeight.w600,
+                            ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.pushNamed(context, routeRegister);

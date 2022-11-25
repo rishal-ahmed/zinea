@@ -40,7 +40,7 @@ class HomeBannerWidget extends StatelessWidget {
                   kHeight5,
                   Text(
                     'My List',
-                    style: TextUtils.bodytext2,
+                    style: TextUtils.theme(context).bodyText2,
                   ),
                 ],
               ),
@@ -58,7 +58,7 @@ class HomeBannerWidget extends StatelessWidget {
                       kWidth5,
                       Text(
                         'Play',
-                        style: TextUtils.bodytext1.copyWith(
+                        style: TextUtils.theme(context).bodyText1?.copyWith(
                             color: secondaryColor, fontWeight: FontWeight.w600),
                       )
                     ],
@@ -73,7 +73,7 @@ class HomeBannerWidget extends StatelessWidget {
                   kHeight5,
                   Text(
                     'Info',
-                    style: TextUtils.bodytext2,
+                    style: TextUtils.theme(context).bodyText2,
                   ),
                 ],
               ),

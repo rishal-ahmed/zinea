@@ -15,7 +15,7 @@ class HomeTitleHorizontalListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 1.w),
+      padding: EdgeInsets.symmetric(vertical: 1.h, horizontal: 2.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,11 +23,13 @@ class HomeTitleHorizontalListWidget extends StatelessWidget {
             title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: TextUtils.headlineMedium,
+            style: TextUtils.theme(context).titleLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
           ),
           dHeight1,
           LimitedBox(
-            maxHeight: 20.h,
+            maxHeight: 40.w,
             child: ListView.separated(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,

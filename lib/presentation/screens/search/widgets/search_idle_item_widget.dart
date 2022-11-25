@@ -33,13 +33,15 @@ class SearchIdleItemWidget extends StatelessWidget {
             title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: TextUtils.bodytext1.copyWith(fontWeight: FontWeight.bold),
+            style: TextUtils.theme(context)
+                .titleMedium
+                ?.copyWith(fontWeight: FontWeight.w500),
           ),
         ),
         CircleAvatar(
-          radius: 16.sp,
+          radius: 15.sp,
           child: CircleAvatar(
-            radius: 15.5.sp,
+            radius: 14.5.sp,
             backgroundColor: kBlack,
             child: FittedBox(
               child: Icon(

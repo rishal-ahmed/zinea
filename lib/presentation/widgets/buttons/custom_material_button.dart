@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/widgets/shimmer/shimmer_widget.dart';
 
 class CustomMaterialBtton extends StatelessWidget {
@@ -83,11 +83,13 @@ class CustomMaterialBtton extends StatelessWidget {
                               child: Text(
                                 buttonText!,
                                 style: textStyle ??
-                                    TextStyle(
-                                      color: textColor ?? kWhite,
-                                      fontSize: fontSize ?? 16.sp,
-                                      fontWeight: fontWeight ?? FontWeight.w400,
-                                    ),
+                                    TextUtils.theme(context)
+                                        .labelLarge
+                                        ?.copyWith(
+                                          color: textColor ?? kBlack,
+                                          fontSize: fontSize,
+                                          fontWeight: fontWeight,
+                                        ),
                               ),
                             ),
                           ],
@@ -128,11 +130,13 @@ class CustomMaterialBtton extends StatelessWidget {
                               Text(
                                 buttonText!,
                                 style: textStyle ??
-                                    TextStyle(
-                                      color: textColor ?? kWhite,
-                                      fontSize: fontSize ?? 14.sp,
-                                      fontWeight: fontWeight ?? FontWeight.w400,
-                                    ),
+                                    TextUtils.theme(context)
+                                        .labelLarge
+                                        ?.copyWith(
+                                          color: textColor ?? kBlack,
+                                          fontSize: fontSize,
+                                          fontWeight: fontWeight,
+                                        ),
                               ),
                             ],
                           ),

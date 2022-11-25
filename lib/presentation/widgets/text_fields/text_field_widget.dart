@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
+import 'package:zinea/domain/utils/text/text_utils.dart';
 
 class TextFeildWidget extends StatelessWidget {
   const TextFeildWidget({
@@ -75,7 +76,10 @@ class TextFeildWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: textStyle ?? TextStyle(fontSize: fontSize ?? 16.sp),
+      style: textStyle ??
+          TextUtils.theme(context)
+              .labelLarge
+              ?.copyWith(fontSize: fontSize, fontWeight: FontWeight.w400),
       decoration: InputDecoration(
           floatingLabelBehavior: floatingLabelBehavior,
           counterText: couterText,
@@ -95,7 +99,7 @@ class TextFeildWidget extends StatelessWidget {
           suffixIcon: suffixIcon,
           suffixIconConstraints: suffixIconConstraints,
           hintText: isHint ? labelText : hintText,
-          hintStyle: hintStyle ?? TextStyle(fontSize: 16.sp, color: kColorHint),
+          hintStyle: hintStyle ?? TextStyle(fontSize: 15.sp, color: kColorHint),
           isDense: isDense,
           errorStyle: errorStyle ? const TextStyle(fontSize: 0.01) : null,
           constraints: constraints,

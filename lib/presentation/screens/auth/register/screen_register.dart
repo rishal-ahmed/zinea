@@ -55,11 +55,11 @@ class ScreenRegister extends StatelessWidget {
                 child: Text.rich(
                   TextSpan(
                     text: "Have an account?  ",
-                    style: TextUtils.bodytext1,
+                    style: TextUtils.theme(context).bodyText1,
                     children: [
                       TextSpan(
                         text: 'Sign in',
-                        style: TextUtils.bodytext1.copyWith(
+                        style: TextUtils.theme(context).bodyText1?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: primaryTextColor),
                         recognizer: TapGestureRecognizer()

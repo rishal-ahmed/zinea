@@ -12,7 +12,7 @@ class SearchIdleWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         dHeight05,
-        Text('Top Searches', style: TextUtils.headlineMedium),
+        Text('Top Searches', style: TextUtils.theme(context).titleLarge),
         dHeight1,
         Expanded(
           child: Consumer(
@@ -27,7 +27,7 @@ class SearchIdleWidget extends StatelessWidget {
               return ListView.separated(
                 itemBuilder: (ctx, index) {
                   return const SearchIdleItemWidget(
-                    title: 'Rick and Morty',
+                    title: 'Rick and Morty (2013)',
                     imageUrl: '',
                   );
                 },
