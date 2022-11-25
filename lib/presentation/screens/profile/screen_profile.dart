@@ -122,6 +122,9 @@ class ScreenProfile extends StatelessWidget {
       case 0:
         Navigator.pushNamed(context, routeProfileManage);
         break;
+      case 1:
+        Navigator.pushNamed(context, routePassword);
+        break;
       default:
     }
   }
