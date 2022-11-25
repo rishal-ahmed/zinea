@@ -37,3 +37,6 @@ const String routeProfileManage = '/manage_profile';
 
 //=-=-=-=-=- Password -=-=-=-=-=
 const String routePassword = '/password';
+
+//=-=-=-=-=- Contact -=-=-=-=-=
+const String routeContactUs = '/contact_us';

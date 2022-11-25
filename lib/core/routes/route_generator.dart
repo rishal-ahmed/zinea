@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/presentation/screens/auth/login/screen_login.dart';
 import 'package:zinea/presentation/screens/auth/register/screen_register.dart';
+import 'package:zinea/presentation/screens/contact/screen_contact_us.dart';
 import 'package:zinea/presentation/screens/favourites/screen_favourites.dart';
 import 'package:zinea/presentation/screens/home/screen_home.dart';
 import 'package:zinea/presentation/screens/introduction/screen_introduction.dart';
@@ -61,6 +62,10 @@ class RouteGenerator {
       //=-=-=-=-=-=-=-=-=-=- Password -=-=-=-=-=-=-=-=-=-=
       case routePassword:
         return MaterialPageRoute(builder: (_) => const ScreenPassword());
+
+      //=-=-=-=-=-=-=-=-=-=- Contact -=-=-=-=-=-=-=-=-=-=
+      case routeContactUs:
+        return MaterialPageRoute(builder: (_) => const ScreenContactUs());
 
       default:
         return _errorRoute();

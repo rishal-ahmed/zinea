@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:zinea/core/constants/base_url.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/core/routes/routes.dart';
@@ -73,7 +75,7 @@ class ScreenProfile extends StatelessWidget {
 
                     //========== Option Item ==========
                     return ListTile(
-                      onTap: () => onTap(context, index),
+                      onTap: () async => await onTap(context, index),
                       horizontalTitleGap: 0,
                       tileColor: secondaryColor,
                       shape: RoundedRectangleBorder(
@@ -117,13 +119,22 @@ class ScreenProfile extends StatelessWidget {
   }
 
   //========== Option OnTap ==========
-  void onTap(BuildContext context, int index) {
+  Future<void> onTap(BuildContext context, int index) async {
     switch (index) {
       case 0:
         Navigator.pushNamed(context, routeProfileManage);
         break;
       case 1:
         Navigator.pushNamed(context, routePassword);
+        break;
+      case 2:
+        await launchUrl(Uri.parse(kPrivacyPolicyUrl));
+        break;
+      case 3:
+        await launchUrl(Uri.parse(kTermsAndConditionsUrl));
+        break;
+      case 4:
+        Navigator.pushNamed(context, routeContactUs);
         break;
       default:
     }
