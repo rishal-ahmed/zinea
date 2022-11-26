@@ -13,6 +13,7 @@ import 'package:zinea/presentation/screens/profile/screen_profile.dart';
 import 'package:zinea/presentation/screens/search/screen_search.dart';
 import 'package:zinea/presentation/screens/splash/screen_splash.dart';
 import 'package:zinea/presentation/screens/watchlist/screen_watchlist.dart';
+import 'package:zinea/presentation/widgets/errors/connection.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
@@ -29,13 +30,16 @@ class RouteGenerator {
 
       //=-=-=-=-=-=-=-=-=-=- Authentication -=-=-=-=-=-=-=-=-=-=
       case routeLogin:
-        return MaterialPageRoute(builder: (_) => const ScreenLogin());
+        return MaterialPageRoute(
+            builder: (_) => const ConnectionWidget(child: ScreenLogin()));
       case routeRegister:
-        return MaterialPageRoute(builder: (_) => const ScreenRegister());
+        return MaterialPageRoute(
+            builder: (_) => const ConnectionWidget(child: ScreenRegister()));
 
       //=-=-=-=-=-=-=-=-=-=- Main -=-=-=-=-=-=-=-=-=-=
       case routeMain:
-        return MaterialPageRoute(builder: (_) => const ScreenMain());
+        return MaterialPageRoute(
+            builder: (_) => const ConnectionWidget(child: ScreenMain()));
 
       //=-=-=-=-=-=-=-=-=-=- Home -=-=-=-=-=-=-=-=-=-=
       case routeHome:
