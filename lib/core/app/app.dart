@@ -18,6 +18,7 @@ class App extends StatelessWidget {
             title: 'Zinea',
             debugShowCheckedModeBanner: false,
             darkTheme: AppTheme.theme(context),
+            themeMode: ThemeMode.dark,
             onGenerateRoute: RouteGenerator.generateRoute,
             initialRoute: routeRoot,
           );
