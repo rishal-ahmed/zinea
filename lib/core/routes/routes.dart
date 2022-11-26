@@ -40,3 +40,6 @@ const String routePassword = '/password';
 
 //=-=-=-=-=- Contact -=-=-=-=-=
 const String routeContactUs = '/contact_us';
+
+//=-=-=-=-=- Filter -=-=-=-=-=
+const String routeFilter = '/filter';

@@ -14,14 +14,6 @@ class ScreenWatchlist extends StatelessWidget {
       extendBodyBehindAppBar: true,
       body: Consumer(
         builder: (context, ref, _) {
-          // if (state.isLoading) {
-          //   return const Center(child: CircularProgressIndicator());
-          // } else if (state.isError) {
-          //   return const Center(child: Text('Something went wrong!'));
-          // } else if (state.searchResultList.isEmpty) {
-          //   return const Center(child: Text('No results found!'));
-          // }
-
           return GridView.builder(
             itemBuilder: (BuildContext context, int index) {
               // final String? moviePoster =

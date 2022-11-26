@@ -4,6 +4,7 @@ import 'package:zinea/presentation/screens/auth/login/screen_login.dart';
 import 'package:zinea/presentation/screens/auth/register/screen_register.dart';
 import 'package:zinea/presentation/screens/contact/screen_contact_us.dart';
 import 'package:zinea/presentation/screens/favourites/screen_favourites.dart';
+import 'package:zinea/presentation/screens/filter/screen_filter.dart';
 import 'package:zinea/presentation/screens/home/screen_home.dart';
 import 'package:zinea/presentation/screens/introduction/screen_introduction.dart';
 import 'package:zinea/presentation/screens/main/screen_main.dart';
@@ -17,7 +18,7 @@ import 'package:zinea/presentation/widgets/errors/connection.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings routeSettings) {
-    // final Object? args = routeSettings.arguments;
+    final Object? args = routeSettings.arguments;
 
     switch (routeSettings.name) {
       //=-=-=-=-=-=-=-=-=-=- Root -=-=-=-=-=-=-=-=-=-=
@@ -70,6 +71,14 @@ class RouteGenerator {
       //=-=-=-=-=-=-=-=-=-=- Contact -=-=-=-=-=-=-=-=-=-=
       case routeContactUs:
         return MaterialPageRoute(builder: (_) => const ScreenContactUs());
+
+      //=-=-=-=-=-=-=-=-=-=- Filter -=-=-=-=-=-=-=-=-=-=
+      case routeFilter:
+        if (args is String) {
+          return MaterialPageRoute(
+              builder: (_) => ScreenFilter(category: args));
+        }
+        return _errorRoute();
 
       default:
         return _errorRoute();

@@ -82,6 +82,7 @@ class CustomMaterialBtton extends StatelessWidget {
                             FittedBox(
                               child: Text(
                                 buttonText!,
+                                overflow: TextOverflow.ellipsis,
                                 style: textStyle ??
                                     TextUtils.theme(context)
                                         .labelLarge

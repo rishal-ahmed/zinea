@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/images.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/domain/provider/appbar/appbar_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 
@@ -12,10 +13,13 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     this.title,
     this.home = false,
+    this.centerTitle = false,
+    this.actions = const [],
   });
 
   final String? title;
-  final bool home;
+  final bool home, centerTitle;
+  final List<Widget> actions;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +27,8 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
       leading: home ? SvgPicture.asset(kIconLogo) : null,
       leadingWidth: kToolbarHeight,
       title: title != null ? Text(title!) : null,
+      centerTitle: centerTitle,
+      actions: actions,
       bottom: home
           ? PreferredSize(
               preferredSize: const Size.fromHeight(kToolbarHeight / 2),
@@ -30,6 +36,13 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
                 builder: (context, ref, _) {
                   final bool isVisible =
                       ref.watch(AppbarProvider.appBarHideProvider);
+                  final List<String> categories = [
+                    'Movies',
+                    'Tv Shows',
+                    'Web Series',
+                    'Short Films',
+                    'Albums'
+                  ];
                   return Column(
                     children: [
                       // if (!isVisible)
@@ -51,27 +64,32 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
                                   child: DefaultTextStyle(
                                     style: TextUtils.theme(context)
                                         .titleMedium!
-                                        .copyWith(
-                                          fontWeight: FontWeight.w500,
-                                        ),
+                                        .copyWith(fontWeight: FontWeight.w500),
                                     child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        const FittedBox(child: Text('Movies')),
-                                        dWidth10,
-                                        const FittedBox(
-                                            child: Text('Tv Shows')),
-                                        dWidth10,
-                                        const FittedBox(
-                                            child: Text('Web Series')),
-                                        dWidth10,
-                                        const FittedBox(
-                                            child: Text('Short Films')),
-                                        dWidth10,
-                                        const FittedBox(child: Text('Albums')),
-                                      ],
-                                    ),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: List.generate(
+                                          categories.length,
+                                          (index) {
+                                            final String category =
+                                                categories[index];
+                                            //========== Categories ==========
+                                            return InkWell(
+                                              onTap: () => Navigator.pushNamed(
+                                                  context, routeFilter,
+                                                  arguments: category),
+                                              child: Row(
+                                                children: [
+                                                  FittedBox(
+                                                      child: Text(category)),
+                                                  if (index !=
+                                                      categories.length)
+                                                    dWidth10,
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        )),
                                   ),
                                 ),
                               ),
