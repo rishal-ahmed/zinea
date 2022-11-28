@@ -62,9 +62,8 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
                                 child: SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: DefaultTextStyle(
-                                    style: TextUtils.theme(context)
-                                        .titleMedium!
-                                        .copyWith(fontWeight: FontWeight.w500),
+                                    style:
+                                        TextUtils.theme(context).titleMedium!,
                                     child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceEvenly,

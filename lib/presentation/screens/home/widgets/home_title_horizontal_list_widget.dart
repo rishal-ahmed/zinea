@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/screens/home/widgets/home_card_widget.dart';
 
@@ -34,7 +35,12 @@ class HomeTitleHorizontalListWidget extends StatelessWidget {
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return const HomeCardWidget();
+                return InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, routeInfo);
+                  },
+                  child: const HomeCardWidget(),
+                );
               },
               separatorBuilder: (context, index) {
                 return dWidth2;

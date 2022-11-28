@@ -14,15 +14,16 @@ class HomeBannerWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-            width: double.infinity,
-            height: 70.h,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5cnLoWq9o5tuLe1Zq4BTX4LwZ2B.jpg'),
-                fit: BoxFit.cover,
-              ),
-            )),
+          width: double.infinity,
+          height: 70.h,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage(
+                  'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5cnLoWq9o5tuLe1Zq4BTX4LwZ2B.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
         Positioned(
           bottom: 5,
           right: 0,

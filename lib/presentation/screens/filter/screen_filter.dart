@@ -22,21 +22,23 @@ class ScreenFilter extends ConsumerWidget {
         title: category,
         centerTitle: true,
         actions: [
-          Consumer(builder: (context, ref, _) {
-            final bool visible = ref.watch(FilterProvider.visibleProvider);
-            return IconButton(
-              onPressed: () {
-                //---------- Show and Hide Filter Options ----------
-                ref
-                    .read(FilterProvider.visibleProvider.notifier)
-                    .update((state) => !state);
-              },
-              icon: Icon(
-                visible ? Icons.filter_alt_off : Icons.filter_alt,
-                color: kWhite,
-              ),
-            );
-          })
+          Consumer(
+            builder: (context, ref, _) {
+              final bool visible = ref.watch(FilterProvider.visibleProvider);
+              return IconButton(
+                onPressed: () {
+                  //---------- Show and Hide Filter Options ----------
+                  ref
+                      .read(FilterProvider.visibleProvider.notifier)
+                      .update((state) => !state);
+                },
+                icon: Icon(
+                  visible ? Icons.filter_alt_off : Icons.filter_alt,
+                  color: kWhite,
+                ),
+              );
+            },
+          )
         ],
       ),
       body: Column(
@@ -187,6 +189,7 @@ class ScreenFilter extends ConsumerWidget {
               );
             },
           ),
+          dHeight1,
           //==================== Results ====================
           Expanded(
             child: Consumer(

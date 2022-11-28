@@ -33,9 +33,7 @@ class SearchIdleItemWidget extends StatelessWidget {
             title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
-            style: TextUtils.theme(context)
-                .titleMedium
-                ?.copyWith(fontWeight: FontWeight.w500),
+            style: TextUtils.theme(context).titleMedium,
           ),
         ),
         CircleAvatar(

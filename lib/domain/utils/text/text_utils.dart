@@ -14,7 +14,8 @@ class TextUtils {
       headlineMedium: textTheme.headlineMedium?.copyWith(fontSize: 24.sp),
       headlineSmall: textTheme.headlineSmall?.copyWith(fontSize: 20.sp),
       titleLarge: textTheme.titleLarge?.copyWith(fontSize: 18.sp),
-      titleMedium: textTheme.titleMedium?.copyWith(fontSize: 16.sp),
+      titleMedium: textTheme.titleMedium
+          ?.copyWith(fontSize: 16.sp, fontWeight: FontWeight.w500),
       titleSmall: textTheme.titleSmall?.copyWith(fontSize: 15.sp),
       bodyLarge: textTheme.bodyLarge?.copyWith(fontSize: 16.sp),
       bodyMedium: textTheme.bodyMedium?.copyWith(fontSize: 14.sp),

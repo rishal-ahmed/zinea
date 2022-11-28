@@ -13,6 +13,7 @@ import 'package:zinea/presentation/screens/profile/password/screen_password.dart
 import 'package:zinea/presentation/screens/profile/screen_profile.dart';
 import 'package:zinea/presentation/screens/search/screen_search.dart';
 import 'package:zinea/presentation/screens/splash/screen_splash.dart';
+import 'package:zinea/presentation/screens/info/screen_info.dart';
 import 'package:zinea/presentation/screens/watchlist/screen_watchlist.dart';
 import 'package:zinea/presentation/widgets/errors/connection.dart';
 
@@ -79,6 +80,10 @@ class RouteGenerator {
               builder: (_) => ScreenFilter(category: args));
         }
         return _errorRoute();
+
+      //=-=-=-=-=-=-=-=-=-=- Info -=-=-=-=-=-=-=-=-=-=
+      case routeInfo:
+        return MaterialPageRoute(builder: (_) => const ScreenInfo());
 
       default:
         return _errorRoute();
