@@ -26,16 +26,19 @@ class ShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isLoading
-        ? Shimmer.fromColors(
-            baseColor: baseColor ?? kColorShimmerBase,
-            highlightColor: highlightColor ?? kColorShimmerHighlight,
-            child: height != null
-                ? Container(
-                    color: color,
-                    width: width ?? double.infinity,
-                    height: height ?? double.infinity,
-                  )
-                : shimmerChild ?? child ?? kNone,
+        ? ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: Shimmer.fromColors(
+              baseColor: baseColor ?? kColorShimmerBase,
+              highlightColor: highlightColor ?? kColorShimmerHighlight,
+              child: height != null
+                  ? Container(
+                      color: color,
+                      width: width ?? double.infinity,
+                      height: height ?? double.infinity,
+                    )
+                  : shimmerChild ?? child ?? kNone,
+            ),
           )
         : child ?? kNone;
   }

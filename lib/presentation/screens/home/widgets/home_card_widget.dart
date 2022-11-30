@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:zinea/core/constants/endpoints.dart';
+import 'package:zinea/domain/models/video/video_model.dart';
 
 class HomeCardWidget extends StatelessWidget {
   const HomeCardWidget({
     Key? key,
-    this.image,
+    required this.video,
   }) : super(key: key);
 
-  final String? image;
+  final VideoModel video;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,7 @@ class HomeCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: NetworkImage(image ??
-                  'https://www.themoviedb.org/t/p/w1280/2QK8tIXafyiz93PvAbKxxfK2BLb.jpg'))),
+              image: NetworkImage(kImageAppendUrl + video.image))),
     );
   }
 }

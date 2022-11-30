@@ -46,6 +46,9 @@ dependencies:
   flutter_svg: ^1.1.6
   url_launcher: ^6.1.7
   connectivity_plus: ^3.0.2
+  dio: ^4.0.6
+  dartz: ^0.10.1
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

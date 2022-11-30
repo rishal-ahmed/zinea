@@ -30,7 +30,10 @@ class ScreenProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppbarWidget(title: 'Profile'),
+      appBar: AppbarWidget(
+        title: 'Profile',
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.logout))],
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 0),
@@ -98,18 +101,20 @@ class ScreenProfile extends StatelessWidget {
                   itemCount: _titles.length,
                 ),
 
-                dHeight4,
-                //========== Sign Out ==========
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Sign Out',
-                    style: TextUtils.theme(context)
-                        .titleMedium
-                        ?.copyWith(fontSize: 17.sp),
-                  ),
-                ),
-                dHeight3,
+                dHeight2,
+
+                // dHeight4,
+                // //========== Sign Out ==========
+                // TextButton(
+                //   onPressed: () {},
+                //   child: Text(
+                //     'Sign Out',
+                //     style: TextUtils.theme(context)
+                //         .titleMedium
+                //         ?.copyWith(fontSize: 17.sp),
+                //   ),
+                // ),
+                // dHeight3,
               ],
             ),
           ),

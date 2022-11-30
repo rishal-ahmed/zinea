@@ -11,8 +11,8 @@ const Color kColorBorder = Color(0xFFEBEBEB);
 const Color kColorBorder2 = Color(0XFFD8D8D8);
 
 //==================== Shimmer Color ====================
-const Color kColorShimmerHighlight = Color(0xFFF5F5F5);
-const Color kColorShimmerBase = Color(0xFFE0E0E0);
+const Color kColorShimmerHighlight = Colors.white10;
+const Color kColorShimmerBase = Color(0x22FFFFFF);
 
 //==================== Custom Color ====================
 const Color kColorMaterialDark = Color(0xff121212);
