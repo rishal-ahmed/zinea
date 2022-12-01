@@ -65,10 +65,10 @@ class HomeTitleHorizontalListWidget extends StatelessWidget {
                 LimitedBox(
                   maxHeight: 40.w,
                   child: ListView.separated(
-                    shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       final VideoModel video = videos[index];
+
                       return InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, routeInfo);

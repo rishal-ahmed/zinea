@@ -35,40 +35,33 @@ class ScreenHome extends ConsumerWidget {
       extendBodyBehindAppBar: true,
       body: homeState.isError
           ? const SomethingWentWrongWidget()
-          : SingleChildScrollView(
+          : ListView.separated(
+              padding: EdgeInsets.zero,
               controller: scrollController,
-              child: Column(
-                children: [
-                  //==================== Banners Fields ====================
-                  HomeBannerWidget(
+              itemBuilder: (context, index) {
+                final List<VideoModel> videos =
+                    homeState.isLoading ? [] : homeState.homeContents[index];
+
+                if (index == 0) {
+                  return //==================== Banners Fields ====================
+                      HomeBannerWidget(
                     banners:
                         homeState.isLoading ? [] : homeState.homeContents.first,
                     shimmer: homeState.isLoading,
-                  ),
-                  dHeight1n5,
+                  );
+                } else {
                   //==================== Home Contents ====================
-                  ListView.separated(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemBuilder: (context, index) {
-                      final List<VideoModel> videos = homeState.isLoading
-                          ? []
-                          : homeState.homeContents[index];
-
-                      return HomeTitleHorizontalListWidget(
-                        videos: videos,
-                        shimmer: homeState.isLoading,
-                      );
-                    },
-                    separatorBuilder: (context, index) {
-                      return dHeight1n5;
-                    },
-                    itemCount:
-                        homeState.isLoading ? 4 : homeState.homeContents.length,
-                  ),
-                ],
-              ),
+                  return HomeTitleHorizontalListWidget(
+                    videos: videos,
+                    shimmer: homeState.isLoading,
+                  );
+                }
+              },
+              separatorBuilder: (context, index) {
+                return dHeight1n5;
+              },
+              itemCount:
+                  homeState.isLoading ? 4 : homeState.homeContents.length,
             ),
     );
   }

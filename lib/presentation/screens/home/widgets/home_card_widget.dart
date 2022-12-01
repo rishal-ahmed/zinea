@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/endpoints.dart';
 import 'package:zinea/domain/models/video/video_model.dart';
+import 'package:zinea/presentation/widgets/shimmer/shimmer_widget.dart';
 
 class HomeCardWidget extends StatelessWidget {
   const HomeCardWidget({
@@ -13,13 +14,20 @@ class HomeCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 27.w,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          image: DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(kImageAppendUrl + video.image))),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(5),
+      child: Image.network(
+        kImageAppendUrl + video.image,
+        width: 27.w,
+        fit: BoxFit.cover,
+        loadingBuilder: (context, child, loadingProgress) {
+          if (loadingProgress?.cumulativeBytesLoaded !=
+              loadingProgress?.expectedTotalBytes) {
+            return ShimmerWidget(width: 27.w, height: double.infinity);
+          }
+          return child;
+        },
+      ),
     );
   }
 }

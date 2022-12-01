@@ -28,6 +28,13 @@ class HomeBannerWidget extends StatelessWidget {
               return Image.network(
                 kImageAppendUrl + banner.image,
                 fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress?.cumulativeBytesLoaded !=
+                      loadingProgress?.expectedTotalBytes) {
+                    return ShimmerWidget(width: 50.h, height: double.infinity);
+                  }
+                  return child;
+                },
               );
             }),
           );
