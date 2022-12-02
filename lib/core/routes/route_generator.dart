@@ -33,7 +33,7 @@ class RouteGenerator {
       //=-=-=-=-=-=-=-=-=-=- Authentication -=-=-=-=-=-=-=-=-=-=
       case routeLogin:
         return MaterialPageRoute(
-            builder: (_) => const ConnectionWidget(child: ScreenLogin()));
+            builder: (_) => ConnectionWidget(child: ScreenLogin()));
       case routeRegister:
         return MaterialPageRoute(
             builder: (_) => const ConnectionWidget(child: ScreenRegister()));

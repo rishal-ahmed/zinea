@@ -25,7 +25,7 @@ class TextFeildWidget extends StatelessWidget {
     this.suffixIconConstraints,
     this.autovalidateMode,
     this.validator,
-    this.errorStyle = false,
+    this.errorStyle = true,
     this.focusNode,
     this.enabled,
     this.isDense,
@@ -88,10 +88,8 @@ class TextFeildWidget extends StatelessWidget {
           disabledBorder: inputBorder,
           focusedBorder: inputBorder,
           enabledBorder: inputBorder,
-          errorBorder: inputBorder != null
-              ? inputBorder!
-                  .copyWith(borderSide: const BorderSide(color: kColorFieldBg))
-              : null,
+          focusedErrorBorder: InputBorder.none,
+          errorBorder: InputBorder.none,
           labelStyle: const TextStyle(color: klabelColorGrey),
           fillColor: fillColor ?? secondaryColor,
           filled: true,
@@ -101,7 +99,9 @@ class TextFeildWidget extends StatelessWidget {
           hintText: isHint ? labelText : hintText,
           hintStyle: hintStyle ?? TextStyle(fontSize: 15.sp, color: kColorHint),
           isDense: isDense,
-          errorStyle: errorStyle ? const TextStyle(fontSize: 0.01) : null,
+          errorStyle: errorStyle
+              ? const TextStyle(color: Colors.white70)
+              : const TextStyle(fontSize: 0.01),
           constraints: constraints,
           contentPadding: contentPadding),
       keyboardType: textInputType ?? TextInputType.text,

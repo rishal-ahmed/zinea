@@ -67,7 +67,7 @@ class CustomMaterialBtton extends StatelessWidget {
                 height: height,
                 child: isLoading
                     ? Transform.scale(
-                        scale: .6,
+                        scale: .55,
                         child: const CircularProgressIndicator(
                           strokeWidth: 2,
                           color: kWhite,
@@ -118,7 +118,7 @@ class CustomMaterialBtton extends StatelessWidget {
                   height: height,
                   child: isLoading
                       ? Transform.scale(
-                          scale: .6,
+                          scale: .55,
                           child:
                               const CircularProgressIndicator(strokeWidth: 2),
                         )
