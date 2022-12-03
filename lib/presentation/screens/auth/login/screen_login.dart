@@ -47,7 +47,7 @@ class ScreenLogin extends StatelessWidget {
                     labelText: 'Password',
                     controller: passwordController,
                     inputBorder: const OutlineInputBorder(),
-                    validator: (value) => Validators.nullValidator(value),
+                    validator: (value) => Validators.passwordValidator(value),
                     obscureText: ref.watch(LoginProvider.obscureProvider),
                     suffixIcon: IconButton(
                         onPressed: () {
