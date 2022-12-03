@@ -6,6 +6,7 @@ import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
+import 'package:zinea/domain/utils/user/user_utils.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
 
 const List<String> _titles = [
@@ -32,7 +33,15 @@ class ScreenProfile extends StatelessWidget {
     return Scaffold(
       appBar: AppbarWidget(
         title: 'Profile',
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.logout))],
+        actions: [
+          IconButton(
+            onPressed: () async {
+              
+              await UserUtils.instance.logoutUser(context);
+            },
+            icon: const Icon(Icons.logout),
+          )
+        ],
       ),
       body: SafeArea(
         child: Padding(

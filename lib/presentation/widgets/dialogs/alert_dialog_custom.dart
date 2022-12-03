@@ -51,6 +51,7 @@ class KAlertDialog extends StatelessWidget {
                 'Cancel',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
+                  color: kColorDim2,
                 ),
               ),
             ),
@@ -60,7 +61,7 @@ class KAlertDialog extends StatelessWidget {
                 submitText ?? 'Yes',
                 style: const TextStyle(
                   fontWeight: FontWeight.w500,
-                  color: primaryTextColor,
+                  color: kWhite,
                 ),
               ),
             ),
