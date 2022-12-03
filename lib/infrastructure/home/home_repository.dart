@@ -40,8 +40,6 @@ class HomeRepository {
             final List<VideoModel> homeContent = [];
 
             videos.map((video) {
-              log('Name = ${video['name']}');
-
               if (video['name'] == title) {
                 homeContent.add(VideoModel.fromJson(video));
               }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:zinea/application/search/search_state.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/domain/models/video/video_model.dart';
+import 'package:zinea/domain/provider/search/search_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/screens/search/widgets/search_result_item_widget.dart';
 
@@ -18,20 +21,19 @@ class SearchResultWidget extends StatelessWidget {
         Expanded(
           child: Consumer(
             builder: (context, ref, _) {
-              // if (state.isLoading) {
-              //   return const Center(child: CircularProgressIndicator());
-              // } else if (state.isError) {
-              //   return const Center(child: Text('Something went wrong!'));
-              // } else if (state.searchResultList.isEmpty) {
-              //   return const Center(child: Text('No results found!'));
-              // }
+              final SearchState state =
+                  ref.watch(SearchProvider.searchProvider);
+
+              final List<VideoModel> videos =
+                  state.isLoading ? [] : state.videos;
 
               return GridView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  // final String? moviePoster =
-                  //     state.searchResultList[index].posterImageUrl;
-                  return const SearchResultItemWidget(
-                    imageUrl: '',
+                  final VideoModel? video =
+                      state.isLoading ? null : videos[index];
+                  return SearchResultItemWidget(
+                    shimmer: state.isLoading,
+                    video: video,
                   );
                 },
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -40,7 +42,7 @@ class SearchResultWidget extends StatelessWidget {
                   crossAxisSpacing: 2.w,
                   childAspectRatio: 1 / 1.2,
                 ),
-                itemCount: 10,
+                itemCount: state.isLoading ? 20 : state.videos.length,
               );
             },
           ),

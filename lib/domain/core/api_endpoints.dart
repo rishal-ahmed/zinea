@@ -7,4 +7,7 @@ class ApiEndpoints {
 
   //==================== Home ====================
   static const String home = '${apiUrl}homeContents.php';
+
+  //==================== Search ====================
+  static const String search = '${apiUrl}search.php';
 }

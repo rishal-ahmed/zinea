@@ -37,7 +37,7 @@ mixin _$VideoModel {
   @JsonKey(name: 'rating')
   String get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -60,7 +60,7 @@ abstract class $VideoModelCopyWith<$Res> {
       @JsonKey(name: 'catalogText') String genres,
       @JsonKey(name: 'releaseYear') String releaseYear,
       @JsonKey(name: 'rating') String rating,
-      @JsonKey(name: 'name') String name});
+      @JsonKey(name: 'name') String? name});
 }
 
 /// @nodoc
@@ -84,7 +84,7 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
     Object? genres = null,
     Object? releaseYear = null,
     Object? rating = null,
-    Object? name = null,
+    Object? name = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -119,10 +119,10 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ) as $Val);
   }
 }
@@ -144,7 +144,7 @@ abstract class _$$_VideoModelCopyWith<$Res>
       @JsonKey(name: 'catalogText') String genres,
       @JsonKey(name: 'releaseYear') String releaseYear,
       @JsonKey(name: 'rating') String rating,
-      @JsonKey(name: 'name') String name});
+      @JsonKey(name: 'name') String? name});
 }
 
 /// @nodoc
@@ -166,7 +166,7 @@ class __$$_VideoModelCopyWithImpl<$Res>
     Object? genres = null,
     Object? releaseYear = null,
     Object? rating = null,
-    Object? name = null,
+    Object? name = freezed,
   }) {
     return _then(_$_VideoModel(
       id: null == id
@@ -201,10 +201,10 @@ class __$$_VideoModelCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
-      name: null == name
+      name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -252,7 +252,7 @@ class _$_VideoModel implements _VideoModel {
   final String rating;
   @override
   @JsonKey(name: 'name')
-  final String name;
+  final String? name;
 
   @override
   String toString() {
@@ -307,7 +307,7 @@ abstract class _VideoModel implements VideoModel {
       @JsonKey(name: 'catalogText') required final String genres,
       @JsonKey(name: 'releaseYear') required final String releaseYear,
       @JsonKey(name: 'rating') required final String rating,
-      @JsonKey(name: 'name') required final String name}) = _$_VideoModel;
+      @JsonKey(name: 'name') required final String? name}) = _$_VideoModel;
 
   factory _VideoModel.fromJson(Map<String, dynamic> json) =
       _$_VideoModel.fromJson;
@@ -338,7 +338,7 @@ abstract class _VideoModel implements VideoModel {
   String get rating;
   @override
   @JsonKey(name: 'name')
-  String get name;
+  String? get name;
   @override
   @JsonKey(ignore: true)
   _$$_VideoModelCopyWith<_$_VideoModel> get copyWith =>

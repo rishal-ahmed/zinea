@@ -54,7 +54,7 @@ class HomeTitleHorizontalListWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  videos.first.name,
+                  videos.first.name!,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextUtils.theme(context).titleLarge?.copyWith(

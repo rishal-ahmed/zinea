@@ -43,8 +43,8 @@ class ScreenHome extends ConsumerWidget {
                     homeState.isLoading ? [] : homeState.homeContents[index];
 
                 if (index == 0) {
-                  return //==================== Banners Fields ====================
-                      HomeBannerWidget(
+                  //==================== Banners Fields ====================
+                  return HomeBannerWidget(
                     banners:
                         homeState.isLoading ? [] : homeState.homeContents.first,
                     shimmer: homeState.isLoading,
