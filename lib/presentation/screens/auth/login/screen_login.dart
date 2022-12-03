@@ -145,7 +145,7 @@ class ScreenLogin extends StatelessWidget {
                               ),
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.pushNamed(context, routeRegister);
+                              Navigator.pushReplacementNamed(context, routeRegister);
                             },
                         ),
                       ],

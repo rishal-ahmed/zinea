@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zinea/core/constants/images.dart';
 import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/domain/utils/user/user_utils.dart';
 
@@ -16,12 +18,10 @@ class ScreenSplash extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Center(
-              child: Icon(
-                Icons.wifi,
-                color: Colors.yellow,
-                size: 40.sp,
-              ),
-            )
+                child: SvgPicture.asset(
+              kIconTitleLogo,
+              width: 22.w,
+            ))
           ],
         ),
       ),

@@ -41,7 +41,8 @@ class ScreenIntroduction extends StatelessWidget {
             child: Column(
               children: [
                 CustomMaterialBtton(
-                  onPressed: () {},
+                  onPressed: () =>
+                      Navigator.pushReplacementNamed(context, routeRegister),
                   buttonText: 'SIGN UP',
                   textColor: kBlack,
                 ),
@@ -52,9 +53,8 @@ class ScreenIntroduction extends StatelessWidget {
                   borderColor: primaryColor,
                   textColor: primaryColor,
                   borderRadius: BorderRadius.circular(5),
-                  onPressed: () {
-                    Navigator.pushNamed(context, routeLogin);
-                  },
+                  onPressed: () =>
+                      Navigator.pushReplacementNamed(context, routeLogin),
                 ),
               ],
             ),

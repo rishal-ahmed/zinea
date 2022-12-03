@@ -192,7 +192,8 @@ class ScreenRegister extends StatelessWidget {
                                       color: primaryTextColor),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.pushNamed(context, routeLogin);
+                                  Navigator.pushReplacementNamed(
+                                      context, routeLogin);
                                 },
                             ),
                           ],

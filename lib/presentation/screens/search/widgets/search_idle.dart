@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:zinea/application/home/home_state.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/domain/models/video/video_model.dart';
+import 'package:zinea/domain/provider/search/search_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/screens/search/widgets/search_idle_item_widget.dart';
 
@@ -17,22 +20,23 @@ class SearchIdleWidget extends StatelessWidget {
         Expanded(
           child: Consumer(
             builder: (context, ref, _) {
-              // if (state.isLoading) {
-              //   return const Center(child: CircularProgressIndicator());
-              // } else if (state.isError) {
-              //   return const Center(child: Text('Something went wrong!'));
-              // } else if (state.idleList.isEmpty) {
-              //   return const Center(child: Text('No results found!'));
-              // }
+              final HomeState state =
+                  ref.watch(SearchProvider.topSearchProvider);
+
+              final List<VideoModel> videos =
+                  state.isLoading ? [] : state.homeContents[1];
+
               return ListView.separated(
                 itemBuilder: (ctx, index) {
-                  return const SearchIdleItemWidget(
-                    title: 'Rick and Morty (2013)',
-                    imageUrl: '',
+                  final VideoModel? video =
+                      state.isLoading ? null : videos[index];
+                  return SearchIdleItemWidget(
+                    video: video,
+                    shimmer: state.isLoading,
                   );
                 },
                 separatorBuilder: (ctx, index) => dHeight2,
-                itemCount: 40,
+                itemCount: state.isLoading ? 20 : videos.length,
               );
             },
           ),

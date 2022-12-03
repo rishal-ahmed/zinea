@@ -24,87 +24,139 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: home ? SvgPicture.asset(kIconLogo) : null,
+      leading: home
+          ? Transform.scale(
+              scale: .8,
+              child: SvgPicture.asset(kIconLogo),
+            )
+          : null,
       leadingWidth: kToolbarHeight,
-      title: title != null ? Text(title!) : null,
+      title: title != null
+          ? Text(title!)
+          : home
+              ? homeCategories(context)
+              : null,
       centerTitle: centerTitle,
       actions: actions,
-      bottom: home
-          ? PreferredSize(
-              preferredSize: const Size.fromHeight(kToolbarHeight / 2),
-              child: Consumer(
-                builder: (context, ref, _) {
-                  final bool isVisible =
-                      ref.watch(AppbarProvider.appBarHideProvider);
-                  final List<String> categories = [
-                    'Movies',
-                    'Tv Shows',
-                    'Web Series',
-                    'Short Films',
-                    'Albums'
-                  ];
-                  return Column(
+      // bottom: home
+      //     ? bottomHomeCategories()
+      //     : null,
+    );
+  }
+
+  //==================== Home Categories ====================
+  Padding homeCategories(BuildContext context) {
+    final List<String> categories = [
+      'Movies',
+      'Tv Shows',
+      'Web Series',
+      'Short Films',
+      'Albums'
+    ];
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 1.w),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List.generate(
+              categories.length,
+              (index) {
+                final String category = categories[index];
+                //========== Categories ==========
+                return InkWell(
+                  onTap: () => Navigator.pushNamed(context, routeFilter,
+                      arguments: category),
+                  child: Row(
                     children: [
-                      // if (!isVisible)
-                      //   const SizedBox(height: kToolbarHeight / 2),
-                      AnimatedContainer(
-                        height: !isVisible ? 0.0 : kToolbarHeight / 2,
-                        duration: const Duration(milliseconds: 300),
-                        // curve: Curves.decelerate,
-                        child: SingleChildScrollView(
-                          physics: const NeverScrollableScrollPhysics(),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              kHeight10,
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 5.w),
-                                child: SingleChildScrollView(
-                                  scrollDirection: Axis.horizontal,
-                                  child: DefaultTextStyle(
-                                    style:
-                                        TextUtils.theme(context).titleMedium!,
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: List.generate(
-                                          categories.length,
-                                          (index) {
-                                            final String category =
-                                                categories[index];
-                                            //========== Categories ==========
-                                            return InkWell(
-                                              onTap: () => Navigator.pushNamed(
-                                                  context, routeFilter,
-                                                  arguments: category),
-                                              child: Row(
-                                                children: [
-                                                  FittedBox(
-                                                      child: Text(category)),
-                                                  if (index !=
-                                                      categories.length)
-                                                    dWidth10,
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        )),
-                                  ),
-                                ),
+                      FittedBox(
+                        child: Text(
+                          category,
+                          style: TextUtils.theme(context).titleMedium?.copyWith(
+                                fontWeight: FontWeight.w900,
                               ),
-                            ],
+                        ),
+                      ),
+                      if (index != categories.length) dWidth5,
+                    ],
+                  ),
+                );
+              },
+            )),
+      ),
+    );
+  }
+
+  //==================== Home Categories Bottom ====================
+  PreferredSize bottomHomeCategories() {
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(kToolbarHeight / 2),
+      child: Consumer(
+        builder: (context, ref, _) {
+          final bool isVisible = ref.watch(AppbarProvider.appBarHideProvider);
+          final List<String> categories = [
+            'Movies',
+            'Tv Shows',
+            'Web Series',
+            'Short Films',
+            'Albums'
+          ];
+          return Column(
+            children: [
+              // if (!isVisible)
+              //   const SizedBox(height: kToolbarHeight / 2),
+              AnimatedContainer(
+                height: !isVisible ? 0.0 : kToolbarHeight / 2,
+                duration: const Duration(milliseconds: 300),
+                // curve: Curves.decelerate,
+                child: SingleChildScrollView(
+                  physics: const NeverScrollableScrollPhysics(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      kHeight10,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5.w),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: DefaultTextStyle(
+                            style: TextUtils.theme(context).titleMedium!,
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: List.generate(
+                                  categories.length,
+                                  (index) {
+                                    final String category = categories[index];
+                                    //========== Categories ==========
+                                    return InkWell(
+                                      onTap: () => Navigator.pushNamed(
+                                          context, routeFilter,
+                                          arguments: category),
+                                      child: Row(
+                                        children: [
+                                          FittedBox(child: Text(category)),
+                                          if (index != categories.length)
+                                            dWidth10,
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                )),
                           ),
                         ),
                       ),
                     ],
-                  );
-                },
+                  ),
+                ),
               ),
-            )
-          : null,
+            ],
+          );
+        },
+      ),
     );
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 5);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight - 10);
 }
