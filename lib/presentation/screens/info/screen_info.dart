@@ -1,158 +1,189 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:zinea/application/info/info_state.dart';
 import 'package:zinea/core/constants/colors.dart';
+import 'package:zinea/core/constants/endpoints.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/domain/models/video/video_model.dart';
+import 'package:zinea/domain/provider/info/info_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
+import 'package:zinea/presentation/screens/info/widgets/info_shimmer_widget.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
 
-class ScreenInfo extends StatelessWidget {
-  const ScreenInfo({super.key});
+class ScreenInfo extends ConsumerWidget {
+  const ScreenInfo({super.key, required this.videoId});
+
+  final String videoId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final InfoState state = ref.watch(InfoProvider.infoProvider(videoId));
+
     return Scaffold(
-      appBar: const AppbarWidget(title: 'Stranger Things', centerTitle: true),
+      appBar: AppbarWidget(title: state.info?.title, centerTitle: true),
       extendBodyBehindAppBar: true,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //==================== Video Field ====================
-          SizedBox(
-            height: 35.h,
-            child: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  height: 35.h,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://www.themoviedb.org/t/p/original/nvMoOlC7HHZ9U4WknwwGOVefvnI.jpg'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: kToolbarHeight),
-                    child: CircleAvatar(
-                      radius: 22.sp,
-                      backgroundColor: const Color(0XB3000000),
-                      child: Icon(
-                        Icons.play_arrow,
-                        size: 23.sp,
-                        color: kWhite,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-          dHeight1n5,
-          //==================== Options Field ====================
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.favorite),
-                  color: primaryColor,
-                  iconSize: 22.sp,
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.playlist_add),
-                  color: kWhite,
-                  iconSize: 24.sp,
-                ),
-                CircleAvatar(
-                  radius: 16.sp,
-                  backgroundColor: kWhite,
-                  child: Padding(
-                    padding: const EdgeInsets.all(1),
-                    child: CircleAvatar(
-                      backgroundColor: kBlack,
-                      child: Padding(
-                        padding: const EdgeInsets.all(1),
-                        child: CircleAvatar(
-                          backgroundColor: kWhite,
-                          child: Padding(
-                            padding: const EdgeInsets.all(2),
-                            child: FittedBox(
-                              child: Row(
-                                children: [
-                                  Text(
-                                    '4.3',
-                                    style: TextUtils.theme(context)
-                                        .bodyLarge
-                                        ?.copyWith(color: kBlack),
-                                  ),
-                                  Icon(
-                                    Icons.star,
-                                    size: 16.sp,
-                                    color: kBlack,
-                                  ),
-                                ],
+      body: state.isLoading
+          ? const InfoShimmerWidget()
+          : Builder(builder: (context) {
+              final VideoModel info = state.info!;
+              // log('Info == ${info.toString()}');
+              return SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //==================== Video Field ====================
+                    SizedBox(
+                      height: 35.h,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: double.infinity,
+                            height: 35.h,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image:
+                                    NetworkImage(kImageAppendUrl + info.image),
+                                fit: BoxFit.cover,
                               ),
                             ),
                           ),
-                        ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: kToolbarHeight),
+                              child: CircleAvatar(
+                                radius: 22.sp,
+                                backgroundColor: const Color(0XB3000000),
+                                child: Icon(
+                                  Icons.play_arrow,
+                                  size: 23.sp,
+                                  color: kWhite,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
                     ),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.share),
-                  color: kWhite,
-                  iconSize: 22.sp,
-                ),
-              ],
-            ),
-          ),
+                    dHeight1n5,
+                    //==================== Options Field ====================
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 2.w),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(info.watchlistStatus == '0'
+                                ? Icons.favorite_border
+                                : Icons.favorite),
+                            color: info.watchlistStatus == '0'
+                                ? kWhite24
+                                : primaryColor,
+                            iconSize: 23.sp,
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(info.watchlistStatus == '0'
+                                ? Icons.playlist_add
+                                : Icons.playlist_add_check),
+                            color: info.watchlistStatus == '0'
+                                ? kWhite24
+                                : primaryColor,
+                            iconSize: 25.sp,
+                          ),
+                          CircleAvatar(
+                            radius: 16.sp,
+                            backgroundColor: primaryColor,
+                            child: Padding(
+                              padding: const EdgeInsets.all(1),
+                              child: CircleAvatar(
+                                backgroundColor: kBlack,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(1),
+                                  child: CircleAvatar(
+                                    backgroundColor: kWhite24,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: FittedBox(
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              double.parse('7.5')
+                                                  .toStringAsFixed(1),
+                                              style: TextUtils.theme(context)
+                                                  .bodyLarge
+                                                  ?.copyWith(
+                                                      color: primaryColor),
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              size: 16.sp,
+                                              color: primaryColor,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.share),
+                            color: kWhite24,
+                            iconSize: 22.sp,
+                          ),
+                        ],
+                      ),
+                    ),
 
-          dHeight2,
+                    dHeight2,
 
-          //==================== Details Field ====================
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 2.w),
-            child: DefaultTextStyle(
-              style: TextUtils.theme(context)
-                  .titleMedium!
-                  .copyWith(color: kColorMaterialLight),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Stranger Things',
-                    style: TextUtils.theme(context).headlineSmall?.copyWith(
-                          color: kColorMaterialLight,
-                          fontWeight: FontWeight.w900,
-                          letterSpacing: 1,
+                    //==================== Details Field ====================
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 2.w),
+                      child: DefaultTextStyle(
+                        style: TextUtils.theme(context)
+                            .titleMedium!
+                            .copyWith(color: kWhite70),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            //===== Title =====
+                            Text(
+                              info.title,
+                              style: TextUtils.theme(context)
+                                  .headlineSmall
+                                  ?.copyWith(
+                                    color: kWhite,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 1,
+                                  ),
+                            ),
+                            dHeight08,
+                            //===== Genres =====
+                            Text(
+                              info.genres,
+                              style: const TextStyle(
+                                color: kWhite54,
+                              ),
+                            ),
+                            dHeight1n5,
+                            //===== Description =====
+                            Text(info.description.trim()),
+                          ],
                         ),
-                  ),
-                  dHeight03,
-                  const Text(
-                      'When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.'),
-                  dHeight1n5,
-                  const Text('Written & Director : Matt Duffer, Ross Duffer'),
-                  const Text('Producer : Matt Duffer'),
-                  const Text('Banner : Netflix'),
-                  const Text('DOP : Kyle Dixon'),
-                  const Text('Editor : Lena Glikson'),
-                  const Text(
-                      'Music and Original Background Score : Kyle Dixon'),
-                  const Text('Production Controller : Netflix'),
-                ],
-              ),
-            ),
-          )
-        ],
-      ),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }),
     );
   }
 }

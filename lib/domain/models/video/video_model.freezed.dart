@@ -36,6 +36,8 @@ mixin _$VideoModel {
   String get releaseYear => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating')
   String get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'watchListStatus')
+  String? get watchlistStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
 
@@ -60,6 +62,7 @@ abstract class $VideoModelCopyWith<$Res> {
       @JsonKey(name: 'catalogText') String genres,
       @JsonKey(name: 'releaseYear') String releaseYear,
       @JsonKey(name: 'rating') String rating,
+      @JsonKey(name: 'watchListStatus') String? watchlistStatus,
       @JsonKey(name: 'name') String? name});
 }
 
@@ -84,6 +87,7 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
     Object? genres = null,
     Object? releaseYear = null,
     Object? rating = null,
+    Object? watchlistStatus = freezed,
     Object? name = freezed,
   }) {
     return _then(_value.copyWith(
@@ -119,6 +123,10 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      watchlistStatus: freezed == watchlistStatus
+          ? _value.watchlistStatus
+          : watchlistStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -144,6 +152,7 @@ abstract class _$$_VideoModelCopyWith<$Res>
       @JsonKey(name: 'catalogText') String genres,
       @JsonKey(name: 'releaseYear') String releaseYear,
       @JsonKey(name: 'rating') String rating,
+      @JsonKey(name: 'watchListStatus') String? watchlistStatus,
       @JsonKey(name: 'name') String? name});
 }
 
@@ -166,6 +175,7 @@ class __$$_VideoModelCopyWithImpl<$Res>
     Object? genres = null,
     Object? releaseYear = null,
     Object? rating = null,
+    Object? watchlistStatus = freezed,
     Object? name = freezed,
   }) {
     return _then(_$_VideoModel(
@@ -201,6 +211,10 @@ class __$$_VideoModelCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as String,
+      watchlistStatus: freezed == watchlistStatus
+          ? _value.watchlistStatus
+          : watchlistStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -221,6 +235,7 @@ class _$_VideoModel implements _VideoModel {
       @JsonKey(name: 'catalogText') required this.genres,
       @JsonKey(name: 'releaseYear') required this.releaseYear,
       @JsonKey(name: 'rating') required this.rating,
+      @JsonKey(name: 'watchListStatus') this.watchlistStatus,
       @JsonKey(name: 'name') required this.name});
 
   factory _$_VideoModel.fromJson(Map<String, dynamic> json) =>
@@ -251,12 +266,15 @@ class _$_VideoModel implements _VideoModel {
   @JsonKey(name: 'rating')
   final String rating;
   @override
+  @JsonKey(name: 'watchListStatus')
+  final String? watchlistStatus;
+  @override
   @JsonKey(name: 'name')
   final String? name;
 
   @override
   String toString() {
-    return 'VideoModel(id: $id, title: $title, description: $description, image: $image, bannerImage: $bannerImage, genres: $genres, releaseYear: $releaseYear, rating: $rating, name: $name)';
+    return 'VideoModel(id: $id, title: $title, description: $description, image: $image, bannerImage: $bannerImage, genres: $genres, releaseYear: $releaseYear, rating: $rating, watchlistStatus: $watchlistStatus, name: $name)';
   }
 
   @override
@@ -275,13 +293,15 @@ class _$_VideoModel implements _VideoModel {
             (identical(other.releaseYear, releaseYear) ||
                 other.releaseYear == releaseYear) &&
             (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.watchlistStatus, watchlistStatus) ||
+                other.watchlistStatus == watchlistStatus) &&
             (identical(other.name, name) || other.name == name));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, description, image,
-      bannerImage, genres, releaseYear, rating, name);
+      bannerImage, genres, releaseYear, rating, watchlistStatus, name);
 
   @JsonKey(ignore: true)
   @override
@@ -307,6 +327,7 @@ abstract class _VideoModel implements VideoModel {
       @JsonKey(name: 'catalogText') required final String genres,
       @JsonKey(name: 'releaseYear') required final String releaseYear,
       @JsonKey(name: 'rating') required final String rating,
+      @JsonKey(name: 'watchListStatus') final String? watchlistStatus,
       @JsonKey(name: 'name') required final String? name}) = _$_VideoModel;
 
   factory _VideoModel.fromJson(Map<String, dynamic> json) =
@@ -336,6 +357,9 @@ abstract class _VideoModel implements VideoModel {
   @override
   @JsonKey(name: 'rating')
   String get rating;
+  @override
+  @JsonKey(name: 'watchListStatus')
+  String? get watchlistStatus;
   @override
   @JsonKey(name: 'name')
   String? get name;

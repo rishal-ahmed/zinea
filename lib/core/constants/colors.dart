@@ -36,6 +36,13 @@ const Color kTeal = Colors.teal;
 const Color kColorDim = Color(0xFF777777);
 const Color kColorDim2 = Color(0XFF888888);
 
+const Color kWhite24 = Colors.white24;
+const Color kWhite30 = Colors.white30;
+const Color kWhite38 = Colors.white38;
+const Color kWhite54 = Colors.white54;
+const Color kWhite60 = Colors.white60;
+const Color kWhite70 = Colors.white70;
+
 const Color kGreen300 = Color(0xFF81C784);
 const Color kGreen400 = Color(0xFF66BB6A);
 const Color kGreen900 = Color(0xFF1B5E20);

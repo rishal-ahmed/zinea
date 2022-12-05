@@ -44,5 +44,5 @@ const String routeContactUs = '/contact_us';
 //=-=-=-=-=- Filter -=-=-=-=-=
 const String routeFilter = '/filter';
 
-//=-=-=-=-=- Video -=-=-=-=-=
+//=-=-=-=-=- Info -=-=-=-=-=
 const String routeInfo = '/info';

@@ -71,7 +71,8 @@ class HomeTitleHorizontalListWidget extends StatelessWidget {
 
                       return InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, routeInfo);
+                          Navigator.pushNamed(context, routeInfo,
+                              arguments: video.id);
                         },
                         child: HomeCardWidget(video: video),
                       );

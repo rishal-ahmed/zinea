@@ -10,4 +10,7 @@ class ApiEndpoints {
 
   //==================== Search ====================
   static const String search = '${apiUrl}search.php';
+
+  //==================== Video ====================
+  static const String info = '${apiUrl}getMovie.php';
 }

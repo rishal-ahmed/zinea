@@ -83,7 +83,10 @@ class RouteGenerator {
 
       //=-=-=-=-=-=-=-=-=-=- Info -=-=-=-=-=-=-=-=-=-=
       case routeInfo:
-        return MaterialPageRoute(builder: (_) => const ScreenInfo());
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => ScreenInfo(videoId: args));
+        }
+        return _errorRoute();
 
       default:
         return _errorRoute();

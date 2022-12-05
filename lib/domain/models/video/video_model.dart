@@ -14,6 +14,7 @@ class VideoModel with _$VideoModel {
     @JsonKey(name: 'catalogText') required String genres,
     @JsonKey(name: 'releaseYear') required String releaseYear,
     @JsonKey(name: 'rating') required String rating,
+    @JsonKey(name: 'watchListStatus') String? watchlistStatus,
     @JsonKey(name: 'name') required String? name,
   }) = _VideoModel;
 
