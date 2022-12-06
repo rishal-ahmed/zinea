@@ -16,6 +16,7 @@ class VideoModel with _$VideoModel {
     @JsonKey(name: 'rating') required String rating,
     @JsonKey(name: 'watchListStatus') String? watchlistStatus,
     @JsonKey(name: 'name') required String? name,
+    @JsonKey(name: 'trailerLink') String? trailerLink,
   }) = _VideoModel;
 
   factory VideoModel.fromJson(Map<String, dynamic> json) =>

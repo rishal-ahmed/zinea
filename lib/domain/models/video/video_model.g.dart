@@ -18,6 +18,7 @@ _$_VideoModel _$$_VideoModelFromJson(Map<String, dynamic> json) =>
       rating: json['rating'] as String,
       watchlistStatus: json['watchListStatus'] as String?,
       name: json['name'] as String?,
+      trailerLink: json['trailerLink'] as String?,
     );
 
 Map<String, dynamic> _$$_VideoModelToJson(_$_VideoModel instance) =>
@@ -32,4 +33,5 @@ Map<String, dynamic> _$$_VideoModelToJson(_$_VideoModel instance) =>
       'rating': instance.rating,
       'watchListStatus': instance.watchlistStatus,
       'name': instance.name,
+      'trailerLink': instance.trailerLink,
     };

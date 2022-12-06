@@ -13,4 +13,8 @@ class ApiEndpoints {
 
   //==================== Video ====================
   static const String info = '${apiUrl}getMovie.php';
+
+  //==================== Watchlist ====================
+  static const String watchlists = '${apiUrl}fetchWatchList.php';
+  static const String watchlistModify = '${apiUrl}modifyWatchList.php';
 }
