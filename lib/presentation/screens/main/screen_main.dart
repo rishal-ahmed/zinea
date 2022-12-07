@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zinea/application/main/main_state.dart';
 import 'package:zinea/domain/provider/main/main_provider.dart';
-import 'package:zinea/presentation/screens/favourites/screen_favourites.dart';
 import 'package:zinea/presentation/screens/home/screen_home.dart';
 import 'package:zinea/presentation/screens/main/widgets/bottom_navigation_widget.dart';
 import 'package:zinea/presentation/screens/profile/screen_profile.dart';
@@ -13,7 +12,6 @@ const List _pages = [
   ScreenHome(),
   ScreenSearch(),
   ScreenWatchlist(),
-  ScreenFavourites(),
   ScreenProfile(),
 ];
 

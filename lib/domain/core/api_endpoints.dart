@@ -1,6 +1,9 @@
 import 'package:zinea/core/constants/base_url.dart';
 
 class ApiEndpoints {
+  //==================== Config ====================
+  static const String config = '${apiUrl}configs.php';
+
   //==================== Authentications ====================
   static const String login = '${apiUrl}login.php';
   static const String register = '${apiUrl}register.php';
@@ -17,4 +20,8 @@ class ApiEndpoints {
   //==================== Watchlist ====================
   static const String watchlists = '${apiUrl}fetchWatchList.php';
   static const String watchlistModify = '${apiUrl}modifyWatchList.php';
+
+  //==================== Catalog ====================
+  static const String catalogs = '${apiUrl}fetchCatalogs.php';
+  // static const String watchlistModify = '${apiUrl}modifyWatchList.php';
 }

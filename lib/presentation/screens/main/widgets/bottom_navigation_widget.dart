@@ -45,11 +45,6 @@ class MainBottomNavigationBar extends StatelessWidget {
               label: 'Watchlist',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_outline),
-              activeIcon: Icon(Icons.favorite),
-              label: 'Favourites',
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.person_outline),
               activeIcon: Icon(Icons.person),
               label: 'Profile',

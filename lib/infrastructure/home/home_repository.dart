@@ -32,7 +32,7 @@ class HomeRepository {
           final Set homeTitles =
               videos.map((element) => element['name']).toSet();
 
-          log('homeTitle == $homeTitles');
+          // log('homeTitle == $homeTitles');
 
           final List<List<VideoModel>> homeContents = [];
 

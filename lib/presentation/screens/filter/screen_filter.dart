@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/domain/models/content/content_model.dart';
 import 'package:zinea/domain/provider/filter/filter_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
@@ -10,15 +11,15 @@ import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
 import 'package:zinea/presentation/widgets/dropdown/dropdown_widget.dart';
 
 class ScreenFilter extends ConsumerWidget {
-  const ScreenFilter({super.key, required this.category});
+  const ScreenFilter({super.key, required this.content});
 
-  final String category;
+  final ContentModel content;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppbarWidget(
-        title: category,
+        title: content.name,
         centerTitle: true,
         actions: [
           Consumer(

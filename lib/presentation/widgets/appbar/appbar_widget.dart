@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:zinea/application/config/config_state.dart';
 import 'package:zinea/core/constants/images.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/core/routes/routes.dart';
+import 'package:zinea/domain/models/content/content_model.dart';
 import 'package:zinea/domain/provider/appbar/appbar_provider.dart';
+import 'package:zinea/domain/provider/config/config_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 
 class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -45,45 +48,62 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
   //==================== Home Categories ====================
-  Padding homeCategories(BuildContext context) {
-    final List<String> categories = [
-      'Movies',
-      'Tv Shows',
-      'Web Series',
-      'Short Films',
-      'Albums'
-    ];
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 1.w),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: List.generate(
-              categories.length,
-              (index) {
-                final String category = categories[index];
-                //========== Categories ==========
-                return InkWell(
-                  onTap: () => Navigator.pushNamed(context, routeFilter,
-                      arguments: category),
-                  child: Row(
-                    children: [
-                      FittedBox(
-                        child: Text(
-                          category,
-                          style: TextUtils.theme(context).titleMedium?.copyWith(
-                                fontWeight: FontWeight.w900,
-                              ),
-                        ),
+  Widget homeCategories(BuildContext context) {
+    // final List<String> categories = [
+    //   'Movies',
+    //   'Tv Shows',
+    //   'Web Series',
+    //   'Short Films',
+    //   'Albums'
+    // ];
+    return Consumer(
+      builder: (context, ref, child) {
+        final ConfigState configState =
+            ref.watch(ConfigProvider.configProvider);
+
+        if (configState.isLoading ||
+            configState.isError ||
+            configState.contents.isEmpty) {
+          return kNone;
+        }
+
+        final List<ContentModel> contents = configState.contents;
+
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 1.w),
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: List.generate(
+                  contents.length,
+                  (index) {
+                    final ContentModel content = contents[index];
+                    //========== Categories ==========
+                    return InkWell(
+                      onTap: () => Navigator.pushNamed(context, routeFilter,
+                          arguments: content),
+                      child: Row(
+                        children: [
+                          FittedBox(
+                            child: Text(
+                              content.name,
+                              style: TextUtils.theme(context)
+                                  .titleMedium
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                            ),
+                          ),
+                          if (index != contents.length) dWidth5,
+                        ],
                       ),
-                      if (index != categories.length) dWidth5,
-                    ],
-                  ),
-                );
-              },
-            )),
-      ),
+                    );
+                  },
+                )),
+          ),
+        );
+      },
     );
   }
 

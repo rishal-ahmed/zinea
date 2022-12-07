@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zinea/core/routes/routes.dart';
+import 'package:zinea/domain/models/content/content_model.dart';
 import 'package:zinea/presentation/screens/auth/login/screen_login.dart';
 import 'package:zinea/presentation/screens/auth/register/screen_register.dart';
 import 'package:zinea/presentation/screens/contact/screen_contact_us.dart';
@@ -75,9 +76,8 @@ class RouteGenerator {
 
       //=-=-=-=-=-=-=-=-=-=- Filter -=-=-=-=-=-=-=-=-=-=
       case routeFilter:
-        if (args is String) {
-          return MaterialPageRoute(
-              builder: (_) => ScreenFilter(category: args));
+        if (args is ContentModel) {
+          return MaterialPageRoute(builder: (_) => ScreenFilter(content: args));
         }
         return _errorRoute();
 
