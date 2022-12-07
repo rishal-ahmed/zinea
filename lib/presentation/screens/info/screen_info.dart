@@ -172,6 +172,8 @@ class ScreenInfo extends ConsumerWidget {
                                         icon: Icons.playlist_remove,
                                       );
                                     }
+                                    ref.invalidate(
+                                        WatchlistProvider.watchlistProvider);
                                   },
                                 );
 

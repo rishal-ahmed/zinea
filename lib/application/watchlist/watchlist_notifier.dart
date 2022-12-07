@@ -11,7 +11,23 @@ class WatchlistNotifier extends StateNotifier<WatchlistState> {
   void emit(WatchlistEvent event) {
     event.map(
       //==--==--==--==--==-- Watchlists Event --==--==--==--==--==
-      watchlists: (eventWatchlist) {},
+      watchlists: (eventWatchlist) async {
+        // Loading
+        state = initialState.copyWith(isLoading: true);
+
+        // Api Watchlists
+        final result = await WatchlistRepository().watchlists;
+
+        final WatchlistState watchlistState = result.fold(
+          //==-==-==-==-==- Failure -==-==-==-==-==
+          (failure) => initialState.copyWith(isError: true),
+          //==-==-==-==-==- Success -==-==-==-==-==
+          (data) => initialState.copyWith(watchlists: data),
+        );
+
+        // Notify UI
+        state = watchlistState;
+      },
       //==--==--==--==--==-- Add Watchlist Event --==--==--==--==--==
       modifyWatchlist: (eventModifyWatchlist) async {
         // Loading

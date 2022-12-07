@@ -13,15 +13,13 @@ class WatchlistRepository {
       Dio(BaseOptions(headers: {"Content-Type": "application/json"}));
 
   //==================== Watchlist ====================
-  Future<Either<MainFailures, VideoModel>> watchlists(
-      {required String videoId}) async {
+  Future<Either<MainFailures, List<VideoModel>>> get watchlists async {
     try {
       final String form = json.encode(
         {
           "sessionToken":
               '4bb52c85cb51237d8c57d894201a0c2d765dcb93c3acf126368fe7cc472a68251c3e5b9a69dbed96cd2154999ec10330',
-          "userId": UserUtils.instance.userId,
-          "movieId": videoId,
+          "userId": UserUtils.instance.userId
         },
       );
 
@@ -34,8 +32,10 @@ class WatchlistRepository {
         final Map result = json.decode(response.data) as Map;
 
         if (result['status'] == true) {
-          final VideoModel info = VideoModel.fromJson((result['body']));
-          return Right(info);
+          final List<VideoModel> watchlist = (result['body'] as List)
+              .map((e) => VideoModel.fromJson(e))
+              .toList();
+          return Right(watchlist);
         } else {
           return const Left(MainFailures.clientFailure());
         }

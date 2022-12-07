@@ -7,7 +7,6 @@ import 'package:zinea/domain/provider/filter/filter_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
 import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
-import 'package:zinea/presentation/widgets/card/poster_card.dart';
 import 'package:zinea/presentation/widgets/dropdown/dropdown_widget.dart';
 
 class ScreenFilter extends ConsumerWidget {
@@ -198,10 +197,11 @@ class ScreenFilter extends ConsumerWidget {
                   itemBuilder: (BuildContext context, int index) {
                     // final String? moviePoster =
                     //     state.searchResultList[index].posterImageUrl;
-                    return const PosterCard(
-                      imageUrl:
-                          'https://www.themoviedb.org/t/p/w1280/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg',
-                    );
+                    return kNone;
+                    // return const PosterCard(
+                    //   imageUrl:
+                    //       'https://www.themoviedb.org/t/p/w1280/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg',
+                    // );
                   },
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
