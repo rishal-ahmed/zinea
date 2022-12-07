@@ -9,6 +9,6 @@ class WatchlistState with _$WatchlistState {
     @Default(false) bool isLoading,
     @Default(false) bool isError,
     @Default([]) List<VideoModel> watchlists,
-    @Default(false) bool status,
+    @Default(null) bool? status,
   }) = _WatchlistState;
 }

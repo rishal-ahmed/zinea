@@ -5,14 +5,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:zinea/application/info/info_state.dart';
+import 'package:zinea/application/watchlist/watchlist_event.dart';
+import 'package:zinea/application/watchlist/watchlist_state.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/endpoints.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/domain/models/video/video_model.dart';
 import 'package:zinea/domain/provider/info/info_provider.dart';
+import 'package:zinea/domain/provider/watchlist/watchlist_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/screens/info/widgets/info_shimmer_widget.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
+import 'package:zinea/presentation/widgets/snackbars/snackbar.dart';
 
 class ScreenInfo extends ConsumerWidget {
   const ScreenInfo({super.key, required this.videoId});
@@ -31,6 +35,7 @@ class ScreenInfo extends ConsumerWidget {
           : Builder(
               builder: (context) {
                 final VideoModel info = state.info!;
+
                 final String? trailerUrl = info.trailerLink;
                 log('trailerLink = $trailerUrl');
                 late final YoutubePlayerController controller;
@@ -131,22 +136,64 @@ class ScreenInfo extends ConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
+                            //==--==--==--==--==-- Play Button --==--==--==--==--==
                             IconButton(
                               onPressed: () {},
                               icon: const Icon(Icons.play_arrow),
                               color: kWhite30,
                               iconSize: 23.sp,
                             ),
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(info.watchlistStatus == '0'
-                                  ? Icons.playlist_add
-                                  : Icons.playlist_add_check),
-                              color: info.watchlistStatus == '0'
-                                  ? kWhite30
-                                  : primaryColor,
-                              iconSize: 23.sp,
+                            //==--==--==--==--==-- Watchlist Button --==--==--==--==--==
+                            Consumer(
+                              builder: (context, ref, child) {
+                                final WatchlistState watchlistState = ref.watch(
+                                    WatchlistProvider.modifyWatchlistProvider);
+
+                                bool? isWatchlist = watchlistState.status ??
+                                    info.watchlistStatus == '1';
+
+                                ref.listen(
+                                  WatchlistProvider.modifyWatchlistProvider,
+                                  (previous, next) {
+                                    if (next.status != null &&
+                                        next.status == true) {
+                                      kSnackBar(
+                                        context: context,
+                                        content: 'Added to watchlist',
+                                        icon: Icons.playlist_add_check,
+                                        success: true,
+                                      );
+                                    }
+                                    if (next.status != null &&
+                                        next.status == false) {
+                                      kSnackBar(
+                                        context: context,
+                                        content: 'Removed from watchlist',
+                                        icon: Icons.playlist_remove,
+                                      );
+                                    }
+                                  },
+                                );
+
+                                return IconButton(
+                                  onPressed: () {
+                                    ref
+                                        .read(WatchlistProvider
+                                            .modifyWatchlistProvider.notifier)
+                                        .emit(WatchlistEvent.modifyWatchlist(
+                                            videoId: videoId));
+                                  },
+                                  icon: Icon(
+                                    isWatchlist
+                                        ? Icons.playlist_add_check
+                                        : Icons.playlist_add,
+                                  ),
+                                  color: isWatchlist ? primaryColor : kWhite30,
+                                  iconSize: 23.sp,
+                                );
+                              },
                             ),
+                            //==--==--==--==--==-- Rating Button --==--==--==--==--==
                             CircleAvatar(
                               radius: 15.sp,
                               backgroundColor: primaryColor,
@@ -185,6 +232,7 @@ class ScreenInfo extends ConsumerWidget {
                                 ),
                               ),
                             ),
+                            //==--==--==--==--==-- Share Button --==--==--==--==--==
                             IconButton(
                               onPressed: () {},
                               icon: const Icon(Icons.share),

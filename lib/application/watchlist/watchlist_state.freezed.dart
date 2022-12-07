@@ -19,7 +19,7 @@ mixin _$WatchlistState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   List<VideoModel> get watchlists => throw _privateConstructorUsedError;
-  bool get status => throw _privateConstructorUsedError;
+  bool? get status => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $WatchlistStateCopyWith<WatchlistState> get copyWith =>
@@ -33,7 +33,10 @@ abstract class $WatchlistStateCopyWith<$Res> {
       _$WatchlistStateCopyWithImpl<$Res, WatchlistState>;
   @useResult
   $Res call(
-      {bool isLoading, bool isError, List<VideoModel> watchlists, bool status});
+      {bool isLoading,
+      bool isError,
+      List<VideoModel> watchlists,
+      bool? status});
 }
 
 /// @nodoc
@@ -52,7 +55,7 @@ class _$WatchlistStateCopyWithImpl<$Res, $Val extends WatchlistState>
     Object? isLoading = null,
     Object? isError = null,
     Object? watchlists = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -67,10 +70,10 @@ class _$WatchlistStateCopyWithImpl<$Res, $Val extends WatchlistState>
           ? _value.watchlists
           : watchlists // ignore: cast_nullable_to_non_nullable
               as List<VideoModel>,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 }
@@ -84,7 +87,10 @@ abstract class _$$_WatchlistStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isLoading, bool isError, List<VideoModel> watchlists, bool status});
+      {bool isLoading,
+      bool isError,
+      List<VideoModel> watchlists,
+      bool? status});
 }
 
 /// @nodoc
@@ -101,7 +107,7 @@ class __$$_WatchlistStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isError = null,
     Object? watchlists = null,
-    Object? status = null,
+    Object? status = freezed,
   }) {
     return _then(_$_WatchlistState(
       isLoading: null == isLoading
@@ -116,10 +122,10 @@ class __$$_WatchlistStateCopyWithImpl<$Res>
           ? _value._watchlists
           : watchlists // ignore: cast_nullable_to_non_nullable
               as List<VideoModel>,
-      status: null == status
+      status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -131,7 +137,7 @@ class _$_WatchlistState implements _WatchlistState {
       {this.isLoading = false,
       this.isError = false,
       final List<VideoModel> watchlists = const [],
-      this.status = false})
+      this.status = null})
       : _watchlists = watchlists;
 
   @override
@@ -150,7 +156,7 @@ class _$_WatchlistState implements _WatchlistState {
 
   @override
   @JsonKey()
-  final bool status;
+  final bool? status;
 
   @override
   String toString() {
@@ -186,7 +192,7 @@ abstract class _WatchlistState implements WatchlistState {
       {final bool isLoading,
       final bool isError,
       final List<VideoModel> watchlists,
-      final bool status}) = _$_WatchlistState;
+      final bool? status}) = _$_WatchlistState;
 
   @override
   bool get isLoading;
@@ -195,7 +201,7 @@ abstract class _WatchlistState implements WatchlistState {
   @override
   List<VideoModel> get watchlists;
   @override
-  bool get status;
+  bool? get status;
   @override
   @JsonKey(ignore: true)
   _$$_WatchlistStateCopyWith<_$_WatchlistState> get copyWith =>

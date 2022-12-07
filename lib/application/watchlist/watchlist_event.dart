@@ -8,5 +8,6 @@ class WatchlistEvent with _$WatchlistEvent {
   const factory WatchlistEvent.watchlists() = _WatchlistEvent;
 
   //==-==-==-==- Add Watchlist -==-==-==-==
-  const factory WatchlistEvent.addWatchlist() = _WatchlistEventAdd;
+  const factory WatchlistEvent.modifyWatchlist({required String videoId}) =
+      _WatchlistEventAdd;
 }

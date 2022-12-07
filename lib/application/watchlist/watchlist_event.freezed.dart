@@ -19,38 +19,38 @@ mixin _$WatchlistEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchlists,
-    required TResult Function() addWatchlist,
+    required TResult Function(String videoId) modifyWatchlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watchlists,
-    TResult? Function()? addWatchlist,
+    TResult? Function(String videoId)? modifyWatchlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchlists,
-    TResult Function()? addWatchlist,
+    TResult Function(String videoId)? modifyWatchlist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchlistEvent value) watchlists,
-    required TResult Function(_WatchlistEventAdd value) addWatchlist,
+    required TResult Function(_WatchlistEventAdd value) modifyWatchlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_WatchlistEvent value)? watchlists,
-    TResult? Function(_WatchlistEventAdd value)? addWatchlist,
+    TResult? Function(_WatchlistEventAdd value)? modifyWatchlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchlistEvent value)? watchlists,
-    TResult Function(_WatchlistEventAdd value)? addWatchlist,
+    TResult Function(_WatchlistEventAdd value)? modifyWatchlist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +113,7 @@ class _$_WatchlistEvent implements _WatchlistEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchlists,
-    required TResult Function() addWatchlist,
+    required TResult Function(String videoId) modifyWatchlist,
   }) {
     return watchlists();
   }
@@ -122,7 +122,7 @@ class _$_WatchlistEvent implements _WatchlistEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watchlists,
-    TResult? Function()? addWatchlist,
+    TResult? Function(String videoId)? modifyWatchlist,
   }) {
     return watchlists?.call();
   }
@@ -131,7 +131,7 @@ class _$_WatchlistEvent implements _WatchlistEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchlists,
-    TResult Function()? addWatchlist,
+    TResult Function(String videoId)? modifyWatchlist,
     required TResult orElse(),
   }) {
     if (watchlists != null) {
@@ -144,7 +144,7 @@ class _$_WatchlistEvent implements _WatchlistEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchlistEvent value) watchlists,
-    required TResult Function(_WatchlistEventAdd value) addWatchlist,
+    required TResult Function(_WatchlistEventAdd value) modifyWatchlist,
   }) {
     return watchlists(this);
   }
@@ -153,7 +153,7 @@ class _$_WatchlistEvent implements _WatchlistEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_WatchlistEvent value)? watchlists,
-    TResult? Function(_WatchlistEventAdd value)? addWatchlist,
+    TResult? Function(_WatchlistEventAdd value)? modifyWatchlist,
   }) {
     return watchlists?.call(this);
   }
@@ -162,7 +162,7 @@ class _$_WatchlistEvent implements _WatchlistEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchlistEvent value)? watchlists,
-    TResult Function(_WatchlistEventAdd value)? addWatchlist,
+    TResult Function(_WatchlistEventAdd value)? modifyWatchlist,
     required TResult orElse(),
   }) {
     if (watchlists != null) {
@@ -181,6 +181,8 @@ abstract class _$$_WatchlistEventAddCopyWith<$Res> {
   factory _$$_WatchlistEventAddCopyWith(_$_WatchlistEventAdd value,
           $Res Function(_$_WatchlistEventAdd) then) =
       __$$_WatchlistEventAddCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String videoId});
 }
 
 /// @nodoc
@@ -190,54 +192,79 @@ class __$$_WatchlistEventAddCopyWithImpl<$Res>
   __$$_WatchlistEventAddCopyWithImpl(
       _$_WatchlistEventAdd _value, $Res Function(_$_WatchlistEventAdd) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? videoId = null,
+  }) {
+    return _then(_$_WatchlistEventAdd(
+      videoId: null == videoId
+          ? _value.videoId
+          : videoId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_WatchlistEventAdd implements _WatchlistEventAdd {
-  const _$_WatchlistEventAdd();
+  const _$_WatchlistEventAdd({required this.videoId});
+
+  @override
+  final String videoId;
 
   @override
   String toString() {
-    return 'WatchlistEvent.addWatchlist()';
+    return 'WatchlistEvent.modifyWatchlist(videoId: $videoId)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_WatchlistEventAdd);
+        (other.runtimeType == runtimeType &&
+            other is _$_WatchlistEventAdd &&
+            (identical(other.videoId, videoId) || other.videoId == videoId));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, videoId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WatchlistEventAddCopyWith<_$_WatchlistEventAdd> get copyWith =>
+      __$$_WatchlistEventAddCopyWithImpl<_$_WatchlistEventAdd>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() watchlists,
-    required TResult Function() addWatchlist,
+    required TResult Function(String videoId) modifyWatchlist,
   }) {
-    return addWatchlist();
+    return modifyWatchlist(videoId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? watchlists,
-    TResult? Function()? addWatchlist,
+    TResult? Function(String videoId)? modifyWatchlist,
   }) {
-    return addWatchlist?.call();
+    return modifyWatchlist?.call(videoId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? watchlists,
-    TResult Function()? addWatchlist,
+    TResult Function(String videoId)? modifyWatchlist,
     required TResult orElse(),
   }) {
-    if (addWatchlist != null) {
-      return addWatchlist();
+    if (modifyWatchlist != null) {
+      return modifyWatchlist(videoId);
     }
     return orElse();
   }
@@ -246,34 +273,40 @@ class _$_WatchlistEventAdd implements _WatchlistEventAdd {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_WatchlistEvent value) watchlists,
-    required TResult Function(_WatchlistEventAdd value) addWatchlist,
+    required TResult Function(_WatchlistEventAdd value) modifyWatchlist,
   }) {
-    return addWatchlist(this);
+    return modifyWatchlist(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_WatchlistEvent value)? watchlists,
-    TResult? Function(_WatchlistEventAdd value)? addWatchlist,
+    TResult? Function(_WatchlistEventAdd value)? modifyWatchlist,
   }) {
-    return addWatchlist?.call(this);
+    return modifyWatchlist?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_WatchlistEvent value)? watchlists,
-    TResult Function(_WatchlistEventAdd value)? addWatchlist,
+    TResult Function(_WatchlistEventAdd value)? modifyWatchlist,
     required TResult orElse(),
   }) {
-    if (addWatchlist != null) {
-      return addWatchlist(this);
+    if (modifyWatchlist != null) {
+      return modifyWatchlist(this);
     }
     return orElse();
   }
 }
 
 abstract class _WatchlistEventAdd implements WatchlistEvent {
-  const factory _WatchlistEventAdd() = _$_WatchlistEventAdd;
+  const factory _WatchlistEventAdd({required final String videoId}) =
+      _$_WatchlistEventAdd;
+
+  String get videoId;
+  @JsonKey(ignore: true)
+  _$$_WatchlistEventAddCopyWith<_$_WatchlistEventAdd> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -9,8 +9,8 @@ void kSnackBar({
   required BuildContext context,
   required String content,
   double? height,
-  Color? color,
-  Widget? icon,
+  Color color = kWhite30,
+  IconData? icon,
   int? duration,
   bool error = false,
   bool success = false,
@@ -26,34 +26,38 @@ void kSnackBar({
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            icon ?? const Text(''),
-            icon == null
-                ? error == true
-                    ? Icon(
-                        Icons.error_outline,
-                        color: kSnackBarIconColor,
-                        size: 18.sp,
-                      )
-                    : success == true
-                        ? Icon(
-                            Icons.done,
-                            color: kSnackBarIconColor,
-                            size: 18.sp,
-                          )
-                        : delete == true
-                            ? Icon(
-                                Icons.delete,
-                                color: kSnackBarIconColor,
-                                size: 18.sp,
-                              )
-                            : update == true
-                                ? Icon(
-                                    Icons.update,
-                                    color: kSnackBarIconColor,
-                                    size: 18.sp,
-                                  )
-                                : kNone
-                : kNone,
+            if (icon != null)
+              Icon(
+                icon,
+                color: kSnackBarIconColor,
+                size: 18.sp,
+              )
+            else
+              error == true
+                  ? Icon(
+                      Icons.error_outline,
+                      color: kSnackBarIconColor,
+                      size: 18.sp,
+                    )
+                  : success == true
+                      ? Icon(
+                          Icons.done,
+                          color: kSnackBarIconColor,
+                          size: 18.sp,
+                        )
+                      : delete == true
+                          ? Icon(
+                              Icons.delete,
+                              color: kSnackBarIconColor,
+                              size: 18.sp,
+                            )
+                          : update == true
+                              ? Icon(
+                                  Icons.update,
+                                  color: kSnackBarIconColor,
+                                  size: 18.sp,
+                                )
+                              : kNone,
             kWidth5,
             Flexible(
               child: Text(
