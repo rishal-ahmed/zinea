@@ -21,7 +21,7 @@ class ApiEndpoints {
   static const String watchlists = '${apiUrl}fetchWatchList.php';
   static const String watchlistModify = '${apiUrl}modifyWatchList.php';
 
-  //==================== Catalog ====================
-  static const String catalogs = '${apiUrl}fetchCatalogs.php';
+  //==================== Filter ====================
+  static const String filter = '${apiUrl}fetchContents.php';
   // static const String watchlistModify = '${apiUrl}modifyWatchList.php';
 }

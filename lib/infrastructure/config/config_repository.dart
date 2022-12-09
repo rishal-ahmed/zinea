@@ -4,7 +4,8 @@ import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:zinea/domain/core/api_endpoints.dart';
-import 'package:zinea/domain/models/content/content_model.dart';
+import 'package:zinea/domain/models/config/config_model.dart';
+import 'package:zinea/domain/utils/config/config_utils.dart';
 import 'package:zinea/domain/utils/failures/main_failures.dart';
 
 class ConfigRepository {
@@ -12,7 +13,7 @@ class ConfigRepository {
       Dio(BaseOptions(headers: {"Content-Type": "application/json"}));
 
   //==================== Home ====================
-  Future<Either<MainFailures, List<ContentModel>>> get config async {
+  Future<Either<MainFailures, ConfigModel>> get configs async {
     try {
       // final String form = json.encode(
       //   {
@@ -28,13 +29,11 @@ class ConfigRepository {
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final Map result = json.decode(response.data) as Map;
-        final Map configs = result['configs'];
+        final ConfigModel configs = ConfigModel.fromJson(result['configs']);
 
-        final List<ContentModel> contents = (configs['contentTypes'] as List)
-            .map((json) => ContentModel.fromJson(json))
-            .toList();
+        ConfigUtils.instance.config = configs;
 
-        return Right(contents);
+        return Right(configs);
       } else {
         return const Left(MainFailures.serverFailure());
       }

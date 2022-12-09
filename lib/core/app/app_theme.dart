@@ -9,10 +9,13 @@ class AppTheme {
       brightness: Brightness.dark,
       scaffoldBackgroundColor: kBlack,
       appBarTheme: const AppBarTheme(
-          color: kTransparentColor,
-          systemOverlayStyle:
-              SystemUiOverlayStyle(statusBarColor: kTransparentColor)),
-      primaryColor: Colors.yellow,
+        color: kTransparentColor,
+        systemOverlayStyle:
+            SystemUiOverlayStyle(statusBarColor: kTransparentColor),
+      ),
+      primaryColor: primaryColor,
+      primaryColorDark: primaryColor,
+      primarySwatch: Colors.yellow,
       // fontFamily: GoogleFonts.aBeeZee().fontFamily,
     );
   }

@@ -6,6 +6,7 @@ import 'package:zinea/application/config/config_state.dart';
 import 'package:zinea/core/constants/images.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/core/routes/routes.dart';
+import 'package:zinea/domain/models/config/config_model.dart';
 import 'package:zinea/domain/models/content/content_model.dart';
 import 'package:zinea/domain/provider/appbar/appbar_provider.dart';
 import 'package:zinea/domain/provider/config/config_provider.dart';
@@ -63,11 +64,11 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
 
         if (configState.isLoading ||
             configState.isError ||
-            configState.contents.isEmpty) {
+            configState.config == null) {
           return kNone;
         }
 
-        final List<ContentModel> contents = configState.contents;
+        final ConfigModel config = configState.config!;
 
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 1.w),
@@ -76,9 +77,9 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: List.generate(
-                  contents.length,
+                  config.contents.length,
                   (index) {
-                    final ContentModel content = contents[index];
+                    final ContentModel content = config.contents[index];
                     //========== Categories ==========
                     return InkWell(
                       onTap: () => Navigator.pushNamed(context, routeFilter,
@@ -95,7 +96,7 @@ class AppbarWidget extends StatelessWidget implements PreferredSizeWidget {
                                   ),
                             ),
                           ),
-                          if (index != contents.length) dWidth5,
+                          if (index != config.contents.length) dWidth5,
                         ],
                       ),
                     );

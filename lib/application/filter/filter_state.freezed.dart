@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'config_state.dart';
+part of 'filter_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,31 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ConfigState {
+mixin _$FilterState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
-  ConfigModel? get config => throw _privateConstructorUsedError;
+  List<VideoModel> get videos => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ConfigStateCopyWith<ConfigState> get copyWith =>
+  $FilterStateCopyWith<FilterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ConfigStateCopyWith<$Res> {
-  factory $ConfigStateCopyWith(
-          ConfigState value, $Res Function(ConfigState) then) =
-      _$ConfigStateCopyWithImpl<$Res, ConfigState>;
+abstract class $FilterStateCopyWith<$Res> {
+  factory $FilterStateCopyWith(
+          FilterState value, $Res Function(FilterState) then) =
+      _$FilterStateCopyWithImpl<$Res, FilterState>;
   @useResult
-  $Res call({bool isLoading, bool isError, ConfigModel? config});
-
-  $ConfigModelCopyWith<$Res>? get config;
+  $Res call({bool isLoading, bool isError, List<VideoModel> videos});
 }
 
 /// @nodoc
-class _$ConfigStateCopyWithImpl<$Res, $Val extends ConfigState>
-    implements $ConfigStateCopyWith<$Res> {
-  _$ConfigStateCopyWithImpl(this._value, this._then);
+class _$FilterStateCopyWithImpl<$Res, $Val extends FilterState>
+    implements $FilterStateCopyWith<$Res> {
+  _$FilterStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -51,7 +49,7 @@ class _$ConfigStateCopyWithImpl<$Res, $Val extends ConfigState>
   $Res call({
     Object? isLoading = null,
     Object? isError = null,
-    Object? config = freezed,
+    Object? videos = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -62,46 +60,31 @@ class _$ConfigStateCopyWithImpl<$Res, $Val extends ConfigState>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
-      config: freezed == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as ConfigModel?,
+      videos: null == videos
+          ? _value.videos
+          : videos // ignore: cast_nullable_to_non_nullable
+              as List<VideoModel>,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ConfigModelCopyWith<$Res>? get config {
-    if (_value.config == null) {
-      return null;
-    }
-
-    return $ConfigModelCopyWith<$Res>(_value.config!, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_ConfigStateCopyWith<$Res>
-    implements $ConfigStateCopyWith<$Res> {
-  factory _$$_ConfigStateCopyWith(
-          _$_ConfigState value, $Res Function(_$_ConfigState) then) =
-      __$$_ConfigStateCopyWithImpl<$Res>;
+abstract class _$$_FilterStateCopyWith<$Res>
+    implements $FilterStateCopyWith<$Res> {
+  factory _$$_FilterStateCopyWith(
+          _$_FilterState value, $Res Function(_$_FilterState) then) =
+      __$$_FilterStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool isError, ConfigModel? config});
-
-  @override
-  $ConfigModelCopyWith<$Res>? get config;
+  $Res call({bool isLoading, bool isError, List<VideoModel> videos});
 }
 
 /// @nodoc
-class __$$_ConfigStateCopyWithImpl<$Res>
-    extends _$ConfigStateCopyWithImpl<$Res, _$_ConfigState>
-    implements _$$_ConfigStateCopyWith<$Res> {
-  __$$_ConfigStateCopyWithImpl(
-      _$_ConfigState _value, $Res Function(_$_ConfigState) _then)
+class __$$_FilterStateCopyWithImpl<$Res>
+    extends _$FilterStateCopyWithImpl<$Res, _$_FilterState>
+    implements _$$_FilterStateCopyWith<$Res> {
+  __$$_FilterStateCopyWithImpl(
+      _$_FilterState _value, $Res Function(_$_FilterState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,9 +92,9 @@ class __$$_ConfigStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isError = null,
-    Object? config = freezed,
+    Object? videos = null,
   }) {
-    return _then(_$_ConfigState(
+    return _then(_$_FilterState(
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -120,19 +103,22 @@ class __$$_ConfigStateCopyWithImpl<$Res>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
-      config: freezed == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as ConfigModel?,
+      videos: null == videos
+          ? _value._videos
+          : videos // ignore: cast_nullable_to_non_nullable
+              as List<VideoModel>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_ConfigState implements _ConfigState {
-  const _$_ConfigState(
-      {this.isLoading = false, this.isError = false, this.config = null});
+class _$_FilterState implements _FilterState {
+  const _$_FilterState(
+      {this.isLoading = false,
+      this.isError = false,
+      final List<VideoModel> videos = const []})
+      : _videos = videos;
 
   @override
   @JsonKey()
@@ -140,50 +126,55 @@ class _$_ConfigState implements _ConfigState {
   @override
   @JsonKey()
   final bool isError;
+  final List<VideoModel> _videos;
   @override
   @JsonKey()
-  final ConfigModel? config;
+  List<VideoModel> get videos {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_videos);
+  }
 
   @override
   String toString() {
-    return 'ConfigState(isLoading: $isLoading, isError: $isError, config: $config)';
+    return 'FilterState(isLoading: $isLoading, isError: $isError, videos: $videos)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ConfigState &&
+            other is _$_FilterState &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
-            (identical(other.config, config) || other.config == config));
+            const DeepCollectionEquality().equals(other._videos, _videos));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError, config);
+  int get hashCode => Object.hash(runtimeType, isLoading, isError,
+      const DeepCollectionEquality().hash(_videos));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ConfigStateCopyWith<_$_ConfigState> get copyWith =>
-      __$$_ConfigStateCopyWithImpl<_$_ConfigState>(this, _$identity);
+  _$$_FilterStateCopyWith<_$_FilterState> get copyWith =>
+      __$$_FilterStateCopyWithImpl<_$_FilterState>(this, _$identity);
 }
 
-abstract class _ConfigState implements ConfigState {
-  const factory _ConfigState(
+abstract class _FilterState implements FilterState {
+  const factory _FilterState(
       {final bool isLoading,
       final bool isError,
-      final ConfigModel? config}) = _$_ConfigState;
+      final List<VideoModel> videos}) = _$_FilterState;
 
   @override
   bool get isLoading;
   @override
   bool get isError;
   @override
-  ConfigModel? get config;
+  List<VideoModel> get videos;
   @override
   @JsonKey(ignore: true)
-  _$$_ConfigStateCopyWith<_$_ConfigState> get copyWith =>
+  _$$_FilterStateCopyWith<_$_FilterState> get copyWith =>
       throw _privateConstructorUsedError;
 }

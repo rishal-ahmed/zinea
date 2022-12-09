@@ -16,13 +16,13 @@ class ConfigNotifier extends StateNotifier<ConfigState> {
         state = initialState.copyWith(isLoading: true);
 
         // Config Api
-        final result = await ConfigRepository().config;
+        final result = await ConfigRepository().configs;
 
         final ConfigState configState = result.fold(
           //=-=-=-=-=- Failure -=-=-=-=-=
           (l) => initialState.copyWith(isError: true),
           //=-=-=-=-=- Success -=-=-=-=-=
-          (r) => initialState.copyWith(contents: r),
+          (r) => initialState.copyWith(config: r),
         );
 
         // Notify UI

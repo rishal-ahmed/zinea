@@ -39,6 +39,9 @@ class TextFeildWidget extends StatelessWidget {
     this.floatingLabelBehavior,
     this.fillColor,
     this.fontSize,
+    this.hintSize,
+    this.textAlign = TextAlign.start,
+    this.fontColor,
   }) : super(key: key);
   final String? labelText;
   final String? hintText;
@@ -70,16 +73,19 @@ class TextFeildWidget extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final bool? obscureText;
   final bool errorStyle;
-  final Color? fillColor;
-  final double? fontSize;
+  final Color? fontColor, fillColor;
+  final double? fontSize, hintSize;
+  final TextAlign textAlign;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       style: textStyle ??
-          TextUtils.theme(context)
-              .labelLarge
-              ?.copyWith(fontSize: fontSize, fontWeight: FontWeight.w400),
+          TextUtils.theme(context).labelLarge?.copyWith(
+              color: fontColor,
+              fontSize: fontSize,
+              fontWeight: FontWeight.w400),
+      textAlign: textAlign,
       decoration: InputDecoration(
           floatingLabelBehavior: floatingLabelBehavior,
           counterText: couterText,
@@ -97,7 +103,8 @@ class TextFeildWidget extends StatelessWidget {
           suffixIcon: suffixIcon,
           suffixIconConstraints: suffixIconConstraints,
           hintText: isHint ? labelText : hintText,
-          hintStyle: hintStyle ?? TextStyle(fontSize: 15.sp, color: kColorHint),
+          hintStyle: hintStyle ??
+              TextStyle(fontSize: hintSize ?? 15.sp, color: kColorHint),
           isDense: isDense,
           errorStyle: errorStyle
               ? const TextStyle(color: Colors.white70)
