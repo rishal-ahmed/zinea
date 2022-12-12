@@ -92,8 +92,10 @@ class ScreenRegister extends StatelessWidget {
                       return TextFeildWidget(
                         labelText: 'Confirm Password',
                         inputBorder: const OutlineInputBorder(),
-                        validator: (value) => Validators.confirmValidator(
-                            value1: value, value2: passwordController.text),
+                        validator: (value) =>
+                            Validators.confirmPasswordValidator(
+                                value: value,
+                                password: passwordController.text),
                         obscureText:
                             ref.watch(RegisterProvider.obscureConfirmProvider),
                         suffixIcon: IconButton(

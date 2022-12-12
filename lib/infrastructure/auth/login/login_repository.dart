@@ -3,9 +3,7 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:zinea/domain/core/api_endpoints.dart';
-import 'package:zinea/domain/models/user/user_model.dart';
 import 'package:zinea/domain/utils/failures/main_failures.dart';
 import 'package:zinea/domain/utils/user/user_utils.dart';
 
@@ -34,11 +32,7 @@ class LoginRepository {
         if (result['status'] == true) {
           final Map<String, dynamic> userJson = result['body'];
 
-          SharedPreferences preferences = await SharedPreferences.getInstance();
-          preferences.setString('user', jsonEncode(userJson));
-
-          final UserModel userModel = UserModel.fromJson(userJson);
-          UserUtils.instance.saveUser(user: userModel);
+          UserUtils.instance.saveUserOnLogin(userJson: userJson);
 
           return const Right(true);
         } else {

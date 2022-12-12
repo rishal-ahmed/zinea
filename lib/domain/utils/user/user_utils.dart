@@ -20,11 +20,11 @@ class UserUtils {
   }
 
   //========== Variables ==========
-  String userId = '';
-  String userToken = '';
+  late String userId;
+  late String userToken;
 
   //========== Model Classes ==========
-  UserModel? userModel;
+  late UserModel userModel;
 
   //========== Save User on Startup ==========
   void saveUserFromString({required String userString}) {
@@ -35,10 +35,34 @@ class UserUtils {
   }
 
   //========== Save User on Login ==========
-  void saveUser({required UserModel user}) async {
+  void saveUserOnLogin({required Map<String, dynamic> userJson}) async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('user', jsonEncode(userJson));
+
+    final UserModel user = UserModel.fromJson(userJson);
     userModel = user;
     userId = user.id;
     userToken = user.token;
+  }
+
+  //========== Save User on Register ==========
+  void saveUserOnRegister({required String id, required String token}) async {
+    userModel = userModel.copyWith(id: id, token: token);
+
+    userId = id;
+    userToken = token;
+
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('user', jsonEncode(userModel.toJson()));
+  }
+
+  //========== Save User on Register ==========
+  void updateToken({required String token}) async {
+    userModel = userModel.copyWith(token: token);
+    userToken = token;
+
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('user', jsonEncode(userModel.toJson()));
   }
 
   //========== Logout User ==========

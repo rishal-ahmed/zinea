@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 
 class Validators {
@@ -44,9 +46,26 @@ class Validators {
   }
 
   //========== Confirm Validator ==========
-  static String? confirmValidator({String? value1, String? value2}) {
-    if (value1 != value2) {
+  static String? confirmPasswordValidator({String? value, String? password}) {
+    log('confirmPassword = $value');
+    log('Password = $password');
+
+    if (value != password) {
       return 'Password do not match';
+    }
+    return null;
+  }
+
+  //========== Confirm Validator ==========
+  static String? changePassword({String? newPassword, String? oldPassword}) {
+    if (newPassword == null || newPassword.trim().isEmpty) {
+      return 'This field is required*';
+    }
+    if (newPassword.trim().length < 8) {
+      return 'Password must be at least 8 characters';
+    }
+    if (newPassword == oldPassword) {
+      return 'Password must be differ from old password';
     }
     return null;
   }

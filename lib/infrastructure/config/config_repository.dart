@@ -12,7 +12,7 @@ class ConfigRepository {
   final Dio dio =
       Dio(BaseOptions(headers: {"Content-Type": "application/json"}));
 
-  //==================== Home ====================
+  //==================== Configs ====================
   Future<Either<MainFailures, ConfigModel>> get configs async {
     try {
       // final String form = json.encode(

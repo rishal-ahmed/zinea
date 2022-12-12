@@ -3,45 +3,47 @@ import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:zinea/application/auth/register/register_event.dart';
 import 'package:zinea/domain/core/api_endpoints.dart';
 import 'package:zinea/domain/utils/failures/main_failures.dart';
 import 'package:zinea/domain/utils/user/user_utils.dart';
 
-class RegisterRepository {
+class UserRepository {
   final Dio dio =
       Dio(BaseOptions(headers: {"Content-Type": "application/json"}));
 
-  //==================== Register ====================
-  Future<Either<MainFailures, bool>> register(
-      {required RegisterEvent registerEvent}) async {
+  //==================== Change Password ====================
+  Future<Either<MainFailures, bool>> changePassword(
+      {required String oldPassword, required String newPassword}) async {
     try {
-      final String form = json.encode({
-        "name": registerEvent.name,
-        "phone": registerEvent.phone,
-        "countryCode": '91',
-        "email": registerEvent.email,
-        "password": registerEvent.password,
-      });
+      final String form = json.encode(
+        {
+          "sessionToken": UserUtils.instance.userToken,
+          "email": UserUtils.instance.userModel.email,
+          "phone": UserUtils.instance.userModel.phone,
+          "userId": UserUtils.instance.userId,
+          "oldPassword": oldPassword,
+          "newPassword": newPassword,
+        },
+      );
 
       final Response response =
-          await dio.post(ApiEndpoints.register, data: form);
+          await dio.post(ApiEndpoints.changePassword, data: form);
 
-      log('response == ${response.data.toString()}', name: 'Register');
+      log('response == ${response.data.toString()}', name: 'Change Password');
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final Map result = json.decode(response.data) as Map;
 
         if (result['status'] == true) {
-          final Map<String, dynamic> body = result['body'];
+          final String token = result['body']['token'];
 
-          UserUtils.instance.saveUserOnRegister(
-              id: body['userId'].toString(), token: body['token']);
+          UserUtils.instance.updateToken(token: token);
 
           return const Right(true);
         } else {
-          final String? error = result['errorMsg'] != 'Some error occured'
-              ? result['errorMsg']
+          final String? error = result['errorMsg'] ==
+                  'Password change failed. Please try again with correct old password'
+              ? 'Old password is incorrect'
               : null;
           if (error != null) {
             return Left(MainFailures.clientFailure(error: error));

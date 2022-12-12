@@ -23,5 +23,7 @@ class ApiEndpoints {
 
   //==================== Filter ====================
   static const String filter = '${apiUrl}fetchContents.php';
-  // static const String watchlistModify = '${apiUrl}modifyWatchList.php';
+
+  //==================== User ====================
+  static const String changePassword = '${apiUrl}changePassword.php';
 }
