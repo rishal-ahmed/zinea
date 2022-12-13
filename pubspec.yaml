@@ -52,6 +52,11 @@ dependencies:
   shared_preferences: ^2.0.15
   youtube_player_flutter: ^8.1.1
   flutter_rating_bar: ^4.0.1
+  vimeoplayer:
+    git:
+      url: https://github.com/prilogy/vimeo_player.git
+  video_player: ^2.4.9
+  youtube_player_iframe: ^3.1.0
 
 dev_dependencies:
   flutter_test:

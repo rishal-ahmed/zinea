@@ -26,4 +26,8 @@ class ApiEndpoints {
 
   //==================== User ====================
   static const String changePassword = '${apiUrl}changePassword.php';
+
+  //==================== Subscriptions ====================
+  static const String subscriptionPlans =
+      '${apiUrl}getAllSubscriptionPlans.php';
 }

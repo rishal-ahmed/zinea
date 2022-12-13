@@ -14,4 +14,9 @@ class InfoProvider {
   static final volumeProvider = StateProvider.autoDispose<bool>((ref) {
     return false;
   });
+
+  // //==--==--==--==--==-- Volume Icon Provider --==--==--==--==--==
+  // static final fullScreenProvider = StateProvider.autoDispose<bool>((ref) {
+  //   return false;
+  // });
 }
