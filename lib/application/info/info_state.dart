@@ -11,5 +11,6 @@ class InfoState with _$InfoState {
     @Default(null) VideoModel? info,
     @Default(false) bool status,
     @Default('') String message,
+    @Default(0.0) double rating,
   }) = _InfoState;
 }

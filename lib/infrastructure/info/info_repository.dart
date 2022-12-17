@@ -82,9 +82,9 @@ class InfoRepository {
     }
   }
 
-  //==================== User Rating ====================
-  Future<Either<MainFailures, double>> userRating(
-      {required String videoId, required String rating}) async {
+  //==================== Get Rating ====================
+  Future<Either<MainFailures, double>> getRating(
+      {required String videoId}) async {
     try {
       final String form = json.encode({
         "sessionToken": UserUtils.instance.userToken,
@@ -103,7 +103,7 @@ class InfoRepository {
         final Map result = json.decode(response.data) as Map;
 
         if (result['status'] == true && result['body']['ratedByUser'] == true) {
-          final double rating = result['body']['rating'];
+          final double rating = double.parse(result['body']['rating']);
           return Right(rating);
         } else {
           return const Left(MainFailures.clientFailure());

@@ -274,8 +274,13 @@ class ScreenInfo extends ConsumerWidget {
                               Consumer(
                                 builder: (context, ref, child) {
                                   ref.watch(InfoProvider.addRatingProvider);
+
                                   final double rateValue =
                                       ref.watch(InfoProvider.rateProvider);
+
+                                  final InfoState ratingState = ref.watch(
+                                      InfoProvider.getRatingProvider(videoId));
+                                  log('rating = ${ratingState.rating}');
 
                                   ref.listen(
                                     InfoProvider.addRatingProvider,
@@ -317,6 +322,8 @@ class ScreenInfo extends ConsumerWidget {
                                                   itemSize: 22.sp,
                                                   unratedColor: kWhite12,
                                                   glowColor: primaryColor,
+                                                  initialRating:
+                                                      (ratingState.rating / 2),
                                                   itemBuilder:
                                                       (context, index) {
                                                     return const Icon(
@@ -326,7 +333,6 @@ class ScreenInfo extends ConsumerWidget {
                                                   },
                                                   allowHalfRating: true,
                                                   onRatingUpdate: (value) {
-                                                    log('rating = ${value * 2}');
                                                     ref
                                                         .read(InfoProvider
                                                             .rateProvider

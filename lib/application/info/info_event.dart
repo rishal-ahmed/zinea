@@ -9,5 +9,9 @@ class InfoEvent with _$InfoEvent {
 
   //=-=-=-=-=- Add Rating -=-=-=-=-=
   const factory InfoEvent.addRating(
-      {required String videoId, required String rating}) = _InfoEventRating;
+      {required String videoId, required String rating}) = _InfoEventAddRating;
+
+  //=-=-=-=-=- Get Rating -=-=-=-=-=
+  const factory InfoEvent.getRating({required String videoId}) =
+      _InfoEventGetRating;
 }

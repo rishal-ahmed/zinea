@@ -21,6 +21,7 @@ mixin _$InfoState {
   VideoModel? get info => throw _privateConstructorUsedError;
   bool get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
+  double get rating => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InfoStateCopyWith<InfoState> get copyWith =>
@@ -37,7 +38,8 @@ abstract class $InfoStateCopyWith<$Res> {
       bool isError,
       VideoModel? info,
       bool status,
-      String message});
+      String message,
+      double rating});
 
   $VideoModelCopyWith<$Res>? get info;
 }
@@ -60,6 +62,7 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
     Object? info = freezed,
     Object? status = null,
     Object? message = null,
+    Object? rating = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -82,6 +85,10 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 
@@ -110,7 +117,8 @@ abstract class _$$_InfoStateCopyWith<$Res> implements $InfoStateCopyWith<$Res> {
       bool isError,
       VideoModel? info,
       bool status,
-      String message});
+      String message,
+      double rating});
 
   @override
   $VideoModelCopyWith<$Res>? get info;
@@ -132,6 +140,7 @@ class __$$_InfoStateCopyWithImpl<$Res>
     Object? info = freezed,
     Object? status = null,
     Object? message = null,
+    Object? rating = null,
   }) {
     return _then(_$_InfoState(
       isLoading: null == isLoading
@@ -154,6 +163,10 @@ class __$$_InfoStateCopyWithImpl<$Res>
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -166,7 +179,8 @@ class _$_InfoState implements _InfoState {
       this.isError = false,
       this.info = null,
       this.status = false,
-      this.message = ''});
+      this.message = '',
+      this.rating = 0.0});
 
   @override
   @JsonKey()
@@ -183,10 +197,13 @@ class _$_InfoState implements _InfoState {
   @override
   @JsonKey()
   final String message;
+  @override
+  @JsonKey()
+  final double rating;
 
   @override
   String toString() {
-    return 'InfoState(isLoading: $isLoading, isError: $isError, info: $info, status: $status, message: $message)';
+    return 'InfoState(isLoading: $isLoading, isError: $isError, info: $info, status: $status, message: $message, rating: $rating)';
   }
 
   @override
@@ -199,12 +216,13 @@ class _$_InfoState implements _InfoState {
             (identical(other.isError, isError) || other.isError == isError) &&
             (identical(other.info, info) || other.info == info) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.message, message) || other.message == message));
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.rating, rating) || other.rating == rating));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isLoading, isError, info, status, message);
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, isError, info, status, message, rating);
 
   @JsonKey(ignore: true)
   @override
@@ -219,7 +237,8 @@ abstract class _InfoState implements InfoState {
       final bool isError,
       final VideoModel? info,
       final bool status,
-      final String message}) = _$_InfoState;
+      final String message,
+      final double rating}) = _$_InfoState;
 
   @override
   bool get isLoading;
@@ -231,6 +250,8 @@ abstract class _InfoState implements InfoState {
   bool get status;
   @override
   String get message;
+  @override
+  double get rating;
   @override
   @JsonKey(ignore: true)
   _$$_InfoStateCopyWith<_$_InfoState> get copyWith =>
