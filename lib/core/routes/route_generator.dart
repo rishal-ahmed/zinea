@@ -15,6 +15,7 @@ import 'package:zinea/presentation/screens/profile/screen_profile.dart';
 import 'package:zinea/presentation/screens/search/screen_search.dart';
 import 'package:zinea/presentation/screens/splash/screen_splash.dart';
 import 'package:zinea/presentation/screens/info/screen_info.dart';
+import 'package:zinea/presentation/screens/watch/screen_watch.dart';
 import 'package:zinea/presentation/screens/watchlist/screen_watchlist.dart';
 import 'package:zinea/presentation/widgets/errors/connection.dart';
 
@@ -85,6 +86,13 @@ class RouteGenerator {
       case routeInfo:
         if (args is String) {
           return MaterialPageRoute(builder: (_) => ScreenInfo(videoId: args));
+        }
+        return _errorRoute();
+
+      //=-=-=-=-=-=-=-=-=-=- Watch -=-=-=-=-=-=-=-=-=-=
+      case routeWatch:
+        if (args is String) {
+          return MaterialPageRoute(builder: (_) => ScreenWatch(videoId: args));
         }
         return _errorRoute();
 

@@ -20,32 +20,38 @@ mixin _$InfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String videoId) info,
+    required TResult Function(String videoId, String rating) addRating,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String videoId)? info,
+    TResult? Function(String videoId, String rating)? addRating,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String videoId)? info,
+    TResult Function(String videoId, String rating)? addRating,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InfoEvent value) info,
+    required TResult Function(_InfoEventRating value) addRating,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InfoEvent value)? info,
+    TResult? Function(_InfoEventRating value)? addRating,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InfoEvent value)? info,
+    TResult Function(_InfoEventRating value)? addRating,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,6 +159,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String videoId) info,
+    required TResult Function(String videoId, String rating) addRating,
   }) {
     return info(videoId);
   }
@@ -161,6 +168,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String videoId)? info,
+    TResult? Function(String videoId, String rating)? addRating,
   }) {
     return info?.call(videoId);
   }
@@ -169,6 +177,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String videoId)? info,
+    TResult Function(String videoId, String rating)? addRating,
     required TResult orElse(),
   }) {
     if (info != null) {
@@ -181,6 +190,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InfoEvent value) info,
+    required TResult Function(_InfoEventRating value) addRating,
   }) {
     return info(this);
   }
@@ -189,6 +199,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InfoEvent value)? info,
+    TResult? Function(_InfoEventRating value)? addRating,
   }) {
     return info?.call(this);
   }
@@ -197,6 +208,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InfoEvent value)? info,
+    TResult Function(_InfoEventRating value)? addRating,
     required TResult orElse(),
   }) {
     if (info != null) {
@@ -214,5 +226,153 @@ abstract class _InfoEvent implements InfoEvent {
   @override
   @JsonKey(ignore: true)
   _$$_InfoEventCopyWith<_$_InfoEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InfoEventRatingCopyWith<$Res>
+    implements $InfoEventCopyWith<$Res> {
+  factory _$$_InfoEventRatingCopyWith(
+          _$_InfoEventRating value, $Res Function(_$_InfoEventRating) then) =
+      __$$_InfoEventRatingCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String videoId, String rating});
+}
+
+/// @nodoc
+class __$$_InfoEventRatingCopyWithImpl<$Res>
+    extends _$InfoEventCopyWithImpl<$Res, _$_InfoEventRating>
+    implements _$$_InfoEventRatingCopyWith<$Res> {
+  __$$_InfoEventRatingCopyWithImpl(
+      _$_InfoEventRating _value, $Res Function(_$_InfoEventRating) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? videoId = null,
+    Object? rating = null,
+  }) {
+    return _then(_$_InfoEventRating(
+      videoId: null == videoId
+          ? _value.videoId
+          : videoId // ignore: cast_nullable_to_non_nullable
+              as String,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InfoEventRating implements _InfoEventRating {
+  const _$_InfoEventRating({required this.videoId, required this.rating});
+
+  @override
+  final String videoId;
+  @override
+  final String rating;
+
+  @override
+  String toString() {
+    return 'InfoEvent.addRating(videoId: $videoId, rating: $rating)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InfoEventRating &&
+            (identical(other.videoId, videoId) || other.videoId == videoId) &&
+            (identical(other.rating, rating) || other.rating == rating));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, videoId, rating);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_InfoEventRatingCopyWith<_$_InfoEventRating> get copyWith =>
+      __$$_InfoEventRatingCopyWithImpl<_$_InfoEventRating>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String videoId) info,
+    required TResult Function(String videoId, String rating) addRating,
+  }) {
+    return addRating(videoId, rating);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String videoId)? info,
+    TResult? Function(String videoId, String rating)? addRating,
+  }) {
+    return addRating?.call(videoId, rating);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String videoId)? info,
+    TResult Function(String videoId, String rating)? addRating,
+    required TResult orElse(),
+  }) {
+    if (addRating != null) {
+      return addRating(videoId, rating);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InfoEvent value) info,
+    required TResult Function(_InfoEventRating value) addRating,
+  }) {
+    return addRating(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InfoEvent value)? info,
+    TResult? Function(_InfoEventRating value)? addRating,
+  }) {
+    return addRating?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InfoEvent value)? info,
+    TResult Function(_InfoEventRating value)? addRating,
+    required TResult orElse(),
+  }) {
+    if (addRating != null) {
+      return addRating(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InfoEventRating implements InfoEvent {
+  const factory _InfoEventRating(
+      {required final String videoId,
+      required final String rating}) = _$_InfoEventRating;
+
+  @override
+  String get videoId;
+  String get rating;
+  @override
+  @JsonKey(ignore: true)
+  _$$_InfoEventRatingCopyWith<_$_InfoEventRating> get copyWith =>
       throw _privateConstructorUsedError;
 }

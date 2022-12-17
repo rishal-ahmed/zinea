@@ -30,4 +30,8 @@ class ApiEndpoints {
   //==================== Subscriptions ====================
   static const String subscriptionPlans =
       '${apiUrl}getAllSubscriptionPlans.php';
+
+  //==================== Rating ====================
+  static const String userRating = '${apiUrl}fetchUserRating.php';
+  static const String addRating = '${apiUrl}addRating.php';
 }

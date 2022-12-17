@@ -12,7 +12,7 @@ class InfoRepository {
   final Dio dio =
       Dio(BaseOptions(headers: {"Content-Type": "application/json"}));
 
-  //==================== Home ====================
+  //==================== Info ====================
   Future<Either<MainFailures, VideoModel>> info(
       {required String videoId}) async {
     try {
@@ -35,6 +35,76 @@ class InfoRepository {
         if (result['status'] == true) {
           final VideoModel info = VideoModel.fromJson((result['body']));
           return Right(info);
+        } else {
+          return const Left(MainFailures.clientFailure());
+        }
+      } else {
+        return const Left(MainFailures.serverFailure());
+      }
+    } catch (e, s) {
+      log('Exception : $e', stackTrace: s);
+      return const Left(MainFailures.clientFailure());
+    }
+  }
+
+  //==================== Add Rating ====================
+  Future<Either<MainFailures, bool>> addRating(
+      {required String videoId, required String rating}) async {
+    try {
+      final String form = json.encode({
+        "sessionToken": UserUtils.instance.userToken,
+        "email": UserUtils.instance.userModel.email,
+        "phone": UserUtils.instance.userModel.phone,
+        "userId": UserUtils.instance.userId,
+        "contentId": videoId,
+        "ratingValue": rating,
+      });
+
+      final Response response =
+          await dio.post(ApiEndpoints.addRating, data: form);
+
+      log('response == ${response.data.toString()}', name: 'Add Rating');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final Map result = json.decode(response.data) as Map;
+
+        if (result['status'] == true) {
+          return right(true);
+        } else {
+          return const Left(MainFailures.clientFailure());
+        }
+      } else {
+        return const Left(MainFailures.serverFailure());
+      }
+    } catch (e, s) {
+      log('Exception : $e', stackTrace: s);
+      return const Left(MainFailures.clientFailure());
+    }
+  }
+
+  //==================== User Rating ====================
+  Future<Either<MainFailures, double>> userRating(
+      {required String videoId, required String rating}) async {
+    try {
+      final String form = json.encode({
+        "sessionToken": UserUtils.instance.userToken,
+        "email": UserUtils.instance.userModel.email,
+        "phone": UserUtils.instance.userModel.phone,
+        "userId": UserUtils.instance.userId,
+        "contentId": videoId
+      });
+
+      final Response response =
+          await dio.post(ApiEndpoints.userRating, data: form);
+
+      log('response == ${response.data.toString()}', name: 'User Rating');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final Map result = json.decode(response.data) as Map;
+
+        if (result['status'] == true && result['body']['ratedByUser'] == true) {
+          final double rating = result['body']['rating'];
+          return Right(rating);
         } else {
           return const Left(MainFailures.clientFailure());
         }

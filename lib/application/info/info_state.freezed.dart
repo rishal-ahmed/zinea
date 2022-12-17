@@ -19,6 +19,8 @@ mixin _$InfoState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   VideoModel? get info => throw _privateConstructorUsedError;
+  bool get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $InfoStateCopyWith<InfoState> get copyWith =>
@@ -30,7 +32,12 @@ abstract class $InfoStateCopyWith<$Res> {
   factory $InfoStateCopyWith(InfoState value, $Res Function(InfoState) then) =
       _$InfoStateCopyWithImpl<$Res, InfoState>;
   @useResult
-  $Res call({bool isLoading, bool isError, VideoModel? info});
+  $Res call(
+      {bool isLoading,
+      bool isError,
+      VideoModel? info,
+      bool status,
+      String message});
 
   $VideoModelCopyWith<$Res>? get info;
 }
@@ -51,6 +58,8 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
     Object? isLoading = null,
     Object? isError = null,
     Object? info = freezed,
+    Object? status = null,
+    Object? message = null,
   }) {
     return _then(_value.copyWith(
       isLoading: null == isLoading
@@ -65,6 +74,14 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as VideoModel?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -88,7 +105,12 @@ abstract class _$$_InfoStateCopyWith<$Res> implements $InfoStateCopyWith<$Res> {
       __$$_InfoStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, bool isError, VideoModel? info});
+  $Res call(
+      {bool isLoading,
+      bool isError,
+      VideoModel? info,
+      bool status,
+      String message});
 
   @override
   $VideoModelCopyWith<$Res>? get info;
@@ -108,6 +130,8 @@ class __$$_InfoStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isError = null,
     Object? info = freezed,
+    Object? status = null,
+    Object? message = null,
   }) {
     return _then(_$_InfoState(
       isLoading: null == isLoading
@@ -122,6 +146,14 @@ class __$$_InfoStateCopyWithImpl<$Res>
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as VideoModel?,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -130,7 +162,11 @@ class __$$_InfoStateCopyWithImpl<$Res>
 
 class _$_InfoState implements _InfoState {
   const _$_InfoState(
-      {this.isLoading = false, this.isError = false, this.info = null});
+      {this.isLoading = false,
+      this.isError = false,
+      this.info = null,
+      this.status = false,
+      this.message = ''});
 
   @override
   @JsonKey()
@@ -141,10 +177,16 @@ class _$_InfoState implements _InfoState {
   @override
   @JsonKey()
   final VideoModel? info;
+  @override
+  @JsonKey()
+  final bool status;
+  @override
+  @JsonKey()
+  final String message;
 
   @override
   String toString() {
-    return 'InfoState(isLoading: $isLoading, isError: $isError, info: $info)';
+    return 'InfoState(isLoading: $isLoading, isError: $isError, info: $info, status: $status, message: $message)';
   }
 
   @override
@@ -155,11 +197,14 @@ class _$_InfoState implements _InfoState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
-            (identical(other.info, info) || other.info == info));
+            (identical(other.info, info) || other.info == info) &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError, info);
+  int get hashCode =>
+      Object.hash(runtimeType, isLoading, isError, info, status, message);
 
   @JsonKey(ignore: true)
   @override
@@ -172,7 +217,9 @@ abstract class _InfoState implements InfoState {
   const factory _InfoState(
       {final bool isLoading,
       final bool isError,
-      final VideoModel? info}) = _$_InfoState;
+      final VideoModel? info,
+      final bool status,
+      final String message}) = _$_InfoState;
 
   @override
   bool get isLoading;
@@ -180,6 +227,10 @@ abstract class _InfoState implements InfoState {
   bool get isError;
   @override
   VideoModel? get info;
+  @override
+  bool get status;
+  @override
+  String get message;
   @override
   @JsonKey(ignore: true)
   _$$_InfoStateCopyWith<_$_InfoState> get copyWith =>

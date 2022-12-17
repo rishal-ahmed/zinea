@@ -10,12 +10,23 @@ class InfoProvider {
     return InfoNotifier()..emit(InfoEvent.info(videoId: videoId));
   });
 
-  //==--==--==--==--==-- Volume Icon Provider --==--==--==--==--==
-  static final volumeProvider = StateProvider.autoDispose<bool>((ref) {
-    return false;
+  //==--==--==--==--==-- Add Rating Provider --==--==--==--==--==
+  static final addRatingProvider =
+      StateNotifierProvider.autoDispose<InfoNotifier, InfoState>((ref) {
+    return InfoNotifier();
   });
 
-  // //==--==--==--==--==-- Volume Icon Provider --==--==--==--==--==
+  //==--==--==--==--==-- Rate Provider --==--==--==--==--==
+  static final rateProvider = StateProvider.autoDispose<double>((ref) {
+    return 0;
+  });
+
+  //==--==--==--==--==-- Volume Icon Provider --==--==--==--==--==
+  static final volumeProvider = StateProvider.autoDispose<bool>((ref) {
+    return true;
+  });
+
+  // //==--==--==--==--==-- Fullscreen  Provider --==--==--==--==--==
   // static final fullScreenProvider = StateProvider.autoDispose<bool>((ref) {
   //   return false;
   // });

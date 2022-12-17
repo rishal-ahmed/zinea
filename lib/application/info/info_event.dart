@@ -4,6 +4,10 @@ part 'info_event.freezed.dart';
 
 @freezed
 class InfoEvent with _$InfoEvent {
-  //=-=-=-=-=- Info Event -=-=-=-=-=
+  //=-=-=-=-=- Info -=-=-=-=-=
   const factory InfoEvent.info({required String videoId}) = _InfoEvent;
+
+  //=-=-=-=-=- Add Rating -=-=-=-=-=
+  const factory InfoEvent.addRating(
+      {required String videoId, required String rating}) = _InfoEventRating;
 }

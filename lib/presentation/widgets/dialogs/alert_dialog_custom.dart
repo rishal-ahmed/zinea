@@ -24,14 +24,16 @@ class KAlertDialog extends StatelessWidget {
     return AlertDialog(
       title: title is Widget
           ? title
-          : Text(
-              title,
-              style: TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w600,
-                color: primaryTextColor,
-              ),
-            ),
+          : title is String
+              ? Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w600,
+                    color: primaryTextColor,
+                  ),
+                )
+              : null,
       content: content is Widget
           ? content
           : Text(

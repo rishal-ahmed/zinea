@@ -46,3 +46,6 @@ const String routeFilter = '/filter';
 
 //=-=-=-=-=- Info -=-=-=-=-=
 const String routeInfo = '/info';
+
+//=-=-=-=-=- Watch -=-=-=-=-=
+const String routeWatch = '/watch';

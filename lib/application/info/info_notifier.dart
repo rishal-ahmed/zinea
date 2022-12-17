@@ -28,6 +28,26 @@ class InfoNotifier extends StateNotifier<InfoState> {
         // Notify UI
         state = infoState;
       },
+      //=-=-=-=-=-=-=-=-=-=- Add Rating Event -=-=-=-=-=-=-=-=-=-=
+      addRating: (eventAddRating) async {
+        // Loading
+        state = initialState.copyWith(isLoading: true);
+
+        // Add Rating Api
+        final result = await InfoRepository().addRating(
+            videoId: eventAddRating.videoId, rating: eventAddRating.rating);
+
+        final InfoState infoState = result.fold(
+          //=-=-=-=-=- Failure -=-=-=-=-=
+          (failure) =>
+              initialState.copyWith(isError: true, message: failure.error),
+          //=-=-=-=-=- Success -=-=-=-=-=
+          (data) => initialState.copyWith(status: data),
+        );
+
+        // Notify UI
+        state = infoState;
+      },
     );
   }
 }

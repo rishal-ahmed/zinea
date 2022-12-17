@@ -55,8 +55,8 @@ dependencies:
   vimeoplayer:
     git:
       url: https://github.com/prilogy/vimeo_player.git
-  video_player: ^2.4.9
-  youtube_player_iframe: ^3.1.0
+  # video_player: ^2.4.9
+  # youtube_player_iframe: ^3.1.0
 
 dev_dependencies:
   flutter_test:

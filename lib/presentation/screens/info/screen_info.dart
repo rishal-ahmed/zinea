@@ -2,21 +2,25 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:zinea/application/info/info_event.dart';
 import 'package:zinea/application/info/info_state.dart';
 import 'package:zinea/application/watchlist/watchlist_event.dart';
 import 'package:zinea/application/watchlist/watchlist_state.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/endpoints.dart';
 import 'package:zinea/core/constants/sizes.dart';
+import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/domain/models/video/video_model.dart';
 import 'package:zinea/domain/provider/info/info_provider.dart';
 import 'package:zinea/domain/provider/watchlist/watchlist_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/screens/info/widgets/info_shimmer_widget.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
+import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
 import 'package:zinea/presentation/widgets/snackbars/snackbar.dart';
 
 class ScreenInfo extends ConsumerWidget {
@@ -51,7 +55,7 @@ class ScreenInfo extends ConsumerWidget {
                   final VideoModel info = state.info!;
 
                   final String? trailerUrl = info.trailerLink;
-                  log('trailerLink = $trailerUrl');
+                  // log('trailerLink = $trailerUrl');
                   late final YoutubePlayerController controller;
 
                   if (trailerUrl != null && trailerUrl.isNotEmpty) {
@@ -60,7 +64,7 @@ class ScreenInfo extends ConsumerWidget {
                           YoutubePlayer.convertUrlToId(info.trailerLink!)!,
                       flags: const YoutubePlayerFlags(
                         autoPlay: true,
-                        mute: true,
+                        mute: false,
                         hideControls: false,
                       ),
                     );
@@ -151,16 +155,9 @@ class ScreenInfo extends ConsumerWidget {
                                                         child: Consumer(
                                                           builder: (context,
                                                               ref, _) {
-                                                            final bool volume =
-                                                                ref.watch(
-                                                                    InfoProvider
-                                                                        .volumeProvider);
-                                                            return Icon(
-                                                              volume
-                                                                  ? Icons
-                                                                      .fullscreen
-                                                                  : Icons
-                                                                      .fullscreen_exit,
+                                                            return const Icon(
+                                                              Icons
+                                                                  .fullscreen_exit,
                                                             );
                                                           },
                                                         ),
@@ -208,7 +205,13 @@ class ScreenInfo extends ConsumerWidget {
                             children: [
                               //==--==--==--==--==-- Play Button --==--==--==--==--==
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    routeWatch,
+                                    arguments: info.vimeoId,
+                                  );
+                                },
                                 icon: const Icon(Icons.play_arrow),
                                 color: kWhite30,
                                 iconSize: 23.sp,
@@ -268,45 +271,142 @@ class ScreenInfo extends ConsumerWidget {
                                 },
                               ),
                               //==--==--==--==--==-- Rating Button --==--==--==--==--==
-                              CircleAvatar(
-                                radius: 15.sp,
-                                backgroundColor: primaryColor,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(1),
-                                  child: CircleAvatar(
-                                    backgroundColor: kBlack,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(1),
-                                      child: CircleAvatar(
-                                        backgroundColor: kWhite30,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: FittedBox(
-                                            child: Row(
+                              Consumer(
+                                builder: (context, ref, child) {
+                                  ref.watch(InfoProvider.addRatingProvider);
+                                  final double rateValue =
+                                      ref.watch(InfoProvider.rateProvider);
+
+                                  ref.listen(
+                                    InfoProvider.addRatingProvider,
+                                    (previous, next) {
+                                      if (!next.isLoading && next.status) {
+                                        kSnackBar(
+                                          context: context,
+                                          content: 'Rating added successfully',
+                                          success: true,
+                                        );
+                                      }
+
+                                      if (!next.isLoading && next.isError) {
+                                        kSnackBar(
+                                          context: context,
+                                          content: next.message,
+                                          error: true,
+                                        );
+                                      }
+                                    },
+                                  );
+
+                                  return InkWell(
+                                    onTap: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                            ),
+                                            content: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  double.parse(info.rating)
-                                                      .toStringAsFixed(1),
-                                                  style:
-                                                      TextUtils.theme(context)
-                                                          .bodyLarge
-                                                          ?.copyWith(
-                                                              color:
-                                                                  primaryColor),
+                                                RatingBar.builder(
+                                                  itemSize: 22.sp,
+                                                  unratedColor: kWhite12,
+                                                  glowColor: primaryColor,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return const Icon(
+                                                      Icons.star,
+                                                      color: primaryColor,
+                                                    );
+                                                  },
+                                                  allowHalfRating: true,
+                                                  onRatingUpdate: (value) {
+                                                    log('rating = ${value * 2}');
+                                                    ref
+                                                        .read(InfoProvider
+                                                            .rateProvider
+                                                            .notifier)
+                                                        .update((state) =>
+                                                            (value * 2));
+                                                  },
                                                 ),
-                                                Icon(
-                                                  Icons.star,
-                                                  size: 16.sp,
-                                                  color: primaryColor,
-                                                ),
+                                                dHeight2,
+                                                CustomMaterialBtton(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  height: 35,
+                                                  fontSize: 16.sp,
+                                                  onPressed: () {
+                                                    ref
+                                                        .read(InfoProvider
+                                                            .addRatingProvider
+                                                            .notifier)
+                                                        .emit(
+                                                            InfoEvent.addRating(
+                                                          videoId: videoId,
+                                                          rating: rateValue
+                                                              .toString(),
+                                                        ));
+
+                                                    Navigator.pop(context);
+                                                  },
+                                                  buttonText: 'Submit',
+                                                )
                                               ],
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: CircleAvatar(
+                                      radius: 15.sp,
+                                      backgroundColor: primaryColor,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(1),
+                                        child: CircleAvatar(
+                                          backgroundColor: kBlack,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(1),
+                                            child: CircleAvatar(
+                                              backgroundColor: kWhite30,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(2),
+                                                child: FittedBox(
+                                                  child: Row(
+                                                    children: [
+                                                      Text(
+                                                        double.parse(
+                                                                info.rating)
+                                                            .toStringAsFixed(1),
+                                                        style: TextUtils.theme(
+                                                                context)
+                                                            .bodyLarge
+                                                            ?.copyWith(
+                                                                color:
+                                                                    primaryColor),
+                                                      ),
+                                                      Icon(
+                                                        Icons.star,
+                                                        size: 16.sp,
+                                                        color: primaryColor,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
+                                  );
+                                },
                               ),
                               //==--==--==--==--==-- Share Button --==--==--==--==--==
                               IconButton(

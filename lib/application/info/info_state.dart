@@ -9,5 +9,7 @@ class InfoState with _$InfoState {
     @Default(false) bool isLoading,
     @Default(false) bool isError,
     @Default(null) VideoModel? info,
+    @Default(false) bool status,
+    @Default('') String message,
   }) = _InfoState;
 }
