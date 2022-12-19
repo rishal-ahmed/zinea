@@ -20,6 +20,9 @@ _$_VideoModel _$$_VideoModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       trailerLink: json['trailerLink'] as String?,
       vimeoId: json['vimeoId'] as String?,
+      buyPrice: json['buyPrice'] as String?,
+      rentPrice: json['rentPrice'] as String?,
+      enableBuy: json['enableBuy'] as String?,
     );
 
 Map<String, dynamic> _$$_VideoModelToJson(_$_VideoModel instance) =>
@@ -36,4 +39,7 @@ Map<String, dynamic> _$$_VideoModelToJson(_$_VideoModel instance) =>
       'name': instance.name,
       'trailerLink': instance.trailerLink,
       'vimeoId': instance.vimeoId,
+      'buyPrice': instance.buyPrice,
+      'rentPrice': instance.rentPrice,
+      'enableBuy': instance.enableBuy,
     };

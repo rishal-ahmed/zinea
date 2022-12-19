@@ -44,6 +44,12 @@ mixin _$VideoModel {
   String? get trailerLink => throw _privateConstructorUsedError;
   @JsonKey(name: 'vimeoId')
   String? get vimeoId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'buyPrice')
+  String? get buyPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rentPrice')
+  String? get rentPrice => throw _privateConstructorUsedError;
+  @JsonKey(name: 'enableBuy')
+  String? get enableBuy => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,7 +75,10 @@ abstract class $VideoModelCopyWith<$Res> {
       @JsonKey(name: 'watchListStatus') String? watchlistStatus,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'trailerLink') String? trailerLink,
-      @JsonKey(name: 'vimeoId') String? vimeoId});
+      @JsonKey(name: 'vimeoId') String? vimeoId,
+      @JsonKey(name: 'buyPrice') String? buyPrice,
+      @JsonKey(name: 'rentPrice') String? rentPrice,
+      @JsonKey(name: 'enableBuy') String? enableBuy});
 }
 
 /// @nodoc
@@ -97,6 +106,9 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
     Object? name = freezed,
     Object? trailerLink = freezed,
     Object? vimeoId = freezed,
+    Object? buyPrice = freezed,
+    Object? rentPrice = freezed,
+    Object? enableBuy = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -147,6 +159,18 @@ class _$VideoModelCopyWithImpl<$Res, $Val extends VideoModel>
           ? _value.vimeoId
           : vimeoId // ignore: cast_nullable_to_non_nullable
               as String?,
+      buyPrice: freezed == buyPrice
+          ? _value.buyPrice
+          : buyPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rentPrice: freezed == rentPrice
+          ? _value.rentPrice
+          : rentPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      enableBuy: freezed == enableBuy
+          ? _value.enableBuy
+          : enableBuy // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -171,7 +195,10 @@ abstract class _$$_VideoModelCopyWith<$Res>
       @JsonKey(name: 'watchListStatus') String? watchlistStatus,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'trailerLink') String? trailerLink,
-      @JsonKey(name: 'vimeoId') String? vimeoId});
+      @JsonKey(name: 'vimeoId') String? vimeoId,
+      @JsonKey(name: 'buyPrice') String? buyPrice,
+      @JsonKey(name: 'rentPrice') String? rentPrice,
+      @JsonKey(name: 'enableBuy') String? enableBuy});
 }
 
 /// @nodoc
@@ -197,6 +224,9 @@ class __$$_VideoModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? trailerLink = freezed,
     Object? vimeoId = freezed,
+    Object? buyPrice = freezed,
+    Object? rentPrice = freezed,
+    Object? enableBuy = freezed,
   }) {
     return _then(_$_VideoModel(
       id: null == id
@@ -247,6 +277,18 @@ class __$$_VideoModelCopyWithImpl<$Res>
           ? _value.vimeoId
           : vimeoId // ignore: cast_nullable_to_non_nullable
               as String?,
+      buyPrice: freezed == buyPrice
+          ? _value.buyPrice
+          : buyPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rentPrice: freezed == rentPrice
+          ? _value.rentPrice
+          : rentPrice // ignore: cast_nullable_to_non_nullable
+              as String?,
+      enableBuy: freezed == enableBuy
+          ? _value.enableBuy
+          : enableBuy // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -266,7 +308,10 @@ class _$_VideoModel implements _VideoModel {
       @JsonKey(name: 'watchListStatus') this.watchlistStatus,
       @JsonKey(name: 'name') required this.name,
       @JsonKey(name: 'trailerLink') this.trailerLink,
-      @JsonKey(name: 'vimeoId') this.vimeoId});
+      @JsonKey(name: 'vimeoId') this.vimeoId,
+      @JsonKey(name: 'buyPrice') this.buyPrice,
+      @JsonKey(name: 'rentPrice') this.rentPrice,
+      @JsonKey(name: 'enableBuy') this.enableBuy});
 
   factory _$_VideoModel.fromJson(Map<String, dynamic> json) =>
       _$$_VideoModelFromJson(json);
@@ -307,10 +352,19 @@ class _$_VideoModel implements _VideoModel {
   @override
   @JsonKey(name: 'vimeoId')
   final String? vimeoId;
+  @override
+  @JsonKey(name: 'buyPrice')
+  final String? buyPrice;
+  @override
+  @JsonKey(name: 'rentPrice')
+  final String? rentPrice;
+  @override
+  @JsonKey(name: 'enableBuy')
+  final String? enableBuy;
 
   @override
   String toString() {
-    return 'VideoModel(id: $id, title: $title, description: $description, image: $image, bannerImage: $bannerImage, genres: $genres, releaseYear: $releaseYear, rating: $rating, watchlistStatus: $watchlistStatus, name: $name, trailerLink: $trailerLink, vimeoId: $vimeoId)';
+    return 'VideoModel(id: $id, title: $title, description: $description, image: $image, bannerImage: $bannerImage, genres: $genres, releaseYear: $releaseYear, rating: $rating, watchlistStatus: $watchlistStatus, name: $name, trailerLink: $trailerLink, vimeoId: $vimeoId, buyPrice: $buyPrice, rentPrice: $rentPrice, enableBuy: $enableBuy)';
   }
 
   @override
@@ -334,7 +388,13 @@ class _$_VideoModel implements _VideoModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.trailerLink, trailerLink) ||
                 other.trailerLink == trailerLink) &&
-            (identical(other.vimeoId, vimeoId) || other.vimeoId == vimeoId));
+            (identical(other.vimeoId, vimeoId) || other.vimeoId == vimeoId) &&
+            (identical(other.buyPrice, buyPrice) ||
+                other.buyPrice == buyPrice) &&
+            (identical(other.rentPrice, rentPrice) ||
+                other.rentPrice == rentPrice) &&
+            (identical(other.enableBuy, enableBuy) ||
+                other.enableBuy == enableBuy));
   }
 
   @JsonKey(ignore: true)
@@ -352,7 +412,10 @@ class _$_VideoModel implements _VideoModel {
       watchlistStatus,
       name,
       trailerLink,
-      vimeoId);
+      vimeoId,
+      buyPrice,
+      rentPrice,
+      enableBuy);
 
   @JsonKey(ignore: true)
   @override
@@ -381,7 +444,10 @@ abstract class _VideoModel implements VideoModel {
       @JsonKey(name: 'watchListStatus') final String? watchlistStatus,
       @JsonKey(name: 'name') required final String? name,
       @JsonKey(name: 'trailerLink') final String? trailerLink,
-      @JsonKey(name: 'vimeoId') final String? vimeoId}) = _$_VideoModel;
+      @JsonKey(name: 'vimeoId') final String? vimeoId,
+      @JsonKey(name: 'buyPrice') final String? buyPrice,
+      @JsonKey(name: 'rentPrice') final String? rentPrice,
+      @JsonKey(name: 'enableBuy') final String? enableBuy}) = _$_VideoModel;
 
   factory _VideoModel.fromJson(Map<String, dynamic> json) =
       _$_VideoModel.fromJson;
@@ -422,6 +488,15 @@ abstract class _VideoModel implements VideoModel {
   @override
   @JsonKey(name: 'vimeoId')
   String? get vimeoId;
+  @override
+  @JsonKey(name: 'buyPrice')
+  String? get buyPrice;
+  @override
+  @JsonKey(name: 'rentPrice')
+  String? get rentPrice;
+  @override
+  @JsonKey(name: 'enableBuy')
+  String? get enableBuy;
   @override
   @JsonKey(ignore: true)
   _$$_VideoModelCopyWith<_$_VideoModel> get copyWith =>

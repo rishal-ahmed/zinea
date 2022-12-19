@@ -8,19 +8,22 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:zinea/application/info/info_event.dart';
 import 'package:zinea/application/info/info_state.dart';
+import 'package:zinea/application/subscription/subscription_state.dart';
 import 'package:zinea/application/watchlist/watchlist_event.dart';
 import 'package:zinea/application/watchlist/watchlist_state.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/endpoints.dart';
 import 'package:zinea/core/constants/sizes.dart';
-import 'package:zinea/core/routes/routes.dart';
+import 'package:zinea/domain/models/subscription/subscription_model.dart';
 import 'package:zinea/domain/models/video/video_model.dart';
 import 'package:zinea/domain/provider/info/info_provider.dart';
+import 'package:zinea/domain/provider/subscription/subscription_provider.dart';
 import 'package:zinea/domain/provider/watchlist/watchlist_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/screens/info/widgets/info_shimmer_widget.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
 import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
+import 'package:zinea/presentation/widgets/shimmer/shimmer_widget.dart';
 import 'package:zinea/presentation/widgets/snackbars/snackbar.dart';
 
 class ScreenInfo extends ConsumerWidget {
@@ -206,11 +209,193 @@ class ScreenInfo extends ConsumerWidget {
                               //==--==--==--==--==-- Play Button --==--==--==--==--==
                               IconButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    routeWatch,
-                                    arguments: info.vimeoId,
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        content: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            FittedBox(
+                                              child: Text(
+                                                'Choose an option',
+                                                style: TextUtils.theme(context)
+                                                    .titleMedium,
+                                              ),
+                                            ),
+
+                                            dHeight2,
+
+                                            //==-==-==-==-==-- Get Premium -==-==-==-==-==
+                                            CustomMaterialBtton(
+                                              height: 40,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                //==-==-==-==-==-- Get Premium -==-==-==-==-==
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (context) {
+                                                    return AlertDialog(
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10)),
+                                                      content: Consumer(
+                                                        builder: (context, ref,
+                                                            child) {
+                                                          final SubscriptionState
+                                                              subscriptionState =
+                                                              ref.watch(
+                                                                  SubscriptionProvider
+                                                                      .subscriptionsProvider);
+                                                          return Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              SizedBox(
+                                                                height: 70.h,
+                                                                width: 100.w,
+                                                                child: ListView
+                                                                    .separated(
+                                                                  itemBuilder:
+                                                                      (context,
+                                                                          index) {
+                                                                    if (subscriptionState
+                                                                        .isLoading) {
+                                                                      return ShimmerWidget(
+                                                                          height:
+                                                                              8.h);
+                                                                    }
+
+                                                                    final SubscriptionModel
+                                                                        subscription =
+                                                                        subscriptionState
+                                                                            .subscriptions[index];
+
+                                                                    return Material(
+                                                                      child:
+                                                                          InkWell(
+                                                                        onTap:
+                                                                            () {},
+                                                                        child:
+                                                                            Container(
+                                                                          padding:
+                                                                              const EdgeInsets.all(10),
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(10),
+                                                                            border:
+                                                                                Border.all(color: primaryColor),
+                                                                            color:
+                                                                                kTransparentColor,
+                                                                          ),
+                                                                          child:
+                                                                              Column(
+                                                                            children: [
+                                                                              Text(
+                                                                                subscription.name,
+                                                                                style: TextUtils.theme(context).titleLarge?.copyWith(color: primaryTextColor),
+                                                                              ),
+                                                                              dHeight1,
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                children: [
+                                                                                  Text.rich(
+                                                                                    TextSpan(
+                                                                                      text: '₹${subscription.price} ',
+                                                                                      style: TextUtils.theme(context).bodyLarge,
+                                                                                      children: [
+                                                                                        TextSpan(
+                                                                                          text: '/ ${subscription.period} ${subscription.period == '1' ? 'month' : 'months'}',
+                                                                                          style: TextUtils.theme(context).bodyMedium?.copyWith(
+                                                                                                color: kWhite70,
+                                                                                              ),
+                                                                                        )
+                                                                                      ],
+                                                                                    ),
+                                                                                  ),
+                                                                                  Text(
+                                                                                    '${subscription.tax}% Tax',
+                                                                                    style: TextUtils.theme(context).bodyMedium,
+                                                                                  ),
+                                                                                ],
+                                                                              )
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                  separatorBuilder:
+                                                                      (context,
+                                                                          index) {
+                                                                    return dHeight2;
+                                                                  },
+                                                                  itemCount:
+                                                                      subscriptionState
+                                                                          .subscriptions
+                                                                          .length,
+                                                                ),
+                                                              )
+                                                            ],
+                                                          );
+                                                        },
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              buttonText: 'Get Zinea Premium',
+                                              fontSize: 15.5.sp,
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                            dHeight1n5,
+                                            //==-==-==-==-==-- Buy -==-==-==-==-==
+                                            CustomMaterialBtton(
+                                              height: 40,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              onPressed: () {},
+                                              buttonText:
+                                                  'Buy at ₹${info.buyPrice}',
+                                              fontSize: 15.5.sp,
+                                              fontWeight: FontWeight.w600,
+                                              color: kTransparentColor,
+                                              textColor: primaryTextColor,
+                                            ),
+                                            dHeight02,
+                                            //==-==-==-==-==-- Rent -==-==-==-==-==
+                                            CustomMaterialBtton(
+                                              height: 40,
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              onPressed: () {},
+                                              buttonText:
+                                                  'Rent at  ₹${info.rentPrice}',
+                                              fontSize: 15.5.sp,
+                                              fontWeight: FontWeight.w600,
+                                              color: kTransparentColor,
+                                              textColor: primaryTextColor,
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
                                   );
+
+                                  // Navigator.pushNamed(context, routeWatch,
+                                  //     arguments: info.vimeoId);
                                 },
                                 icon: const Icon(Icons.play_arrow),
                                 color: kWhite30,
