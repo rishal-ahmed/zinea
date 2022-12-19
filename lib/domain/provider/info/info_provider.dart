@@ -10,6 +10,12 @@ class InfoProvider {
     return InfoNotifier()..emit(InfoEvent.info(videoId: videoId));
   });
 
+  //==--==--==--==--==-- Video Subscription Stutus --==--==--==--==--==
+  static final videoSubscriptionStatus = StateNotifierProvider.family
+      .autoDispose<InfoNotifier, InfoState, String>((ref, videoId) {
+    return InfoNotifier()..emit(InfoEvent.videoSubscription(videoId: videoId));
+  });
+
   //==--==--==--==--==-- Add Rating --==--==--==--==--==
   static final addRatingProvider =
       StateNotifierProvider.autoDispose<InfoNotifier, InfoState>((ref) {

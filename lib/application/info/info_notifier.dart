@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:zinea/application/info/info_event.dart';
 import 'package:zinea/application/info/info_state.dart';
 import 'package:zinea/infrastructure/info/info_repository.dart';
+import 'package:zinea/infrastructure/subscription/subscription_repository.dart';
 
 class InfoNotifier extends StateNotifier<InfoState> {
   InfoNotifier() : super(const InfoState());
@@ -28,6 +29,27 @@ class InfoNotifier extends StateNotifier<InfoState> {
         // Notify UI
         state = infoState;
       },
+
+      //=-=-=-=-=-=-=-=-=-=- Video Subscription Status Event -=-=-=-=-=-=-=-=-=-=
+      videoSubscription: (eventSubscription) async {
+        // Loading
+        state = initialState.copyWith(isLoading: true);
+
+        // Video Subscription Api
+        final result = await SubscriptionRepository()
+            .videoSubscriptionStatus(videoId: eventSubscription.videoId);
+
+        final InfoState infoState = result.fold(
+          //=-=-=-=-=- Failure -=-=-=-=-=
+          (failure) => initialState.copyWith(isError: true),
+          //=-=-=-=-=- Success -=-=-=-=-=
+          (data) => initialState.copyWith(subscriptionStatus: data),
+        );
+
+        // Notify UI
+        state = infoState;
+      },
+
       //=-=-=-=-=-=-=-=-=-=- Add Rating Event -=-=-=-=-=-=-=-=-=-=
       addRating: (eventAddRating) async {
         // Loading

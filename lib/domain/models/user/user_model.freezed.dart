@@ -34,6 +34,8 @@ mixin _$UserModel {
   String? get subscriptionPeriod => throw _privateConstructorUsedError;
   @JsonKey(name: 'subscritpionTimeStamp')
   String? get subscriptionTimeStamp => throw _privateConstructorUsedError;
+  @JsonKey(name: 'subscription_status')
+  bool get subscriptionStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +55,8 @@ abstract class $UserModelCopyWith<$Res> {
       @JsonKey(name: 'email') String email,
       @JsonKey(name: 'token') String token,
       @JsonKey(name: 'subscriptionPeriod') String? subscriptionPeriod,
-      @JsonKey(name: 'subscritpionTimeStamp') String? subscriptionTimeStamp});
+      @JsonKey(name: 'subscritpionTimeStamp') String? subscriptionTimeStamp,
+      @JsonKey(name: 'subscription_status') bool subscriptionStatus});
 }
 
 /// @nodoc
@@ -76,6 +79,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? token = null,
     Object? subscriptionPeriod = freezed,
     Object? subscriptionTimeStamp = freezed,
+    Object? subscriptionStatus = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -106,6 +110,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.subscriptionTimeStamp
           : subscriptionTimeStamp // ignore: cast_nullable_to_non_nullable
               as String?,
+      subscriptionStatus: null == subscriptionStatus
+          ? _value.subscriptionStatus
+          : subscriptionStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -124,7 +132,8 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       @JsonKey(name: 'email') String email,
       @JsonKey(name: 'token') String token,
       @JsonKey(name: 'subscriptionPeriod') String? subscriptionPeriod,
-      @JsonKey(name: 'subscritpionTimeStamp') String? subscriptionTimeStamp});
+      @JsonKey(name: 'subscritpionTimeStamp') String? subscriptionTimeStamp,
+      @JsonKey(name: 'subscription_status') bool subscriptionStatus});
 }
 
 /// @nodoc
@@ -145,6 +154,7 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? token = null,
     Object? subscriptionPeriod = freezed,
     Object? subscriptionTimeStamp = freezed,
+    Object? subscriptionStatus = null,
   }) {
     return _then(_$_UserModel(
       id: null == id
@@ -175,6 +185,10 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.subscriptionTimeStamp
           : subscriptionTimeStamp // ignore: cast_nullable_to_non_nullable
               as String?,
+      subscriptionStatus: null == subscriptionStatus
+          ? _value.subscriptionStatus
+          : subscriptionStatus // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -189,7 +203,8 @@ class _$_UserModel implements _UserModel {
       @JsonKey(name: 'email') required this.email,
       @JsonKey(name: 'token') required this.token,
       @JsonKey(name: 'subscriptionPeriod') this.subscriptionPeriod,
-      @JsonKey(name: 'subscritpionTimeStamp') this.subscriptionTimeStamp});
+      @JsonKey(name: 'subscritpionTimeStamp') this.subscriptionTimeStamp,
+      @JsonKey(name: 'subscription_status') this.subscriptionStatus = false});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -215,10 +230,13 @@ class _$_UserModel implements _UserModel {
   @override
   @JsonKey(name: 'subscritpionTimeStamp')
   final String? subscriptionTimeStamp;
+  @override
+  @JsonKey(name: 'subscription_status')
+  final bool subscriptionStatus;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, phone: $phone, email: $email, token: $token, subscriptionPeriod: $subscriptionPeriod, subscriptionTimeStamp: $subscriptionTimeStamp)';
+    return 'UserModel(id: $id, name: $name, phone: $phone, email: $email, token: $token, subscriptionPeriod: $subscriptionPeriod, subscriptionTimeStamp: $subscriptionTimeStamp, subscriptionStatus: $subscriptionStatus)';
   }
 
   @override
@@ -234,13 +252,15 @@ class _$_UserModel implements _UserModel {
             (identical(other.subscriptionPeriod, subscriptionPeriod) ||
                 other.subscriptionPeriod == subscriptionPeriod) &&
             (identical(other.subscriptionTimeStamp, subscriptionTimeStamp) ||
-                other.subscriptionTimeStamp == subscriptionTimeStamp));
+                other.subscriptionTimeStamp == subscriptionTimeStamp) &&
+            (identical(other.subscriptionStatus, subscriptionStatus) ||
+                other.subscriptionStatus == subscriptionStatus));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, phone, email, token,
-      subscriptionPeriod, subscriptionTimeStamp);
+      subscriptionPeriod, subscriptionTimeStamp, subscriptionStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -271,7 +291,9 @@ abstract class _UserModel implements UserModel {
       @JsonKey(name: 'subscriptionPeriod')
           final String? subscriptionPeriod,
       @JsonKey(name: 'subscritpionTimeStamp')
-          final String? subscriptionTimeStamp}) = _$_UserModel;
+          final String? subscriptionTimeStamp,
+      @JsonKey(name: 'subscription_status')
+          final bool subscriptionStatus}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -297,6 +319,9 @@ abstract class _UserModel implements UserModel {
   @override
   @JsonKey(name: 'subscritpionTimeStamp')
   String? get subscriptionTimeStamp;
+  @override
+  @JsonKey(name: 'subscription_status')
+  bool get subscriptionStatus;
   @override
   @JsonKey(ignore: true)
   _$$_UserModelCopyWith<_$_UserModel> get copyWith =>

@@ -20,6 +20,7 @@ mixin _$InfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String videoId) info,
+    required TResult Function(String videoId) videoSubscription,
     required TResult Function(String videoId, String rating) addRating,
     required TResult Function(String videoId) getRating,
   }) =>
@@ -27,6 +28,7 @@ mixin _$InfoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String videoId)? info,
+    TResult? Function(String videoId)? videoSubscription,
     TResult? Function(String videoId, String rating)? addRating,
     TResult? Function(String videoId)? getRating,
   }) =>
@@ -34,6 +36,7 @@ mixin _$InfoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String videoId)? info,
+    TResult Function(String videoId)? videoSubscription,
     TResult Function(String videoId, String rating)? addRating,
     TResult Function(String videoId)? getRating,
     required TResult orElse(),
@@ -42,6 +45,8 @@ mixin _$InfoEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InfoEvent value) info,
+    required TResult Function(_InfoEventVideoSubscription value)
+        videoSubscription,
     required TResult Function(_InfoEventAddRating value) addRating,
     required TResult Function(_InfoEventGetRating value) getRating,
   }) =>
@@ -49,6 +54,7 @@ mixin _$InfoEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InfoEvent value)? info,
+    TResult? Function(_InfoEventVideoSubscription value)? videoSubscription,
     TResult? Function(_InfoEventAddRating value)? addRating,
     TResult? Function(_InfoEventGetRating value)? getRating,
   }) =>
@@ -56,6 +62,7 @@ mixin _$InfoEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InfoEvent value)? info,
+    TResult Function(_InfoEventVideoSubscription value)? videoSubscription,
     TResult Function(_InfoEventAddRating value)? addRating,
     TResult Function(_InfoEventGetRating value)? getRating,
     required TResult orElse(),
@@ -165,6 +172,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String videoId) info,
+    required TResult Function(String videoId) videoSubscription,
     required TResult Function(String videoId, String rating) addRating,
     required TResult Function(String videoId) getRating,
   }) {
@@ -175,6 +183,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String videoId)? info,
+    TResult? Function(String videoId)? videoSubscription,
     TResult? Function(String videoId, String rating)? addRating,
     TResult? Function(String videoId)? getRating,
   }) {
@@ -185,6 +194,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String videoId)? info,
+    TResult Function(String videoId)? videoSubscription,
     TResult Function(String videoId, String rating)? addRating,
     TResult Function(String videoId)? getRating,
     required TResult orElse(),
@@ -199,6 +209,8 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InfoEvent value) info,
+    required TResult Function(_InfoEventVideoSubscription value)
+        videoSubscription,
     required TResult Function(_InfoEventAddRating value) addRating,
     required TResult Function(_InfoEventGetRating value) getRating,
   }) {
@@ -209,6 +221,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InfoEvent value)? info,
+    TResult? Function(_InfoEventVideoSubscription value)? videoSubscription,
     TResult? Function(_InfoEventAddRating value)? addRating,
     TResult? Function(_InfoEventGetRating value)? getRating,
   }) {
@@ -219,6 +232,7 @@ class _$_InfoEvent implements _InfoEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InfoEvent value)? info,
+    TResult Function(_InfoEventVideoSubscription value)? videoSubscription,
     TResult Function(_InfoEventAddRating value)? addRating,
     TResult Function(_InfoEventGetRating value)? getRating,
     required TResult orElse(),
@@ -239,6 +253,160 @@ abstract class _InfoEvent implements InfoEvent {
   @JsonKey(ignore: true)
   _$$_InfoEventCopyWith<_$_InfoEvent> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_InfoEventVideoSubscriptionCopyWith<$Res>
+    implements $InfoEventCopyWith<$Res> {
+  factory _$$_InfoEventVideoSubscriptionCopyWith(
+          _$_InfoEventVideoSubscription value,
+          $Res Function(_$_InfoEventVideoSubscription) then) =
+      __$$_InfoEventVideoSubscriptionCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String videoId});
+}
+
+/// @nodoc
+class __$$_InfoEventVideoSubscriptionCopyWithImpl<$Res>
+    extends _$InfoEventCopyWithImpl<$Res, _$_InfoEventVideoSubscription>
+    implements _$$_InfoEventVideoSubscriptionCopyWith<$Res> {
+  __$$_InfoEventVideoSubscriptionCopyWithImpl(
+      _$_InfoEventVideoSubscription _value,
+      $Res Function(_$_InfoEventVideoSubscription) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? videoId = null,
+  }) {
+    return _then(_$_InfoEventVideoSubscription(
+      videoId: null == videoId
+          ? _value.videoId
+          : videoId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_InfoEventVideoSubscription implements _InfoEventVideoSubscription {
+  const _$_InfoEventVideoSubscription({required this.videoId});
+
+  @override
+  final String videoId;
+
+  @override
+  String toString() {
+    return 'InfoEvent.videoSubscription(videoId: $videoId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_InfoEventVideoSubscription &&
+            (identical(other.videoId, videoId) || other.videoId == videoId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, videoId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_InfoEventVideoSubscriptionCopyWith<_$_InfoEventVideoSubscription>
+      get copyWith => __$$_InfoEventVideoSubscriptionCopyWithImpl<
+          _$_InfoEventVideoSubscription>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String videoId) info,
+    required TResult Function(String videoId) videoSubscription,
+    required TResult Function(String videoId, String rating) addRating,
+    required TResult Function(String videoId) getRating,
+  }) {
+    return videoSubscription(videoId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String videoId)? info,
+    TResult? Function(String videoId)? videoSubscription,
+    TResult? Function(String videoId, String rating)? addRating,
+    TResult? Function(String videoId)? getRating,
+  }) {
+    return videoSubscription?.call(videoId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String videoId)? info,
+    TResult Function(String videoId)? videoSubscription,
+    TResult Function(String videoId, String rating)? addRating,
+    TResult Function(String videoId)? getRating,
+    required TResult orElse(),
+  }) {
+    if (videoSubscription != null) {
+      return videoSubscription(videoId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_InfoEvent value) info,
+    required TResult Function(_InfoEventVideoSubscription value)
+        videoSubscription,
+    required TResult Function(_InfoEventAddRating value) addRating,
+    required TResult Function(_InfoEventGetRating value) getRating,
+  }) {
+    return videoSubscription(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_InfoEvent value)? info,
+    TResult? Function(_InfoEventVideoSubscription value)? videoSubscription,
+    TResult? Function(_InfoEventAddRating value)? addRating,
+    TResult? Function(_InfoEventGetRating value)? getRating,
+  }) {
+    return videoSubscription?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_InfoEvent value)? info,
+    TResult Function(_InfoEventVideoSubscription value)? videoSubscription,
+    TResult Function(_InfoEventAddRating value)? addRating,
+    TResult Function(_InfoEventGetRating value)? getRating,
+    required TResult orElse(),
+  }) {
+    if (videoSubscription != null) {
+      return videoSubscription(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InfoEventVideoSubscription implements InfoEvent {
+  const factory _InfoEventVideoSubscription({required final String videoId}) =
+      _$_InfoEventVideoSubscription;
+
+  @override
+  String get videoId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_InfoEventVideoSubscriptionCopyWith<_$_InfoEventVideoSubscription>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -317,6 +485,7 @@ class _$_InfoEventAddRating implements _InfoEventAddRating {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String videoId) info,
+    required TResult Function(String videoId) videoSubscription,
     required TResult Function(String videoId, String rating) addRating,
     required TResult Function(String videoId) getRating,
   }) {
@@ -327,6 +496,7 @@ class _$_InfoEventAddRating implements _InfoEventAddRating {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String videoId)? info,
+    TResult? Function(String videoId)? videoSubscription,
     TResult? Function(String videoId, String rating)? addRating,
     TResult? Function(String videoId)? getRating,
   }) {
@@ -337,6 +507,7 @@ class _$_InfoEventAddRating implements _InfoEventAddRating {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String videoId)? info,
+    TResult Function(String videoId)? videoSubscription,
     TResult Function(String videoId, String rating)? addRating,
     TResult Function(String videoId)? getRating,
     required TResult orElse(),
@@ -351,6 +522,8 @@ class _$_InfoEventAddRating implements _InfoEventAddRating {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InfoEvent value) info,
+    required TResult Function(_InfoEventVideoSubscription value)
+        videoSubscription,
     required TResult Function(_InfoEventAddRating value) addRating,
     required TResult Function(_InfoEventGetRating value) getRating,
   }) {
@@ -361,6 +534,7 @@ class _$_InfoEventAddRating implements _InfoEventAddRating {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InfoEvent value)? info,
+    TResult? Function(_InfoEventVideoSubscription value)? videoSubscription,
     TResult? Function(_InfoEventAddRating value)? addRating,
     TResult? Function(_InfoEventGetRating value)? getRating,
   }) {
@@ -371,6 +545,7 @@ class _$_InfoEventAddRating implements _InfoEventAddRating {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InfoEvent value)? info,
+    TResult Function(_InfoEventVideoSubscription value)? videoSubscription,
     TResult Function(_InfoEventAddRating value)? addRating,
     TResult Function(_InfoEventGetRating value)? getRating,
     required TResult orElse(),
@@ -464,6 +639,7 @@ class _$_InfoEventGetRating implements _InfoEventGetRating {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String videoId) info,
+    required TResult Function(String videoId) videoSubscription,
     required TResult Function(String videoId, String rating) addRating,
     required TResult Function(String videoId) getRating,
   }) {
@@ -474,6 +650,7 @@ class _$_InfoEventGetRating implements _InfoEventGetRating {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String videoId)? info,
+    TResult? Function(String videoId)? videoSubscription,
     TResult? Function(String videoId, String rating)? addRating,
     TResult? Function(String videoId)? getRating,
   }) {
@@ -484,6 +661,7 @@ class _$_InfoEventGetRating implements _InfoEventGetRating {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String videoId)? info,
+    TResult Function(String videoId)? videoSubscription,
     TResult Function(String videoId, String rating)? addRating,
     TResult Function(String videoId)? getRating,
     required TResult orElse(),
@@ -498,6 +676,8 @@ class _$_InfoEventGetRating implements _InfoEventGetRating {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_InfoEvent value) info,
+    required TResult Function(_InfoEventVideoSubscription value)
+        videoSubscription,
     required TResult Function(_InfoEventAddRating value) addRating,
     required TResult Function(_InfoEventGetRating value) getRating,
   }) {
@@ -508,6 +688,7 @@ class _$_InfoEventGetRating implements _InfoEventGetRating {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_InfoEvent value)? info,
+    TResult? Function(_InfoEventVideoSubscription value)? videoSubscription,
     TResult? Function(_InfoEventAddRating value)? addRating,
     TResult? Function(_InfoEventGetRating value)? getRating,
   }) {
@@ -518,6 +699,7 @@ class _$_InfoEventGetRating implements _InfoEventGetRating {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_InfoEvent value)? info,
+    TResult Function(_InfoEventVideoSubscription value)? videoSubscription,
     TResult Function(_InfoEventAddRating value)? addRating,
     TResult Function(_InfoEventGetRating value)? getRating,
     required TResult orElse(),

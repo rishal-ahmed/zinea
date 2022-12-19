@@ -22,6 +22,7 @@ class UserUtils {
   //========== Variables ==========
   late String userId;
   late String userToken;
+  late bool subscriptionStatus;
 
   //========== Model Classes ==========
   late UserModel userModel;
@@ -32,6 +33,7 @@ class UserUtils {
     userModel = user;
     userId = user.id;
     userToken = user.token;
+    subscriptionStatus = user.subscriptionStatus;
   }
 
   //========== Save User on Login ==========
@@ -39,30 +41,58 @@ class UserUtils {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('user', jsonEncode(userJson));
 
+    // Adding Subscription-Status
+    final bool subscriptionStatus = getSubscriptionStatus(
+        subscriptionDate: userJson['subscriptionPeriod'],
+        subscriptionPeriod: userJson['subscritpionTimeStamp']);
+    userJson.addAll({'subscription_status': subscriptionStatus});
+
     final UserModel user = UserModel.fromJson(userJson);
     userModel = user;
     userId = user.id;
     userToken = user.token;
+    this.subscriptionStatus = subscriptionStatus;
   }
 
   //========== Save User on Register ==========
-  void saveUserOnRegister({required String id, required String token}) async {
-    userModel = userModel.copyWith(id: id, token: token);
+  void saveUserOnRegister({required UserModel userModel}) async {
+    // Adding Subscription-Status
+    final bool subscriptionStatus = getSubscriptionStatus(
+        subscriptionDate: userModel.subscriptionPeriod,
+        subscriptionPeriod: userModel.subscriptionTimeStamp);
 
-    userId = id;
-    userToken = token;
+    userModel = userModel.copyWith(subscriptionStatus: subscriptionStatus);
+
+    this.userModel = userModel;
+    this.subscriptionStatus = subscriptionStatus;
 
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('user', jsonEncode(userModel.toJson()));
   }
 
-  //========== Save User on Register ==========
+  //========== Update Token ==========
   void updateToken({required String token}) async {
     userModel = userModel.copyWith(token: token);
     userToken = token;
 
     SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('user', jsonEncode(userModel.toJson()));
+  }
+
+  //========== Get Subscription Status ==========
+  bool getSubscriptionStatus({
+    required String? subscriptionDate,
+    required String? subscriptionPeriod,
+  }) {
+    if (subscriptionDate != null && subscriptionPeriod != null) {
+      final DateTime expiryDate = DateTime.parse(subscriptionDate);
+      if (expiryDate.isAfter(DateTime.now())) {
+        return true;
+      }
+      return false;
+    } else {
+      return false;
+    }
   }
 
   //========== Logout User ==========

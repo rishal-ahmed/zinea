@@ -14,6 +14,7 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       token: json['token'] as String,
       subscriptionPeriod: json['subscriptionPeriod'] as String?,
       subscriptionTimeStamp: json['subscritpionTimeStamp'] as String?,
+      subscriptionStatus: json['subscription_status'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
@@ -25,4 +26,5 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'token': instance.token,
       'subscriptionPeriod': instance.subscriptionPeriod,
       'subscritpionTimeStamp': instance.subscriptionTimeStamp,
+      'subscription_status': instance.subscriptionStatus,
     };

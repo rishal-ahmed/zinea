@@ -5,6 +5,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:zinea/application/auth/register/register_event.dart';
 import 'package:zinea/domain/core/api_endpoints.dart';
+import 'package:zinea/domain/models/user/user_model.dart';
 import 'package:zinea/domain/utils/failures/main_failures.dart';
 import 'package:zinea/domain/utils/user/user_utils.dart';
 
@@ -35,8 +36,14 @@ class RegisterRepository {
         if (result['status'] == true) {
           final Map<String, dynamic> body = result['body'];
 
-          UserUtils.instance.saveUserOnRegister(
-              id: body['userId'].toString(), token: body['token']);
+          final UserModel userModel = UserModel(
+              id: body['userId'].toString(),
+              name: registerEvent.name,
+              phone: registerEvent.phone,
+              email: registerEvent.email,
+              token: body['token']);
+
+          UserUtils.instance.saveUserOnRegister(userModel: userModel);
 
           return const Right(true);
         } else {

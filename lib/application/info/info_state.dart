@@ -9,6 +9,7 @@ class InfoState with _$InfoState {
     @Default(false) bool isLoading,
     @Default(false) bool isError,
     @Default(null) VideoModel? info,
+    @Default('') String subscriptionStatus,
     @Default(false) bool status,
     @Default('') String message,
     @Default(0.0) double rating,

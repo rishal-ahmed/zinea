@@ -19,6 +19,7 @@ mixin _$InfoState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
   VideoModel? get info => throw _privateConstructorUsedError;
+  String get subscriptionStatus => throw _privateConstructorUsedError;
   bool get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   double get rating => throw _privateConstructorUsedError;
@@ -37,6 +38,7 @@ abstract class $InfoStateCopyWith<$Res> {
       {bool isLoading,
       bool isError,
       VideoModel? info,
+      String subscriptionStatus,
       bool status,
       String message,
       double rating});
@@ -60,6 +62,7 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
     Object? isLoading = null,
     Object? isError = null,
     Object? info = freezed,
+    Object? subscriptionStatus = null,
     Object? status = null,
     Object? message = null,
     Object? rating = null,
@@ -77,6 +80,10 @@ class _$InfoStateCopyWithImpl<$Res, $Val extends InfoState>
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as VideoModel?,
+      subscriptionStatus: null == subscriptionStatus
+          ? _value.subscriptionStatus
+          : subscriptionStatus // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -116,6 +123,7 @@ abstract class _$$_InfoStateCopyWith<$Res> implements $InfoStateCopyWith<$Res> {
       {bool isLoading,
       bool isError,
       VideoModel? info,
+      String subscriptionStatus,
       bool status,
       String message,
       double rating});
@@ -138,6 +146,7 @@ class __$$_InfoStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isError = null,
     Object? info = freezed,
+    Object? subscriptionStatus = null,
     Object? status = null,
     Object? message = null,
     Object? rating = null,
@@ -155,6 +164,10 @@ class __$$_InfoStateCopyWithImpl<$Res>
           ? _value.info
           : info // ignore: cast_nullable_to_non_nullable
               as VideoModel?,
+      subscriptionStatus: null == subscriptionStatus
+          ? _value.subscriptionStatus
+          : subscriptionStatus // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -178,6 +191,7 @@ class _$_InfoState implements _InfoState {
       {this.isLoading = false,
       this.isError = false,
       this.info = null,
+      this.subscriptionStatus = '',
       this.status = false,
       this.message = '',
       this.rating = 0.0});
@@ -193,6 +207,9 @@ class _$_InfoState implements _InfoState {
   final VideoModel? info;
   @override
   @JsonKey()
+  final String subscriptionStatus;
+  @override
+  @JsonKey()
   final bool status;
   @override
   @JsonKey()
@@ -203,7 +220,7 @@ class _$_InfoState implements _InfoState {
 
   @override
   String toString() {
-    return 'InfoState(isLoading: $isLoading, isError: $isError, info: $info, status: $status, message: $message, rating: $rating)';
+    return 'InfoState(isLoading: $isLoading, isError: $isError, info: $info, subscriptionStatus: $subscriptionStatus, status: $status, message: $message, rating: $rating)';
   }
 
   @override
@@ -215,14 +232,16 @@ class _$_InfoState implements _InfoState {
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
             (identical(other.info, info) || other.info == info) &&
+            (identical(other.subscriptionStatus, subscriptionStatus) ||
+                other.subscriptionStatus == subscriptionStatus) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.rating, rating) || other.rating == rating));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, isError, info, status, message, rating);
+  int get hashCode => Object.hash(runtimeType, isLoading, isError, info,
+      subscriptionStatus, status, message, rating);
 
   @JsonKey(ignore: true)
   @override
@@ -236,6 +255,7 @@ abstract class _InfoState implements InfoState {
       {final bool isLoading,
       final bool isError,
       final VideoModel? info,
+      final String subscriptionStatus,
       final bool status,
       final String message,
       final double rating}) = _$_InfoState;
@@ -246,6 +266,8 @@ abstract class _InfoState implements InfoState {
   bool get isError;
   @override
   VideoModel? get info;
+  @override
+  String get subscriptionStatus;
   @override
   bool get status;
   @override

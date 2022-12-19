@@ -13,6 +13,9 @@ class UserModel with _$UserModel {
     @JsonKey(name: 'token') required String token,
     @JsonKey(name: 'subscriptionPeriod') String? subscriptionPeriod,
     @JsonKey(name: 'subscritpionTimeStamp') String? subscriptionTimeStamp,
+    @Default(false)
+    @JsonKey(name: 'subscription_status')
+        bool subscriptionStatus,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
