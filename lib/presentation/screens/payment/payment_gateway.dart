@@ -86,6 +86,7 @@ class _PaymentGatewayState extends State<PaymentGateway> {
               NavigationDelegate(onNavigationRequest: (action) {
             if (action.url.contains('/home.php') ||
                 action.url.contains('/movie.php')) {
+              log('heree.r.er.er.er.e.r.er.er.e.r.er.e');
               Navigator.pop(context);
             }
             return NavigationDecision.navigate;

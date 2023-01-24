@@ -6,4 +6,12 @@ part 'subscription_event.freezed.dart';
 class SubscriptionEvent with _$SubscriptionEvent {
   //==--==--==--==-- Subscriptions --==--==--==--==--==
   const factory SubscriptionEvent.subscriptions() = _SubscriptionEvent;
+
+  //=-=-=-=-=- Is Video Purchased -=-=-=-=-=
+  const factory SubscriptionEvent.videoSubscription({required String videoId}) =
+      _SubscriptionEventVideo;
+
+  //==--==--==--==-- check Payment Status --==--==--==--==--==
+  const factory SubscriptionEvent.checkPaymentStatus(
+      {required String videoId, required int mode}) = _SubscriptionEventPayment;
 }

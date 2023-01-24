@@ -87,4 +87,43 @@ class SubscriptionRepository {
       return const Left(MainFailures.clientFailure());
     }
   }
+
+  //==================== Check Payment Status  ====================
+  Future<Either<MainFailures, bool>> checkPaymentStatus(
+      {required String videoId, required int mode}) async {
+    try {
+      final String form = json.encode(
+        {
+          "sessionToken": UserUtils.instance.userToken,
+          "email": UserUtils.instance.userModel.email,
+          "phone": UserUtils.instance.userModel.phone,
+          "userId": UserUtils.instance.userId,
+          "movieId": videoId,
+          "mode": mode,
+        },
+      );
+
+      final Response response =
+          await dio.post(ApiEndpoints.checkPaymentStatus, data: form);
+
+      log('response == ${response.data.toString()}',
+          name: 'Check Payment Status');
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final Map result = json.decode(response.data) as Map;
+
+        if (result['status'] == true) {
+          return const Right(true);
+        } else {
+          final String message = result['errorMsg'];
+          return Left(MainFailures.clientFailure(error: message));
+        }
+      } else {
+        return const Left(MainFailures.serverFailure());
+      }
+    } catch (e, s) {
+      log('Exception : $e', stackTrace: s);
+      return const Left(MainFailures.clientFailure());
+    }
+  }
 }

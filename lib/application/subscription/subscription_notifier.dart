@@ -21,9 +21,51 @@ class SubscriptionNotifier extends StateNotifier<SubscriptionState> {
         final SubscriptionState subscriptionState = result.fold(
           //=-=-=-=- Failure -=-=-=-=-=
           (failure) =>
-              initialState.copyWith(isError: true, status: failure.error),
+              initialState.copyWith(isError: true, message: failure.error),
           //=-=-=-=- Success -=-=-=-=-=
           (data) => initialState.copyWith(subscriptions: data),
+        );
+
+        // Notify UI
+        state = subscriptionState;
+      },
+
+      //=-=-=-=-=-=-=-=-=-=- Video Subscription Status Event -=-=-=-=-=-=-=-=-=-=
+      videoSubscription: (eventVideo) async {
+        // Loading
+        state = initialState.copyWith(isLoading: true);
+
+        // Video Subscription Api
+        final result = await SubscriptionRepository()
+            .videoSubscriptionStatus(videoId: eventVideo.videoId);
+
+        final SubscriptionState subscriptionState = result.fold(
+          //=-=-=-=-=- Failure -=-=-=-=-=
+          (failure) => initialState.copyWith(isError: true),
+          //=-=-=-=-=- Success -=-=-=-=-=
+          (data) =>
+              initialState.copyWith(status: true, subscriptionStatus: data),
+        );
+
+        // Notify UI
+        state = subscriptionState;
+      },
+
+      //=-=-=-=-=-=-=-=-=-=- Check Payment Status Event -=-=-=-=-=-=-=-=-=-=
+      checkPaymentStatus: (eventPayment) async {
+        // Loading
+        state = initialState.copyWith(isLoading: true);
+
+        // Video Subscription Api
+        final result = await SubscriptionRepository().checkPaymentStatus(
+            videoId: eventPayment.videoId, mode: eventPayment.mode);
+
+        final SubscriptionState subscriptionState = result.fold(
+          //=-=-=-=-=- Failure -=-=-=-=-=
+          (failure) =>
+              initialState.copyWith(isError: true, message: failure.error),
+          //=-=-=-=-=- Success -=-=-=-=-=
+          (data) => initialState.copyWith(status: data),
         );
 
         // Notify UI

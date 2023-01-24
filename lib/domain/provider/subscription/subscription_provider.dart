@@ -10,4 +10,18 @@ class SubscriptionProvider {
     return SubscriptionNotifier()
       ..emit(const SubscriptionEvent.subscriptions());
   });
+
+  //==--==--==--==--==-- Video Subscription Stutus --==--==--==--==--==
+  static final videoSubscriptionStatus = StateNotifierProvider.family
+      .autoDispose<SubscriptionNotifier, SubscriptionState, String>(
+          (ref, videoId) {
+    return SubscriptionNotifier()
+      ..emit(SubscriptionEvent.videoSubscription(videoId: videoId));
+  });
+
+  //==--==--==--==--==-- Check Payment Status --==--==--==--==--==
+  static final checkPaymentStatus =
+      StateNotifierProvider<SubscriptionNotifier, SubscriptionState>((ref) {
+    return SubscriptionNotifier();
+  });
 }

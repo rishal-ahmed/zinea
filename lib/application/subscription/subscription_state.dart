@@ -8,7 +8,9 @@ class SubscriptionState with _$SubscriptionState {
   const factory SubscriptionState({
     @Default(false) bool isLoading,
     @Default(false) bool isError,
-    @Default('') String status,
+    @Default(false) bool status,
+    @Default('') String message,
+    @Default('') String subscriptionStatus,
     @Default([]) List<SubscriptionModel> subscriptions,
   }) = _SubscriptionState;
 }

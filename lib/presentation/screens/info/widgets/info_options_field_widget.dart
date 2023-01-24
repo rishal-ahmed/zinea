@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:zinea/application/info/info_event.dart';
 import 'package:zinea/application/info/info_state.dart';
+import 'package:zinea/application/subscription/subscription_event.dart';
 import 'package:zinea/application/subscription/subscription_state.dart';
 import 'package:zinea/application/watchlist/watchlist_event.dart';
 import 'package:zinea/application/watchlist/watchlist_state.dart';
@@ -17,6 +18,7 @@ import 'package:zinea/domain/provider/subscription/subscription_provider.dart';
 import 'package:zinea/domain/provider/watchlist/watchlist_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/domain/utils/user/user_utils.dart';
+import 'package:zinea/presentation/screens/info/widgets/subscription_plan_card_widget.dart';
 import 'package:zinea/presentation/screens/payment/payment_gateway.dart';
 import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
 import 'package:zinea/presentation/widgets/shimmer/shimmer_widget.dart';
@@ -42,23 +44,25 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
           //==--==--==--==--==-- Play Button --==--==--==--==--==
           Consumer(
             builder: (context, ref, child) {
-              final InfoState infoState =
-                  ref.watch(InfoProvider.videoSubscriptionStatus(videoId));
+              final SubscriptionState subscriptionState = ref
+                  .watch(SubscriptionProvider.videoSubscriptionStatus(videoId));
 
               return IconButton(
-                onPressed: infoState.isLoading
+                onPressed: subscriptionState.isLoading
                     ? null
                     : () {
                         if (UserUtils.instance.subscriptionStatus ||
-                            infoState.subscriptionStatus != 'Negative') {
+                            subscriptionState.subscriptionStatus !=
+                                    'Negative' &&
+                                subscriptionState.status) {
                           Navigator.pushNamed(context, routeWatch,
                               arguments: info.vimeoId);
                         } else {
                           showDialog(
                             context: context,
-                            builder: (context) {
+                            builder: (ctx) {
                               //===== Subscription Dialog =====
-                              return _subscriptionDialog(context);
+                              return _subscriptionDialog(ctx);
                             },
                           );
                         }
@@ -275,8 +279,7 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
             height: 40,
             borderRadius: BorderRadius.circular(5),
             onPressed: () {
-              Navigator.pop(context);
-              //==-==-==-==-==-- Get Premium -==-==-==-==-==
+              //==-==-==-==-==-- Subscription Plans -==-==-==-==-==
               showDialog(
                 context: context,
                 builder: (context) {
@@ -313,78 +316,8 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
                                   final SubscriptionModel subscription =
                                       subscriptionState.subscriptions[index];
 
-                                  return Material(
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                PaymentGateway(
-                                              isSubScribe: true,
-                                              planId: subscription.id,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        padding: const EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          border:
-                                              Border.all(color: primaryColor),
-                                          color: kTransparentColor,
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              subscription.name,
-                                              style: TextUtils.theme(context)
-                                                  .titleLarge
-                                                  ?.copyWith(
-                                                      color: primaryTextColor),
-                                            ),
-                                            dHeight1,
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text.rich(
-                                                  TextSpan(
-                                                    text:
-                                                        '₹${subscription.price} ',
-                                                    style:
-                                                        TextUtils.theme(context)
-                                                            .bodyLarge,
-                                                    children: [
-                                                      TextSpan(
-                                                        text:
-                                                            '/ ${subscription.period} ${subscription.period == '1' ? 'month' : 'months'}',
-                                                        style: TextUtils.theme(
-                                                                context)
-                                                            .bodyMedium
-                                                            ?.copyWith(
-                                                              color: kWhite70,
-                                                            ),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                Text(
-                                                  '${subscription.tax}% Tax',
-                                                  style:
-                                                      TextUtils.theme(context)
-                                                          .bodyMedium,
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  );
+                                  return SubscriptionPlanCardWidget(
+                                      subscription: subscription, info: info);
                                 },
                                 separatorBuilder: (context, index) {
                                   return dHeight2;
@@ -407,43 +340,102 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
           ),
           dHeight1n5,
           //==-==-==-==-==-- Buy -==-==-==-==-==
-          CustomMaterialBtton(
-            height: 40,
-            borderRadius: BorderRadius.circular(5),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      PaymentGateway(movieId: info.id, isBuy: true),
-                ),
+          Consumer(
+            builder: (context, ref, child) {
+              return CustomMaterialBtton(
+                height: 40,
+                borderRadius: BorderRadius.circular(5),
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PaymentGateway(movieId: info.id, isBuy: true),
+                    ),
+                  );
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    ref
+                        .read(SubscriptionProvider.checkPaymentStatus.notifier)
+                        .emit(SubscriptionEvent.checkPaymentStatus(
+                            videoId: info.id, mode: 2));
+                  });
+
+                  ref.listenManual(
+                    SubscriptionProvider.checkPaymentStatus,
+                    (previous, next) {
+                      Navigator.pop(context);
+                      if (next.isError) {
+                        return kSnackBar(
+                            context: context,
+                            content: next.message,
+                            error: true);
+                      }
+
+                      if (next.status) {
+                        return kSnackBar(
+                            context: context,
+                            content: 'Payment successfull',
+                            success: true);
+                      }
+                    },
+                  );
+                },
+                buttonText: 'Buy at ₹${info.buyPrice}',
+                fontSize: 15.5.sp,
+                fontWeight: FontWeight.w600,
+                color: kTransparentColor,
+                textColor: primaryTextColor,
               );
             },
-            buttonText: 'Buy at ₹${info.buyPrice}',
-            fontSize: 15.5.sp,
-            fontWeight: FontWeight.w600,
-            color: kTransparentColor,
-            textColor: primaryTextColor,
           ),
           dHeight02,
           //==-==-==-==-==-- Rent -==-==-==-==-==
-          CustomMaterialBtton(
-            height: 40,
-            borderRadius: BorderRadius.circular(5),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      PaymentGateway(movieId: info.id, isBuy: false),
-                ),
+          Consumer(
+            builder: (context, ref, child) {
+              return CustomMaterialBtton(
+                height: 40,
+                borderRadius: BorderRadius.circular(5),
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          PaymentGateway(movieId: info.id, isBuy: false),
+                    ),
+                  );
+
+                  ref
+                      .read(SubscriptionProvider.checkPaymentStatus.notifier)
+                      .emit(SubscriptionEvent.checkPaymentStatus(
+                          videoId: info.id, mode: 3));
+
+                  ref.listenManual(
+                    SubscriptionProvider.checkPaymentStatus,
+                    (previous, next) {
+                      Navigator.pop(context);
+                      if (next.isError) {
+                        return kSnackBar(
+                            context: context,
+                            content: next.message,
+                            error: true);
+                      }
+
+                      if (next.status) {
+                        return kSnackBar(
+                            context: context,
+                            content: 'Payment successfull',
+                            success: true);
+                      }
+                    },
+                  );
+                },
+                buttonText: 'Rent at  ₹${info.rentPrice}',
+                fontSize: 15.5.sp,
+                fontWeight: FontWeight.w600,
+                color: kTransparentColor,
+                textColor: primaryTextColor,
               );
             },
-            buttonText: 'Rent at  ₹${info.rentPrice}',
-            fontSize: 15.5.sp,
-            fontWeight: FontWeight.w600,
-            color: kTransparentColor,
-            textColor: primaryTextColor,
           ),
         ],
       ),

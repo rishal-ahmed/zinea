@@ -35,6 +35,9 @@ class ApiEndpoints {
   static const String videoSubscriptionStatus =
       '${apiUrl}checkRentedOrBought.php';
 
+  //==================== Payment ====================
+  static const String checkPaymentStatus = '${apiUrl}checkPaymentStatus.php';
+
   //==================== Rating ====================
   static const String userRating = '${apiUrl}fetchUserRating.php';
   static const String addRating = '${apiUrl}addRating.php';

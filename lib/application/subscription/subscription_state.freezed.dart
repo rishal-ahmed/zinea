@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$SubscriptionState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
-  String get status => throw _privateConstructorUsedError;
+  bool get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  String get subscriptionStatus => throw _privateConstructorUsedError;
   List<SubscriptionModel> get subscriptions =>
       throw _privateConstructorUsedError;
 
@@ -36,7 +38,9 @@ abstract class $SubscriptionStateCopyWith<$Res> {
   $Res call(
       {bool isLoading,
       bool isError,
-      String status,
+      bool status,
+      String message,
+      String subscriptionStatus,
       List<SubscriptionModel> subscriptions});
 }
 
@@ -56,6 +60,8 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
     Object? isLoading = null,
     Object? isError = null,
     Object? status = null,
+    Object? message = null,
+    Object? subscriptionStatus = null,
     Object? subscriptions = null,
   }) {
     return _then(_value.copyWith(
@@ -70,6 +76,14 @@ class _$SubscriptionStateCopyWithImpl<$Res, $Val extends SubscriptionState>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      subscriptionStatus: null == subscriptionStatus
+          ? _value.subscriptionStatus
+          : subscriptionStatus // ignore: cast_nullable_to_non_nullable
               as String,
       subscriptions: null == subscriptions
           ? _value.subscriptions
@@ -90,7 +104,9 @@ abstract class _$$_SubscriptionStateCopyWith<$Res>
   $Res call(
       {bool isLoading,
       bool isError,
-      String status,
+      bool status,
+      String message,
+      String subscriptionStatus,
       List<SubscriptionModel> subscriptions});
 }
 
@@ -108,6 +124,8 @@ class __$$_SubscriptionStateCopyWithImpl<$Res>
     Object? isLoading = null,
     Object? isError = null,
     Object? status = null,
+    Object? message = null,
+    Object? subscriptionStatus = null,
     Object? subscriptions = null,
   }) {
     return _then(_$_SubscriptionState(
@@ -122,6 +140,14 @@ class __$$_SubscriptionStateCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as bool,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      subscriptionStatus: null == subscriptionStatus
+          ? _value.subscriptionStatus
+          : subscriptionStatus // ignore: cast_nullable_to_non_nullable
               as String,
       subscriptions: null == subscriptions
           ? _value._subscriptions
@@ -137,7 +163,9 @@ class _$_SubscriptionState implements _SubscriptionState {
   const _$_SubscriptionState(
       {this.isLoading = false,
       this.isError = false,
-      this.status = '',
+      this.status = false,
+      this.message = '',
+      this.subscriptionStatus = '',
       final List<SubscriptionModel> subscriptions = const []})
       : _subscriptions = subscriptions;
 
@@ -149,7 +177,13 @@ class _$_SubscriptionState implements _SubscriptionState {
   final bool isError;
   @override
   @JsonKey()
-  final String status;
+  final bool status;
+  @override
+  @JsonKey()
+  final String message;
+  @override
+  @JsonKey()
+  final String subscriptionStatus;
   final List<SubscriptionModel> _subscriptions;
   @override
   @JsonKey()
@@ -160,7 +194,7 @@ class _$_SubscriptionState implements _SubscriptionState {
 
   @override
   String toString() {
-    return 'SubscriptionState(isLoading: $isLoading, isError: $isError, status: $status, subscriptions: $subscriptions)';
+    return 'SubscriptionState(isLoading: $isLoading, isError: $isError, status: $status, message: $message, subscriptionStatus: $subscriptionStatus, subscriptions: $subscriptions)';
   }
 
   @override
@@ -172,12 +206,21 @@ class _$_SubscriptionState implements _SubscriptionState {
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.subscriptionStatus, subscriptionStatus) ||
+                other.subscriptionStatus == subscriptionStatus) &&
             const DeepCollectionEquality()
                 .equals(other._subscriptions, _subscriptions));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError, status,
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      isError,
+      status,
+      message,
+      subscriptionStatus,
       const DeepCollectionEquality().hash(_subscriptions));
 
   @JsonKey(ignore: true)
@@ -192,7 +235,9 @@ abstract class _SubscriptionState implements SubscriptionState {
   const factory _SubscriptionState(
       {final bool isLoading,
       final bool isError,
-      final String status,
+      final bool status,
+      final String message,
+      final String subscriptionStatus,
       final List<SubscriptionModel> subscriptions}) = _$_SubscriptionState;
 
   @override
@@ -200,7 +245,11 @@ abstract class _SubscriptionState implements SubscriptionState {
   @override
   bool get isError;
   @override
-  String get status;
+  bool get status;
+  @override
+  String get message;
+  @override
+  String get subscriptionStatus;
   @override
   List<SubscriptionModel> get subscriptions;
   @override
