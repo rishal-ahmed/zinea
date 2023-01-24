@@ -315,7 +315,18 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
 
                                   return Material(
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () async {
+                                        await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                PaymentGateway(
+                                              isSubScribe: true,
+                                              planId: subscription.id,
+                                            ),
+                                          ),
+                                        );
+                                      },
                                       child: Container(
                                         padding: const EdgeInsets.all(10),
                                         decoration: BoxDecoration(
@@ -404,7 +415,7 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      PaymentGateway(false, info.id, "", true),
+                      PaymentGateway(movieId: info.id, isBuy: true),
                 ),
               );
             },
@@ -424,7 +435,7 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) =>
-                      PaymentGateway(false, info.id, "", false),
+                      PaymentGateway(movieId: info.id, isBuy: false),
                 ),
               );
             },

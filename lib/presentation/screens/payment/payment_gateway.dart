@@ -3,22 +3,26 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:zinea/core/constants/base_url.dart';
 import 'package:zinea/core/constants/colors.dart';
+import 'package:zinea/domain/core/api_endpoints.dart';
 import 'package:zinea/domain/utils/user/user_utils.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:webview_flutter_android/webview_flutter_android.dart';
 import 'package:webview_flutter_wkwebview/webview_flutter_wkwebview.dart';
 
 class PaymentGateway extends StatefulWidget {
-  final bool _isSubScription;
-  final String _movieId;
-  final String _planId;
-  final bool _isBuy;
+  final bool isSubScribe;
+  final String? movieId;
+  final String? planId;
+  final bool isBuy;
   @override
-  const PaymentGateway(
-      this._isSubScription, this._movieId, this._planId, this._isBuy,
-      {super.key});
+  const PaymentGateway({
+    this.isSubScribe = false,
+    this.movieId,
+    this.planId,
+    this.isBuy = false,
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() {
@@ -33,9 +37,9 @@ class _PaymentGatewayState extends State<PaymentGateway> {
   @override
   void initState() {
     super.initState();
-    _paymentUrl = widget._isSubScription
-        ? '${baseUrl}checkoutsubscriptionapp.php?planid=${widget._planId}&app_userId=${UserUtils.instance.userId}&app_name=${UserUtils.instance.userModel.name}&app_email=${UserUtils.instance.userModel.email}&app_mobile=${UserUtils.instance.userModel.phone}'
-        : '${baseUrl}checkoutmovieapp.php?movieId=${widget._movieId}&purchaseType=${widget._isBuy ? '1' : '2'}&app_userId=${UserUtils.instance.userId}&app_name=${UserUtils.instance.userModel.name}&app_email=${UserUtils.instance.userModel.email}&app_mobile=${UserUtils.instance.userModel.phone}';
+    _paymentUrl = widget.isSubScribe
+        ? '${ApiEndpoints.subscribe}?planid=${widget.planId}&app_userId=${UserUtils.instance.userId}&app_name=${UserUtils.instance.userModel.name}&app_email=${UserUtils.instance.userModel.email}&app_mobile=${UserUtils.instance.userModel.phone}'
+        : '${ApiEndpoints.subscribeMovie}?movieId=${widget.movieId}&purchaseType=${widget.isBuy ? '1' : '2'}&app_userId=${UserUtils.instance.userId}&app_name=${UserUtils.instance.userModel.name}&app_email=${UserUtils.instance.userModel.email}&app_mobile=${UserUtils.instance.userModel.phone}';
     _paymentUrl = _paymentUrl.replaceAll(" ", "%20");
     log('Payment URL = $_paymentUrl');
     late final PlatformWebViewControllerCreationParams params;

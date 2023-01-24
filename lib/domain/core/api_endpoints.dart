@@ -28,6 +28,8 @@ class ApiEndpoints {
   static const String changePassword = '${apiUrl}changePassword.php';
 
   //==================== Subscriptions ====================
+  static const String subscribe = '${baseUrl}checkoutsubscriptionapp.php';
+  static const String subscribeMovie = '${baseUrl}checkoutmovieapp.php';
   static const String subscriptionPlans =
       '${apiUrl}getAllSubscriptionPlans.php';
   static const String videoSubscriptionStatus =
