@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +17,7 @@ import 'package:zinea/domain/provider/subscription/subscription_provider.dart';
 import 'package:zinea/domain/provider/watchlist/watchlist_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/domain/utils/user/user_utils.dart';
+import 'package:zinea/presentation/screens/payment/payment_gateway.dart';
 import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
 import 'package:zinea/presentation/widgets/shimmer/shimmer_widget.dart';
 import 'package:zinea/presentation/widgets/snackbars/snackbar.dart';
@@ -124,7 +123,7 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
 
               final InfoState ratingState =
                   ref.watch(InfoProvider.getRatingProvider(videoId));
-              log('rating = ${ratingState.rating}');
+              // log('rating = ${ratingState.rating}');
 
               ref.listen(
                 InfoProvider.addRatingProvider,
@@ -400,7 +399,15 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
           CustomMaterialBtton(
             height: 40,
             borderRadius: BorderRadius.circular(5),
-            onPressed: () {},
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PaymentGateway(false, info.id, "", true),
+                ),
+              );
+            },
             buttonText: 'Buy at ₹${info.buyPrice}',
             fontSize: 15.5.sp,
             fontWeight: FontWeight.w600,
@@ -412,7 +419,15 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
           CustomMaterialBtton(
             height: 40,
             borderRadius: BorderRadius.circular(5),
-            onPressed: () {},
+            onPressed: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PaymentGateway(false, info.id, "", false),
+                ),
+              );
+            },
             buttonText: 'Rent at  ₹${info.rentPrice}',
             fontSize: 15.5.sp,
             fontWeight: FontWeight.w600,

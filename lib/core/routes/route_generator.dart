@@ -4,7 +4,6 @@ import 'package:zinea/domain/models/content/content_model.dart';
 import 'package:zinea/presentation/screens/auth/login/screen_login.dart';
 import 'package:zinea/presentation/screens/auth/register/screen_register.dart';
 import 'package:zinea/presentation/screens/contact/screen_contact_us.dart';
-import 'package:zinea/presentation/screens/favourites/screen_favourites.dart';
 import 'package:zinea/presentation/screens/filter/screen_filter.dart';
 import 'package:zinea/presentation/screens/home/screen_home.dart';
 import 'package:zinea/presentation/screens/introduction/screen_introduction.dart';
@@ -53,13 +52,13 @@ class RouteGenerator {
       case routeSearch:
         return MaterialPageRoute(builder: (_) => const ScreenSearch());
 
+      //=-=-=-=-=-=-=-=-=-=- My Contents -=-=-=-=-=-=-=-=-=-=
+      case routeMyContents:
+        return MaterialPageRoute(builder: (_) => const ScreenWatchlist());
+
       //=-=-=-=-=-=-=-=-=-=- Watchlist -=-=-=-=-=-=-=-=-=-=
       case routeWatchlist:
         return MaterialPageRoute(builder: (_) => const ScreenWatchlist());
-
-      //=-=-=-=-=-=-=-=-=-=- Favourites -=-=-=-=-=-=-=-=-=-=
-      case routeFavourites:
-        return MaterialPageRoute(builder: (_) => const ScreenFavourites());
 
       //=-=-=-=-=-=-=-=-=-=- Profile -=-=-=-=-=-=-=-=-=-=
       case routeProfile:

@@ -22,14 +22,14 @@ const String routeMain = '/main';
 //=-=-=-=-=- Home -=-=-=-=-=
 const String routeHome = '/home';
 
-//=-=-=-=-=- Home -=-=-=-=-=
+//=-=-=-=-=- Search -=-=-=-=-=
 const String routeSearch = '/search';
+
+//=-=-=-=-=- My  -=-=-=-=-=
+const String routeMyContents = '/my_contents';
 
 //=-=-=-=-=- Watchlist -=-=-=-=-=
 const String routeWatchlist = '/watchlist';
-
-//=-=-=-=-=- Favourites -=-=-=-=-=
-const String routeFavourites = '/favourites';
 
 //=-=-=-=-=- Profile -=-=-=-=-=
 const String routeProfile = '/profile';

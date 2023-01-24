@@ -121,7 +121,7 @@ class ScreenFilter extends ConsumerWidget {
                                 },
                                 allowHalfRating: true,
                                 onRatingUpdate: (value) {
-                                  log('rating = ${value * 2}');
+                                  // log('rating = ${value * 2}');
                                   ref
                                       .read(FilterProvider
                                           .ratingProvider.notifier)
