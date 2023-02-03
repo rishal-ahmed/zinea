@@ -5,6 +5,7 @@ import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/domain/models/subscription/subscription_model.dart';
 import 'package:zinea/domain/models/video/video_model.dart';
+import 'package:zinea/domain/provider/main/main_provider.dart';
 import 'package:zinea/domain/provider/subscription/subscription_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/presentation/screens/payment/payment_gateway.dart';
@@ -14,19 +15,19 @@ class SubscriptionPlanCardWidget extends ConsumerWidget {
   const SubscriptionPlanCardWidget({
     Key? key,
     required this.subscription,
-    required this.info,
+    this.info,
+    this.profile = false,
   }) : super(key: key);
 
   final SubscriptionModel subscription;
-  final VideoModel info;
+  final VideoModel? info;
+  final bool profile;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Material(
       child: InkWell(
         onTap: () async {
-          Navigator.pop(context);
-
           //==--==--==--==-- Subscribe --==--==--==--==
           await Navigator.push(
             context,
@@ -39,7 +40,7 @@ class SubscriptionPlanCardWidget extends ConsumerWidget {
           );
 
           ref.read(SubscriptionProvider.checkPaymentStatus.notifier).emit(
-              SubscriptionEvent.checkPaymentStatus(videoId: info.id, mode: 1));
+              SubscriptionEvent.checkPaymentStatus(videoId: info?.id, mode: 1));
 
           ref.listenManual(
             SubscriptionProvider.checkPaymentStatus,
@@ -47,14 +48,19 @@ class SubscriptionPlanCardWidget extends ConsumerWidget {
               Navigator.pop(context);
               if (next.isError) {
                 return kSnackBar(
-                    context: context, content: next.message, error: true);
+                  context: context,
+                  content: next.message,
+                  error: true,
+                );
               }
 
               if (next.status) {
+                if (profile) ref.invalidate(MainProvider.navigateProvider);
                 return kSnackBar(
-                    context: context,
-                    content: 'Payment successfull',
-                    success: true);
+                  context: context,
+                  content: 'Payment successfull',
+                  success: true,
+                );
               }
             },
           );

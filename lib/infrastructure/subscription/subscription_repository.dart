@@ -90,7 +90,7 @@ class SubscriptionRepository {
 
   //==================== Check Payment Status  ====================
   Future<Either<MainFailures, bool>> checkPaymentStatus(
-      {required String videoId, required int mode}) async {
+      {String? videoId, required int mode}) async {
     try {
       final String form = json.encode(
         {

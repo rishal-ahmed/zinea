@@ -13,5 +13,5 @@ class SubscriptionEvent with _$SubscriptionEvent {
 
   //==--==--==--==-- check Payment Status --==--==--==--==--==
   const factory SubscriptionEvent.checkPaymentStatus(
-      {required String videoId, required int mode}) = _SubscriptionEventPayment;
+      {String? videoId, required int mode}) = _SubscriptionEventPayment;
 }

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:zinea/core/constants/base_url.dart';
 import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/core/routes/routes.dart';
+import 'package:zinea/domain/models/subscription/subscription_model.dart';
+import 'package:zinea/domain/provider/subscription/subscription_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/domain/utils/user/user_utils.dart';
+import 'package:zinea/presentation/screens/info/widgets/subscription_plan_card_widget.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
+import 'package:zinea/presentation/widgets/buttons/custom_material_button.dart';
+import 'package:zinea/presentation/widgets/shimmer/shimmer_widget.dart';
 
 const List<String> _titles = [
   'Manage Profile',
@@ -49,31 +55,112 @@ class ScreenProfile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const CircleAvatar(radius: 45),
+                const CircleAvatar(
+                  radius: 45,
+                  child: Icon(Icons.person),
+                ),
                 dHeight2,
                 Text(
-                  'Rishal Ahmed',
+                  UserUtils.instance.userModel.name,
                   style: TextUtils.theme(context).titleLarge,
                 ),
-                dHeight1n5,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.workspace_premium,
-                      size: 15.sp,
-                      color: kColorMaterialLight,
+                dHeight1,
+                if (UserUtils.instance.userModel.subscriptionStatus)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.workspace_premium,
+                        size: 15.sp,
+                        color: kColorMaterialLight,
+                      ),
+                      dWidth1,
+                      Text(
+                        'Zinea Premium',
+                        style: TextUtils.theme(context)
+                            .bodyMedium
+                            ?.copyWith(color: kColorMaterialLight),
+                      ),
+                      dWidth2,
+                    ],
+                  ),
+                if (!UserUtils.instance.userModel.subscriptionStatus)
+                  SizedBox(
+                    width: 50.w,
+                    child: CustomMaterialBtton(
+                      height: 30,
+                      borderRadius: BorderRadius.circular(10),
+                      onPressed: () {
+                        //==-==-==-==-==-- Subscription Plans -==-==-==-==-==
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              content: Consumer(
+                                builder: (context, ref, child) {
+                                  final subscriptionState = ref.watch(
+                                      SubscriptionProvider
+                                          .subscriptionsProvider);
+                                  return Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'Subscription Plans',
+                                        style: TextUtils.theme(context)
+                                            .titleLarge
+                                            ?.copyWith(
+                                              color: primaryTextColor,
+                                              decorationStyle:
+                                                  TextDecorationStyle.solid,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                            ),
+                                      ),
+                                      dHeight2,
+                                      SizedBox(
+                                        height: 70.h,
+                                        width: 100.w,
+                                        child: ListView.separated(
+                                          itemBuilder: (context, index) {
+                                            if (subscriptionState.isLoading) {
+                                              return ShimmerWidget(height: 8.h);
+                                            }
+
+                                            final SubscriptionModel
+                                                subscription = subscriptionState
+                                                    .subscriptions[index];
+
+                                            return SubscriptionPlanCardWidget(
+                                              subscription: subscription,
+                                              profile: true,
+                                            );
+                                          },
+                                          separatorBuilder: (context, index) {
+                                            return dHeight2;
+                                          },
+                                          itemCount: subscriptionState
+                                              .subscriptions.length,
+                                        ),
+                                      )
+                                    ],
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      buttonText: 'Buy Zinea Premium',
+                      icon: Icon(
+                        Icons.workspace_premium,
+                        color: kBlack,
+                        size: 16.5.sp,
+                      ),
                     ),
-                    dWidth1,
-                    Text(
-                      'Zinea Premium',
-                      style: TextUtils.theme(context)
-                          .bodyMedium
-                          ?.copyWith(color: kColorMaterialLight),
-                    ),
-                    dWidth2,
-                  ],
-                ),
+                  ),
+
                 dHeight8,
 
                 //==================== Options ====================

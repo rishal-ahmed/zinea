@@ -279,6 +279,7 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
             height: 40,
             borderRadius: BorderRadius.circular(5),
             onPressed: () {
+              Navigator.pop(context);
               //==-==-==-==-==-- Subscription Plans -==-==-==-==-==
               showDialog(
                 context: context,
@@ -353,12 +354,11 @@ class InfoOptionsFieldWidget extends ConsumerWidget {
                           PaymentGateway(movieId: info.id, isBuy: true),
                     ),
                   );
-                  WidgetsBinding.instance.addPostFrameCallback((_) {
-                    ref
-                        .read(SubscriptionProvider.checkPaymentStatus.notifier)
-                        .emit(SubscriptionEvent.checkPaymentStatus(
-                            videoId: info.id, mode: 2));
-                  });
+
+                  ref
+                      .read(SubscriptionProvider.checkPaymentStatus.notifier)
+                      .emit(SubscriptionEvent.checkPaymentStatus(
+                          videoId: info.id, mode: 2));
 
                   ref.listenManual(
                     SubscriptionProvider.checkPaymentStatus,

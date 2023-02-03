@@ -20,21 +20,21 @@ mixin _$SubscriptionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() subscriptions,
     required TResult Function(String videoId) videoSubscription,
-    required TResult Function(String videoId, int mode) checkPaymentStatus,
+    required TResult Function(String? videoId, int mode) checkPaymentStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? subscriptions,
     TResult? Function(String videoId)? videoSubscription,
-    TResult? Function(String videoId, int mode)? checkPaymentStatus,
+    TResult? Function(String? videoId, int mode)? checkPaymentStatus,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? subscriptions,
     TResult Function(String videoId)? videoSubscription,
-    TResult Function(String videoId, int mode)? checkPaymentStatus,
+    TResult Function(String? videoId, int mode)? checkPaymentStatus,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -121,7 +121,7 @@ class _$_SubscriptionEvent implements _SubscriptionEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() subscriptions,
     required TResult Function(String videoId) videoSubscription,
-    required TResult Function(String videoId, int mode) checkPaymentStatus,
+    required TResult Function(String? videoId, int mode) checkPaymentStatus,
   }) {
     return subscriptions();
   }
@@ -131,7 +131,7 @@ class _$_SubscriptionEvent implements _SubscriptionEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? subscriptions,
     TResult? Function(String videoId)? videoSubscription,
-    TResult? Function(String videoId, int mode)? checkPaymentStatus,
+    TResult? Function(String? videoId, int mode)? checkPaymentStatus,
   }) {
     return subscriptions?.call();
   }
@@ -141,7 +141,7 @@ class _$_SubscriptionEvent implements _SubscriptionEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? subscriptions,
     TResult Function(String videoId)? videoSubscription,
-    TResult Function(String videoId, int mode)? checkPaymentStatus,
+    TResult Function(String? videoId, int mode)? checkPaymentStatus,
     required TResult orElse(),
   }) {
     if (subscriptions != null) {
@@ -257,7 +257,7 @@ class _$_SubscriptionEventVideo implements _SubscriptionEventVideo {
   TResult when<TResult extends Object?>({
     required TResult Function() subscriptions,
     required TResult Function(String videoId) videoSubscription,
-    required TResult Function(String videoId, int mode) checkPaymentStatus,
+    required TResult Function(String? videoId, int mode) checkPaymentStatus,
   }) {
     return videoSubscription(videoId);
   }
@@ -267,7 +267,7 @@ class _$_SubscriptionEventVideo implements _SubscriptionEventVideo {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? subscriptions,
     TResult? Function(String videoId)? videoSubscription,
-    TResult? Function(String videoId, int mode)? checkPaymentStatus,
+    TResult? Function(String? videoId, int mode)? checkPaymentStatus,
   }) {
     return videoSubscription?.call(videoId);
   }
@@ -277,7 +277,7 @@ class _$_SubscriptionEventVideo implements _SubscriptionEventVideo {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? subscriptions,
     TResult Function(String videoId)? videoSubscription,
-    TResult Function(String videoId, int mode)? checkPaymentStatus,
+    TResult Function(String? videoId, int mode)? checkPaymentStatus,
     required TResult orElse(),
   }) {
     if (videoSubscription != null) {
@@ -339,7 +339,7 @@ abstract class _$$_SubscriptionEventPaymentCopyWith<$Res> {
           $Res Function(_$_SubscriptionEventPayment) then) =
       __$$_SubscriptionEventPaymentCopyWithImpl<$Res>;
   @useResult
-  $Res call({String videoId, int mode});
+  $Res call({String? videoId, int mode});
 }
 
 /// @nodoc
@@ -353,14 +353,14 @@ class __$$_SubscriptionEventPaymentCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? videoId = null,
+    Object? videoId = freezed,
     Object? mode = null,
   }) {
     return _then(_$_SubscriptionEventPayment(
-      videoId: null == videoId
+      videoId: freezed == videoId
           ? _value.videoId
           : videoId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       mode: null == mode
           ? _value.mode
           : mode // ignore: cast_nullable_to_non_nullable
@@ -372,11 +372,10 @@ class __$$_SubscriptionEventPaymentCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SubscriptionEventPayment implements _SubscriptionEventPayment {
-  const _$_SubscriptionEventPayment(
-      {required this.videoId, required this.mode});
+  const _$_SubscriptionEventPayment({this.videoId, required this.mode});
 
   @override
-  final String videoId;
+  final String? videoId;
   @override
   final int mode;
 
@@ -409,7 +408,7 @@ class _$_SubscriptionEventPayment implements _SubscriptionEventPayment {
   TResult when<TResult extends Object?>({
     required TResult Function() subscriptions,
     required TResult Function(String videoId) videoSubscription,
-    required TResult Function(String videoId, int mode) checkPaymentStatus,
+    required TResult Function(String? videoId, int mode) checkPaymentStatus,
   }) {
     return checkPaymentStatus(videoId, mode);
   }
@@ -419,7 +418,7 @@ class _$_SubscriptionEventPayment implements _SubscriptionEventPayment {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? subscriptions,
     TResult? Function(String videoId)? videoSubscription,
-    TResult? Function(String videoId, int mode)? checkPaymentStatus,
+    TResult? Function(String? videoId, int mode)? checkPaymentStatus,
   }) {
     return checkPaymentStatus?.call(videoId, mode);
   }
@@ -429,7 +428,7 @@ class _$_SubscriptionEventPayment implements _SubscriptionEventPayment {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? subscriptions,
     TResult Function(String videoId)? videoSubscription,
-    TResult Function(String videoId, int mode)? checkPaymentStatus,
+    TResult Function(String? videoId, int mode)? checkPaymentStatus,
     required TResult orElse(),
   }) {
     if (checkPaymentStatus != null) {
@@ -476,10 +475,10 @@ class _$_SubscriptionEventPayment implements _SubscriptionEventPayment {
 
 abstract class _SubscriptionEventPayment implements SubscriptionEvent {
   const factory _SubscriptionEventPayment(
-      {required final String videoId,
+      {final String? videoId,
       required final int mode}) = _$_SubscriptionEventPayment;
 
-  String get videoId;
+  String? get videoId;
   int get mode;
   @JsonKey(ignore: true)
   _$$_SubscriptionEventPaymentCopyWith<_$_SubscriptionEventPayment>
