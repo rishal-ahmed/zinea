@@ -18,8 +18,9 @@ class InfoRepository {
     try {
       final String form = json.encode(
         {
-          "sessionToken":
-              '4bb52c85cb51237d8c57d894201a0c2d765dcb93c3acf126368fe7cc472a68251c3e5b9a69dbed96cd2154999ec10330',
+          "sessionToken": UserUtils.instance.userToken,
+          "email": UserUtils.instance.userModel.email,
+          "phone": UserUtils.instance.userModel.phone,
           "userId": UserUtils.instance.userId,
           "movieId": videoId,
         },

@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import 'package:zinea/domain/core/api_endpoints.dart';
 import 'package:zinea/domain/models/video/video_model.dart';
 import 'package:zinea/domain/utils/failures/main_failures.dart';
+import 'package:zinea/domain/utils/user/user_utils.dart';
 
 class HomeRepository {
   final Dio dio =
@@ -15,8 +16,10 @@ class HomeRepository {
   Future<Either<MainFailures, List<List<VideoModel>>>> get home async {
     try {
       final String form = json.encode({
-        "sessionToken":
-            "4bb52c85cb51237d8c57d894201a0c2d765dcb93c3acf126368fe7cc472a68251c3e5b9a69dbed96cd2154999ec10330"
+        "sessionToken": UserUtils.instance.userToken,
+        "email": UserUtils.instance.userModel.email,
+        "phone": UserUtils.instance.userModel.phone,
+        "userId": UserUtils.instance.userId
       });
 
       final Response response = await dio.post(ApiEndpoints.home, data: form);
