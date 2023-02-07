@@ -55,7 +55,9 @@ class HomeRepository {
             homeContents,
           );
         } else {
-          return const Left(MainFailures.clientFailure());
+          log('response == ${response.data.toString()}', name: 'Home');
+          final String error = result['errorMsg'];
+          return Left(MainFailures.clientFailure(error: error));
         }
       } else {
         return const Left(MainFailures.serverFailure());

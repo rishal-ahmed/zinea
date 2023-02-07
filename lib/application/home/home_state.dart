@@ -6,11 +6,9 @@ part 'home_state.freezed.dart';
 @freezed
 class HomeState with _$HomeState {
   const factory HomeState({
-    required bool isLoading,
-    required bool isError,
+    @Default(false) bool isLoading,
+    @Default(false) bool isError,
+    @Default("") String error,
     @Default([]) List<List<VideoModel>> homeContents,
   }) = _HomeState;
-
-  factory HomeState.initial() =>
-      const HomeState(isLoading: false, isError: false);
 }

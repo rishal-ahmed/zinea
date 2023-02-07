@@ -95,8 +95,8 @@ class UserUtils {
     }
   }
 
-  //========== Logout User ==========
-  Future<void> logoutUser(BuildContext context) async {
+  //========== Logout User Dialog ==========
+  Future<void> logoutUserDialog(BuildContext context) async {
     showDialog(
       context: context,
       builder: (ctx) {
@@ -120,13 +120,13 @@ class UserUtils {
               ),
               submitText: 'Logout',
               submitAction: () async {
+                ref.invalidate(MainProvider.navigateProvider);
+
                 Navigator.pushNamedAndRemoveUntil(
                     context, routeLogin, ModalRoute.withName(routeRoot));
                 final SharedPreferences prefs =
                     await SharedPreferences.getInstance();
                 prefs.remove('user');
-
-                ref.invalidate(MainProvider.navigateProvider);
 
                 kSnackBar(
                   context: context,
@@ -138,6 +138,22 @@ class UserUtils {
           },
         );
       },
+    );
+  }
+
+  //========== Logout User ==========
+  Future<void> logoutUser(BuildContext context, WidgetRef ref) async {
+    ref.invalidate(MainProvider.navigateProvider);
+
+    Navigator.pushNamedAndRemoveUntil(
+        context, routeLogin, ModalRoute.withName(routeRoot));
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('user');
+
+    kSnackBar(
+      context: context,
+      content: 'Logged out successfully',
+      success: true,
     );
   }
 }

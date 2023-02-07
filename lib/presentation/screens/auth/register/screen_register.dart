@@ -8,6 +8,7 @@ import 'package:zinea/core/constants/colors.dart';
 import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/core/routes/routes.dart';
 import 'package:zinea/domain/provider/auth/register/register_provider.dart';
+import 'package:zinea/domain/provider/home/home_provider.dart';
 import 'package:zinea/domain/utils/text/text_utils.dart';
 import 'package:zinea/domain/utils/validators/validators.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
@@ -139,6 +140,7 @@ class ScreenRegister extends StatelessWidget {
                               success: true,
                             );
 
+                            ref.invalidate(HomeProvider.homeProvider);
                             Navigator.pushNamedAndRemoveUntil(context,
                                 routeMain, ModalRoute.withName(routeRoot));
                           }

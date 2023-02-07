@@ -6,6 +6,7 @@ import 'package:zinea/core/constants/sizes.dart';
 import 'package:zinea/domain/models/video/video_model.dart';
 import 'package:zinea/domain/provider/appbar/appbar_provider.dart';
 import 'package:zinea/domain/provider/home/home_provider.dart';
+import 'package:zinea/domain/utils/user/user_utils.dart';
 import 'package:zinea/presentation/screens/home/widgets/home_banner_widget.dart';
 import 'package:zinea/presentation/screens/home/widgets/home_title_horizontal_list_widget.dart';
 import 'package:zinea/presentation/widgets/appbar/appbar_widget.dart';
@@ -17,6 +18,12 @@ class ScreenHome extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final HomeState homeState = ref.watch(HomeProvider.homeProvider);
+
+    if (homeState.isError && homeState.error == 'Invalid Token') {
+      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+        UserUtils.instance.logoutUser(context, ref);
+      });
+    }
 
     final ScrollController scrollController = ScrollController();
     scrollController.addListener(() {

@@ -42,7 +42,7 @@ class ScreenProfile extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () async {
-              await UserUtils.instance.logoutUser(context);
+              await UserUtils.instance.logoutUserDialog(context);
             },
             icon: const Icon(Icons.logout),
           )

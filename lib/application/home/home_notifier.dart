@@ -4,9 +4,9 @@ import 'package:zinea/application/home/home_state.dart';
 import 'package:zinea/infrastructure/home/home_repository.dart';
 
 class HomeNotifier extends StateNotifier<HomeState> {
-  HomeNotifier() : super(HomeState.initial());
+  HomeNotifier() : super(const HomeState());
 
-  final HomeState initialState = HomeState.initial();
+  final HomeState initialState = const HomeState();
 
   void emit(HomeEvent event) {
     event.map(home: (homeEvent) async {
@@ -18,7 +18,7 @@ class HomeNotifier extends StateNotifier<HomeState> {
 
       final HomeState homeState = result.fold(
         //=-=-=-=- Failure -=-=-=-=-=
-        (failure) => initialState.copyWith(isError: true),
+        (failure) => initialState.copyWith(isError: true, error: failure.error),
         //=-=-=-=- Success -=-=-=-=-=
         (data) => initialState.copyWith(
           homeContents: data,

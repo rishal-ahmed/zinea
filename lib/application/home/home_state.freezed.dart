@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$HomeState {
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isError => throw _privateConstructorUsedError;
+  String get error => throw _privateConstructorUsedError;
   List<List<VideoModel>> get homeContents => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +32,10 @@ abstract class $HomeStateCopyWith<$Res> {
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
   $Res call(
-      {bool isLoading, bool isError, List<List<VideoModel>> homeContents});
+      {bool isLoading,
+      bool isError,
+      String error,
+      List<List<VideoModel>> homeContents});
 }
 
 /// @nodoc
@@ -49,6 +53,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   $Res call({
     Object? isLoading = null,
     Object? isError = null,
+    Object? error = null,
     Object? homeContents = null,
   }) {
     return _then(_value.copyWith(
@@ -60,6 +65,10 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
       homeContents: null == homeContents
           ? _value.homeContents
           : homeContents // ignore: cast_nullable_to_non_nullable
@@ -76,7 +85,10 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {bool isLoading, bool isError, List<List<VideoModel>> homeContents});
+      {bool isLoading,
+      bool isError,
+      String error,
+      List<List<VideoModel>> homeContents});
 }
 
 /// @nodoc
@@ -92,6 +104,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isError = null,
+    Object? error = null,
     Object? homeContents = null,
   }) {
     return _then(_$_HomeState(
@@ -103,6 +116,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.isError
           : isError // ignore: cast_nullable_to_non_nullable
               as bool,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
       homeContents: null == homeContents
           ? _value._homeContents
           : homeContents // ignore: cast_nullable_to_non_nullable
@@ -115,15 +132,21 @@ class __$$_HomeStateCopyWithImpl<$Res>
 
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
-      {required this.isLoading,
-      required this.isError,
+      {this.isLoading = false,
+      this.isError = false,
+      this.error = "",
       final List<List<VideoModel>> homeContents = const []})
       : _homeContents = homeContents;
 
   @override
+  @JsonKey()
   final bool isLoading;
   @override
+  @JsonKey()
   final bool isError;
+  @override
+  @JsonKey()
+  final String error;
   final List<List<VideoModel>> _homeContents;
   @override
   @JsonKey()
@@ -134,7 +157,7 @@ class _$_HomeState implements _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(isLoading: $isLoading, isError: $isError, homeContents: $homeContents)';
+    return 'HomeState(isLoading: $isLoading, isError: $isError, error: $error, homeContents: $homeContents)';
   }
 
   @override
@@ -145,12 +168,13 @@ class _$_HomeState implements _HomeState {
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isError, isError) || other.isError == isError) &&
+            (identical(other.error, error) || other.error == error) &&
             const DeepCollectionEquality()
                 .equals(other._homeContents, _homeContents));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading, isError,
+  int get hashCode => Object.hash(runtimeType, isLoading, isError, error,
       const DeepCollectionEquality().hash(_homeContents));
 
   @JsonKey(ignore: true)
@@ -162,14 +186,17 @@ class _$_HomeState implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {required final bool isLoading,
-      required final bool isError,
+      {final bool isLoading,
+      final bool isError,
+      final String error,
       final List<List<VideoModel>> homeContents}) = _$_HomeState;
 
   @override
   bool get isLoading;
   @override
   bool get isError;
+  @override
+  String get error;
   @override
   List<List<VideoModel>> get homeContents;
   @override
